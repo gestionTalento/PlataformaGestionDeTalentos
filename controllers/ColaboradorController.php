@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\controllers\SiteController;
 use app\models\Colaborador;
 use app\models\ControllerSearch;
 use yii\web\Controller;
@@ -104,6 +105,9 @@ class ColaboradorController extends Controller
      */
     public function actionUpdate($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC)
     {
+       $busqueda = SiteController::findColaborador($rutColaborador);
+        
+        
         $model = $this->findModel($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

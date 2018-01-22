@@ -10,13 +10,12 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
-class SiteController extends Controller
-{
+class SiteController extends Controller {
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -41,8 +40,7 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public function actions()
-    {
+    public function actions() {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -59,8 +57,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         return $this->render('index');
     }
 
@@ -69,19 +66,70 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+    public function actionLogin() {
+
+        $session = Yii::$app->session;
+
+        if ($session['rut'] != null) {
+            $session->remove('rut');
         }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        $model = new \app\models\Colaborador();
+        if ($model->load(Yii::$app->request->post())) {
+
+            $valid = $this->findColaborador($model->correo, $model->pass);
+
+            if ($valid != false) {
+
+                $session = Yii::$app->session;
+                $session['rut'] = $valid->rutColaborador;
+                $session['nombreColaborador'] = $valid->nombreColaborador;
+                $session->open();
+
+
+
+                Yii::$app->response->redirect(array('colaborador/perfil', 'rutColaborador' => $model->rutColaborador));
+            } else {
+                $model = new \app\models\Colaborador();
+
+
+                if (Yii::$app->request->post()["Colaborador"]["correo"] == "" && Yii::$app->request->post()["Colaborador"]["pass"] == "") {
+                    \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                ×</button>
+                           <span class="glyphicon glyphicon-no"></span> <strong>Mensaje de error</strong>
+                            <hr class="message-inner-separator">
+                            <p>
+                           Ingrese sus credenciales</p>
+                        </div>
+                    </div>');
+                } else {
+                    \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                ×</button>
+                           <span class="glyphicon glyphicon-no"></span> <strong>Mensaje de error</strong>
+                            <hr class="message-inner-separator">
+                            <p>
+                            Error en el ingreso de datos</p>
+                        </div>
+                    </div>');
+                }
+
+
+
+                $this->layout = 'loginLayout';
+                return $this->render('login', [
+                            'model' => $model,
+                ]);
+            }
+        } else {
+            $this->layout = 'loginLayout';
+            return $this->render('login', [
+                        'model' => $model,
+            ]);
         }
-        return $this->render('login', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -89,8 +137,7 @@ class SiteController extends Controller
      *
      * @return Response
      */
-    public function actionLogout()
-    {
+    public function actionLogout() {
         Yii::$app->user->logout();
 
         return $this->goHome();
@@ -101,8 +148,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionContact()
-    {
+    public function actionContact() {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -110,7 +156,7 @@ class SiteController extends Controller
             return $this->refresh();
         }
         return $this->render('contact', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -119,12 +165,21 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
-    {
+    public function actionAbout() {
         return $this->render('about');
     }
-    
-    public function findColaborador($id){
-        
+
+    protected function findColaborador($correo, $pass) {
+
+        $model3 = \app\models\Colaborador::find()
+                ->where(['correo' => $correo, 'pass' => $pass])
+                ->one();
+
+        if ($model3 != null) {
+            return $model3;
+        } else {
+            return false;
+        }
     }
+
 }
