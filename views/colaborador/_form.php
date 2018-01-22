@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Colaborador */
-/* @var $form yii\widgets\ActiveForm weeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeena*/ 
+/* @var $form yii\widgets\ActiveForm */ 
 ?>
 
 <div class="colaborador-form">
