@@ -92,7 +92,7 @@ class SiteController extends Controller {
             } else {
                 $model = new \app\models\Colaborador();
 
-
+                
                 if (Yii::$app->request->post()["Colaborador"]["correo"] == "" && Yii::$app->request->post()["Colaborador"]["pass"] == "") {
                     \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
                         <div class="alert alert-danger">

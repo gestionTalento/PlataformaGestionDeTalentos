@@ -1,8 +1,7 @@
 <?php
-
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
+/* @var $model \common\models\LoginForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -10,38 +9,120 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+<style>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+    body {
+    /* height: 100%; */
+}
 
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
+    body{
+        background-color: rgba(255, 255, 255, 0)!important;
+    }
+    .btn-primary{
+        background-color:#012776;
+        border-color:#ffffff;
+    }
 
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
-        </div>
+    .btn-primary:hover,
+    .btn-default:hover{
+        background-color:#ce3050;
+        color:#ffffff;
+        border-color:#ffffff;
+    }
+    form#login-form {
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    button.btn.btn-lg.btn-primary.btn-block {
+        height: 40px;
+    }
+    
+    html {
+        background: url(bg.jpg) no-repeat bottom right;
+        background-size: cover;
+    }
+    .col-sm-4.col-md-4 {
+        height: 100vh;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        justify-content: center;
 
-    <?php ActiveForm::end(); ?>
+    }
+    .center{
+        margin-top: 30%;
+    }
+    h4 {
+        line-height: 0.35em;
+    }
+    img {
+    max-width: 60%;
+    margin-left: 20%;
+}
+     label.control-label {
+    color: #193276;
+}
+</style>
 
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
+
+
+<div  class="col-sm-4 col-md-4">
+    <div class="center">
+        <!-- <h1 class="text-center login-title">Sign in to continue to Bootsnipp</h1>-->            
+        <div class="account-wall">
+            
+
+            <?=
+            Html::img('@web/armas.png', $options = [
+                'class' => 'jp',
+            ]);
+            ?></div>
+      
+              <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <?= $form->field($model, 'correo')->textInput() ?>
+                    </div>
+                    
+                </div>
+
+                <?= $form->field($model, 'pass')->passwordInput(['autofocus' => true]) ?>
+                <?= Yii::$app->session->getFlash('error'); ?>
+
+         
+                <div class="form-group">
+                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
+                    <br>
+                    <?= Html::a('Recuperar contraseña', ['recuperar'], ['class' => '']) ?>   
+
+                </div>
+
+            <?php ActiveForm::end(); ?>     
+
+       
+
+
+
+
+
+
+
+
+
+
+        </b>
     </div>
 </div>
+
+
+
+
+
+
+
+
+

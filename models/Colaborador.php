@@ -7,44 +7,46 @@ use Yii;
 /**
  * This is the model class for table "colaborador".
  *
- * @property int $rutColaborador
+ * @property integer $rutColaborador
  * @property string $dvColaborador
  * @property string $pass
  * @property string $nombreColaborador
  * @property string $apellidosColaborador
- * @property int $idSucursal
- * @property int $idArea
- * @property int $idCargo
- * @property int $idRol
- * @property int $idGerencia
- * @property int $westadoJefe
- * @property int $idperfil
- * @property int $idperfilRed
- * @property int $idestadisticas
- * @property int $idestado
- * @property int $idCC
+ * @property integer $idSucursal
+ * @property integer $idArea
+ * @property integer $idCargo
+ * @property integer $idRol
+ * @property integer $idGerencia
+ * @property integer $westadoJefe
+ * @property integer $idperfil
+ * @property integer $idperfilRed
+ * @property integer $idestadisticas
+ * @property integer $idestado
+ * @property integer $idCC
+ * @property string $correo
+ * @property string $telefono
+ * @property string $direccion
  *
  * @property Bbeneficios[] $bbeneficios
- * @property Area $area
- * @property Cargos $cargo
- * @property Gerencia $gerencia
- * @property Rol $rol
- * @property Sucursal $sucursal
- * @property Icentrocosto $cC
- * @property Estadocolaborador $estado
- * @property Perfil $perfil
- * @property Restadisticas $estadisticas
- * @property Rperfilredsocial $perfilRed
+ * @property Area $idArea0
+ * @property Cargos $idCargo0
+ * @property Gerencia $idGerencia0
+ * @property Rol $idRol0
+ * @property Restadisticas $idestadisticas0
+ * @property Rperfilredsocial $idperfilRed0
+ * @property Icentrocosto $idCC0
+ * @property Estadocolaborador $idestado0
+ * @property Perfil $idperfil0
+ * @property Sucursal $idSucursal0
  * @property Ddependencias[] $ddependencias
  * @property Ddependencias[] $ddependencias0
  * @property Dependencia[] $dependencias
  * @property Dependencia[] $dependencias0
- * @property Detallepersona $detallepersona
  * @property Historialcolaborador[] $historialcolaboradors
  * @property Icontactabilidad[] $icontactabilidads
- * @property IdetalleLchUsuario[] $etalleLchUsuarios
- * @property Idetalleinduccion[] $etalleinduccions
- * @property Idjmanual[] $jmanuals
+ * @property IdetalleLchUsuario[] $idetalleLchUsuarios
+ * @property Idetalleinduccion[] $idetalleinduccions
+ * @property Idjmanual[] $idjmanuals
  * @property IllamadasRealizadas[] $illamadasRealizadas
  * @property Inocontacto[] $inocontactos
  * @property Iprogreso[] $iprogresos
@@ -70,22 +72,22 @@ class Colaborador extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['rutColaborador', 'dvColaborador', 'pass', 'nombreColaborador', 'apellidosColaborador', 'idSucursal', 'idArea', 'idCargo', 'idRol', 'idGerencia', 'idperfil', 'idperfilRed', 'idestadisticas', 'idestado', 'idCC'], 'required'],
+            [['rutColaborador', 'dvColaborador', 'pass', 'nombreColaborador', 'apellidosColaborador', 'idSucursal', 'idArea', 'idCargo', 'idRol', 'idGerencia', 'idperfil', 'idperfilRed', 'idestadisticas', 'idestado', 'idCC', 'correo'], 'required'],
             [['rutColaborador', 'idSucursal', 'idArea', 'idCargo', 'idRol', 'idGerencia', 'westadoJefe', 'idperfil', 'idperfilRed', 'idestadisticas', 'idestado', 'idCC'], 'integer'],
             [['dvColaborador'], 'string', 'max' => 1],
             [['pass'], 'string', 'max' => 50],
-            [['nombreColaborador', 'apellidosColaborador'], 'string', 'max' => 200],
-            [['rutColaborador', 'idSucursal', 'idArea', 'idCargo', 'idRol', 'idGerencia', 'idperfil', 'idperfilRed', 'idestadisticas', 'idestado', 'idCC'], 'unique', 'targetAttribute' => ['rutColaborador', 'idSucursal', 'idArea', 'idCargo', 'idRol', 'idGerencia', 'idperfil', 'idperfilRed', 'idestadisticas', 'idestado', 'idCC']],
+            [['nombreColaborador', 'apellidosColaborador', 'direccion'], 'string', 'max' => 200],
+            [['correo', 'telefono'], 'string', 'max' => 45],
             [['idArea'], 'exist', 'skipOnError' => true, 'targetClass' => Area::className(), 'targetAttribute' => ['idArea' => 'idArea']],
             [['idCargo'], 'exist', 'skipOnError' => true, 'targetClass' => Cargos::className(), 'targetAttribute' => ['idCargo' => 'idCargo']],
             [['idGerencia'], 'exist', 'skipOnError' => true, 'targetClass' => Gerencia::className(), 'targetAttribute' => ['idGerencia' => 'idGerencia']],
             [['idRol'], 'exist', 'skipOnError' => true, 'targetClass' => Rol::className(), 'targetAttribute' => ['idRol' => 'idRol']],
-            [['idSucursal'], 'exist', 'skipOnError' => true, 'targetClass' => Sucursal::className(), 'targetAttribute' => ['idSucursal' => 'idSucursal']],
+            [['idestadisticas'], 'exist', 'skipOnError' => true, 'targetClass' => Restadisticas::className(), 'targetAttribute' => ['idestadisticas' => 'idestadisticas']],
+            [['idperfilRed'], 'exist', 'skipOnError' => true, 'targetClass' => Rperfilredsocial::className(), 'targetAttribute' => ['idperfilRed' => 'idperfilRed']],
             [['idCC'], 'exist', 'skipOnError' => true, 'targetClass' => Icentrocosto::className(), 'targetAttribute' => ['idCC' => 'idCC']],
             [['idestado'], 'exist', 'skipOnError' => true, 'targetClass' => Estadocolaborador::className(), 'targetAttribute' => ['idestado' => 'idestado']],
             [['idperfil'], 'exist', 'skipOnError' => true, 'targetClass' => Perfil::className(), 'targetAttribute' => ['idperfil' => 'idperfil']],
-            [['idestadisticas'], 'exist', 'skipOnError' => true, 'targetClass' => Restadisticas::className(), 'targetAttribute' => ['idestadisticas' => 'idestadisticas']],
-            [['idperfilRed'], 'exist', 'skipOnError' => true, 'targetClass' => Rperfilredsocial::className(), 'targetAttribute' => ['idperfilRed' => 'idperfilRed']],
+            [['idSucursal'], 'exist', 'skipOnError' => true, 'targetClass' => Sucursal::className(), 'targetAttribute' => ['idSucursal' => 'idSucursal']],
         ];
     }
 
@@ -111,6 +113,9 @@ class Colaborador extends \yii\db\ActiveRecord
             'idestadisticas' => 'Idestadisticas',
             'idestado' => 'Idestado',
             'idCC' => 'Id Cc',
+            'correo' => 'Correo',
+            'telefono' => 'Telefono',
+            'direccion' => 'Direccion',
         ];
     }
 
@@ -125,7 +130,7 @@ class Colaborador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getArea()
+    public function getIdArea0()
     {
         return $this->hasOne(Area::className(), ['idArea' => 'idArea']);
     }
@@ -133,7 +138,7 @@ class Colaborador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCargo()
+    public function getIdCargo0()
     {
         return $this->hasOne(Cargos::className(), ['idCargo' => 'idCargo']);
     }
@@ -141,7 +146,7 @@ class Colaborador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGerencia()
+    public function getIdGerencia0()
     {
         return $this->hasOne(Gerencia::className(), ['idGerencia' => 'idGerencia']);
     }
@@ -149,7 +154,7 @@ class Colaborador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRol()
+    public function getIdRol0()
     {
         return $this->hasOne(Rol::className(), ['idRol' => 'idRol']);
     }
@@ -157,39 +162,7 @@ class Colaborador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSucursal()
-    {
-        return $this->hasOne(Sucursal::className(), ['idSucursal' => 'idSucursal']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCC()
-    {
-        return $this->hasOne(Icentrocosto::className(), ['idCC' => 'idCC']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEstado()
-    {
-        return $this->hasOne(Estadocolaborador::className(), ['idestado' => 'idestado']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPerfil()
-    {
-        return $this->hasOne(Perfil::className(), ['idperfil' => 'idperfil']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEstadisticas()
+    public function getIdestadisticas0()
     {
         return $this->hasOne(Restadisticas::className(), ['idestadisticas' => 'idestadisticas']);
     }
@@ -197,9 +170,41 @@ class Colaborador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPerfilRed()
+    public function getIdperfilRed0()
     {
         return $this->hasOne(Rperfilredsocial::className(), ['idperfilRed' => 'idperfilRed']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdCC0()
+    {
+        return $this->hasOne(Icentrocosto::className(), ['idCC' => 'idCC']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdestado0()
+    {
+        return $this->hasOne(Estadocolaborador::className(), ['idestado' => 'idestado']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdperfil0()
+    {
+        return $this->hasOne(Perfil::className(), ['idperfil' => 'idperfil']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdSucursal0()
+    {
+        return $this->hasOne(Sucursal::className(), ['idSucursal' => 'idSucursal']);
     }
 
     /**
@@ -237,14 +242,6 @@ class Colaborador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetallepersona()
-    {
-        return $this->hasOne(Detallepersona::className(), ['rutColaborador' => 'rutColaborador']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getHistorialcolaboradors()
     {
         return $this->hasMany(Historialcolaborador::className(), ['rutColaborador' => 'rutColaborador']);
@@ -261,7 +258,7 @@ class Colaborador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEtalleLchUsuarios()
+    public function getIdetalleLchUsuarios()
     {
         return $this->hasMany(IdetalleLchUsuario::className(), ['rutColaborador' => 'rutColaborador']);
     }
@@ -269,7 +266,7 @@ class Colaborador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEtalleinduccions()
+    public function getIdetalleinduccions()
     {
         return $this->hasMany(Idetalleinduccion::className(), ['rutColaborador' => 'rutColaborador']);
     }
@@ -277,7 +274,7 @@ class Colaborador extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getJmanuals()
+    public function getIdjmanuals()
     {
         return $this->hasMany(Idjmanual::className(), ['rutColaborador' => 'rutColaborador']);
     }

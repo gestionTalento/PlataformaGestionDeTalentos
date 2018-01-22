@@ -7,7 +7,7 @@ use yii\web\AssetBundle;
 /**
  * Main backend application asset bundle.
  */
-class AppAsset extends AssetBundle
+class LoginAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
@@ -16,14 +16,11 @@ class AppAsset extends AssetBundle
         'css/animate.min.css',
         'css/font-awesome.min.css',
         'css/timeline.css',
-        'css/fonts.css',
-
     ];
     public $js = [
         'js/bootstrap.min.js',
         'js/custom.js',
-        'js/main.js',
-     
+        'js/jquery.1.11.1.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
