@@ -1,4 +1,5 @@
 <?php
+namespace app\controllers;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -9,7 +10,7 @@ use app\models\ColaboradorSearch;
 use app\models\Colaborador;
 use app\models\Perfil;
 use app\models\Area;
-use app\models\PerfilSearch;
+use app\models\Empresas;
 
 
 class BuscarController extends Controller
@@ -24,7 +25,7 @@ class BuscarController extends Controller
 	}
 
 	public function findPerfil($id){
-		if (($model = Perfil::findOne(['nombre' => $id])) !== null){
+		if (($model = Perfil::findOne($id)) !== null){
 			return $model;
 		} else {
 			throw new NotFoundHttpException('The requested page does not exist.');
@@ -38,7 +39,7 @@ class BuscarController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-    
+
     public function findArea($id)
     {
         if (($model = Area::findOne($id)) !== null) {
@@ -47,4 +48,5 @@ class BuscarController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }
