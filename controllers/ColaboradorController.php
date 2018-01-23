@@ -5,10 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\controllers\SiteController;
 use app\models\Colaborador;
+use app\models\Rpost;
 use app\models\ControllerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ColaboradorController implements the CRUD actions for Colaborador model.
@@ -21,35 +23,80 @@ class ColaboradorController extends Controller {
         $rutColaborador = $session['rut'];
 
         if ($rutColaborador == null) {
-            $model = new \app\models\Colaborador();
+            $model = new Colaborador();
             return $this->redirect(['site/login', 'model' => $model]);
         }
 
-
-        //var_dump($session['rut']);die();
-
-        $model = $this->encuentraColaborador($rutColaborador);
-        // $model2 = $this->encuentraAmigos($rutColaborador);
-        $model3 = new \app\models\Post();
-        $model4 = $this->encuentraPost($rutColaborador);
-        $actividad = $this->findMuro($rutColaborador);
-        $model5 = $this->encuentraGrupos($rutColaborador);
-        //var_dump($model5);die();
+        $model1 = new Rpost();
+        $model = BuscarController::findColaboradorRut($rutColaborador);
+        $perfil = BuscarController::findPerfil($model->idperfilRed);
+        $model2 = BuscarController::encuentraPost($rutColaborador);
+        $actividad = BuscarController::findMuro();
+        $estadistica = BuscarController::findEstadistica($model->idestadisticas);
 
 
 
-        $session['foto'] = $model[0]['foto'];
-        $session['rutColaborador'] = $model[0]['rutColaborador'];
-        $session['nombreColaborador'] = $model[0]['nombreColaborador'];
-        $session['apellidosColaborador'] = $model[0]['apellidosColaborador'];
+        $session['foto'] = $perfil->rfoto;
+        $session['rutColaborador'] = $model->rutColaborador;
+        $session['nombreColaborador'] = $model->nombreColaborador;
+        $session['apellidosColaborador'] = $model->apellidosColaborador;
 
         return $this->render('perfil', [
                     'model' => $model,
+                    'model3' => $model1,
+                    'model4' => $model2,
+                    'perfil' => $perfil,
                     'actividad' => $actividad,
-                    'model3' => $model3,
-                    'model4' => $model4,
-                    'model5' => $model5,
+                    'estadistica' => $estadistica,
         ]);
+    }
+
+    public function actionFoto($rutColaborador) {
+        try {
+            $num = rand(5, 600);
+
+
+            ini_set('memory_limit', '128M');
+
+            $model = BuscarController::findColaboradorRut($rutColaborador);
+
+            if ($model->load(Yii::$app->request->post())) {
+
+                $model->file = UploadedFile::getInstances($model, 'foto');
+
+                if (empty($model->file)) {
+                    $models = $this->findModel($rutColaborador);
+                    $models->bio = $model->bio;
+                    $models->save(false);
+                } else {
+
+                    foreach ($model->file as $file) {
+                        ini_set('memory_limit', '512M');
+                        $file->saveAs('img/perfil/' . $model->rutColaborador . $file->baseName . $num . "." . $file->extension);
+                        Image::thumbnail('img/perfil/' . $model->rutColaborador . $file->baseName . $num . "." . $file->extension, 200, 187)
+                                ->save('img/perfil/' . $model->rutColaborador . $file->baseName . $num . "." . $file->extension, ['quality' => 100]);
+
+                        ini_set('memory_limit', '512M');
+
+                        $ruta = 'img/perfil/' . $model->rutColaborador . $file->baseName . $num . "." . $file->extension;
+                        Image::thumbnail($ruta, 120, 120)
+                                ->save('img/perfil/t/' . $model->rutColaborador . $file->baseName . $num . "." . $file->extension, ['quality' => 50]);
+                        $model->foto = $model->rutColaborador . $file->baseName . $num . "." . $file->extension;
+                        $model->save();
+                    }
+                }
+
+
+
+                return $this->redirect(['perfil', 'rutColaborador' => $model->rutColaborador]);
+            } else {
+                return $this->renderAjax('update', [
+                            'model' => $model,
+                ]);
+            }
+        } catch (ErrorException $e) {
+            throw new NotFoundHttpException('Intenta subir una foto mas liviana!!!');
+        }
     }
 
     /**
@@ -199,98 +246,244 @@ class ColaboradorController extends Controller {
         throw new NotFoundHttpException('The requested page does not exist.');
     }
     
-    public function encuentraColaborador($rutColaborador) {
-        if (($model = \app\models\Colaborador::find()->where(['rutColaborador' => $rutColaborador])->all()) !== null) {
+        public function actionPost() {
+//        ini_set('post_max_size', '64M');
+//        ini_set('upload_max_filesize', '64M');
+//        ini_set('memory_limit', '256M');
+//        ini_set('memory_limit', '8192M');
+        //var_dump(Yii::$app->request->post());die();
+        //date_default_timezone_set("America/Santiago");
 
-            return $model;
+        $model = new Rpost();
+        
+        if (Yii::$app->request->post()) {
+            if (!preg_match("/^\S*$/", Yii::$app->request->post()["rdescripcionPost"])) {
+
+                \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                ×</button>
+                           <span class="glyphicon glyphicon-no"></span> <strong>Mensaje de error</strong>
+                            <hr class="message-inner-separator">
+                            <p>
+                                Debe ingresar algun contenido a postear.</p>
+                        </div>
+                    </div>');
+                return $this->redirect('../colaborador/perfil');
+            } else {
+                $model->file = UploadedFile::getInstances($model, 'file');
+
+                if (empty($model->file) && empty(Yii::$app->request->post()["rdescripcionPost"])) {
+
+
+
+                    \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                ×</button>
+                           <span class="glyphicon glyphicon-no"></span> <strong>Mensaje de error</strong>
+                            <hr class="message-inner-separator">
+                            <p>
+                                Debe ingresar algun contenido a postear.</p>
+                        </div>
+                    </div>');
+                    return $this->redirect('index.php?r=colaborador/perfil');
+                } else {
+                    
+                }
+            }
+
+
+            $model->file = UploadedFile::getInstances($model, 'file');
+            $model->file1 = UploadedFile::getInstances($model, 'file1');
+            $model->file2 = UploadedFile::getInstances($model, 'file2');
+
+
+
+            // var_dump($model->file[0]->type);die();
+
+
+            $model->rut1 = Yii::$app->request->post()["rutColaborador"];
+            if (empty(Yii::$app->request->post()["rdescripcionPost"])) {
+                $model->rdescripcionPost = "0";
+            } else {
+                $model->rdescripcionPost = Yii::$app->request->post()["rdescripcionPost"];
+            }
+
+            $mystring = Yii::$app->request->post()["rdescripcionPost"];
+            $findme = "youtube";
+            $pos = strpos($mystring, $findme);
+            $num = rand(5, 600);
+
+            ini_set('memory_limit', '8192M');
+
+
+            if ($pos == false) {
+                $model->rfecha = date("Y-m-d G:i:s");
+            } else {
+                $iframe = $this->convertYoutube($mystring);
+                $model->rdescripcionPost = $iframe;
+                date_default_timezone_set("America/Santiago");
+
+                $model->rfecha = date("Y-m-d G:i:s");
+                $model->rtipoPost = 1;
+            }
+
+
+            $mystring2 = Yii::$app->request->post()["rdescripcionPost"];
+            $findme2 = "facebook";
+            $pos2 = strpos($mystring2, $findme2);
+            $num2 = rand(5, 600);
+
+            ini_set('memory_limit', '8192M');
+
+
+            if ($pos2 == false) {
+                $model->rfecha = date("Y-m-d G:i:s");
+            } else {
+
+                $model->rdescripcionPost = Yii::$app->request->post()["rdescripcionPost"];
+                date_default_timezone_set("America/Santiago");
+
+                $model->rfecha = date("Y-m-d G:i:s");
+                $model->rtipoPost = 7;
+            }
+
+
+            if (empty($model->file)) {
+                if ($pos == true) {
+                    $model->rtipoPost = 5; // este post es sin foto
+                } else {
+                    $model->rtipoPost = 1; // este post es sin foto
+                }
+            } else {
+
+                //var_dump($model->file[0]->type);die();
+
+                if ($model->file[0]->type == "image/jpeg" || $model->file[0]->type == "image/png" || $model->file[0]->type == "image/gif") {
+                    $model->rtipoPost = 2; // este post es con foto
+                    foreach ($model->file as $file) {
+
+
+                        $file->saveAs('img/post/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
+                        $ruta = 'img/post/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        Image::thumbnail($ruta, 5000, 5000)
+                                ->save('img/post/' . $model->rut1 . $file->baseName . $num . "." . $file->extension, ['quality' => 50]);
+
+                        $model->foto = $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                    }
+                }
+
+                if ($model->file[0]->type == "application/msword" || $model->file[0]->type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+                    $model->rtipoPost = 6; // este post es con foto
+                    foreach ($model->file as $file) {
+                        $file->saveAs('img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
+                        $ruta = 'img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        $model->foto = "word.png";
+                        $model->rdescripcionPost = $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        $model->nombreArchivo = $file->baseName . "." . $file->extension;
+                    }
+                }
+                if ($model->file[0]->type == "application/vnd.openxmlformats-officedocument.presentationml.presentation") {
+                    $model->rtipoPost = 6; // este post es con foto
+                    foreach ($model->file as $file) {
+
+
+                        $file->saveAs('img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
+                        $ruta = 'img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        $model->foto = "power.png";
+                        $model->rdescripcionPost = $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        $model->nombreArchivo = $file->baseName . "." . $file->extension;
+                    }
+                }
+                if ($model->file[0]->type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+                    $model->rtipoPost = 6; // este post es con foto
+                    foreach ($model->file as $file) {
+                        $file->saveAs('img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
+                        $ruta = 'img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        $model->foto = "excel.png";
+                        $model->rdescripcionPost = $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        $model->nombreArchivo = $file->baseName . "." . $file->extension;
+                    }
+                }
+
+                if ($model->file[0]->type == "application/pdf") {
+                    $model->rtipoPost = 6; // este post es con foto
+                    foreach ($model->file as $file) {
+                        $file->saveAs('img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
+                        $ruta = 'img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        $model->foto = "pdf.png";
+                        $model->rdescripcionPost = $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        $model->nombreArchivo = $file->baseName . "." . $file->extension;
+                    }
+                }
+
+                if ($model->file[0]->type == "video/quicktime" || $model->file[0]->type == "video/3gpp" || $model->file[0]->type == "video/mp4") {
+                    $model->rtipoPost = 3; // este post es con foto
+                    foreach ($model->file as $file) {
+
+
+                        $ruta = 'img/post/video/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        $file->saveAs('img/post/video/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
+                        $model->foto = $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                    }
+                }
+            }
+
+
+
+
+            $model->rut1 = Yii::$app->request->post()["rutColaborador"];
+            $model->rut2 = 1;
+            
+
+            if ($model->rfoto == NULL && $model->rdescripcionPost == "0") {
+                
+            } else {
+                $model->save(false);
+                $actividad = new \app\models\Ractividad();
+                $actividad->rutColaborador1 = $model->rut1;
+                $actividad->rutColaborador2 = $model->rut2;
+                $actividad->ridpost = $model->idPost;
+                $actividad->ridtipo_post = $model->rtipoPost;
+                $actividad->save(false);
+            }
+
+
+
+
+
+
+            $session = Yii::$app->session;
+            $rutColaborador = $session['rut'];
+
+            $model = \app\controllers\BuscarController::encuentraColaborador($rutColaborador);
+            $model2 = \app\controllers\BuscarController::encuentraAmigos($rutColaborador);
+            $model3 = new Rpost();
+
+            $session['foto'] = $model[0]['foto'];
+            $session['apellidosColaborador'] = $model[0]['apellidosColaborador'];
+
+            if ($model->ridPost != null) {
+                $this->actionCrean($rutColaborador, $rutColaborador, 3);
+            }
+
+
+            return $this->redirect(['colaborador/perfil',
+                        'model' => $model,
+                        'model2' => $model2,
+                        'model3' => $model3]);
         } else {
-
-            return $this->render('login', [
+            return $this->render('create', [
                         'model' => $model,
             ]);
         }
     }
     
-    public function encuentraPost($rutColaborador) {
-        if (($model = \app\models\Post::find()->where(['rut1' => $rutColaborador])->orWhere(['rut2' => $rutColaborador])->orderBy(['idPost' => SORT_ASC])->all()) !== null) {
-            //var_dump($model);die();
-
-            return $model;
-        }
-    }
-        protected function findMuro($rutColaborador) {
-
-        $query = new \yii\db\Query;
-        $query->select([
-                    'actividad.idactividad',
-                    'actividad.rut1',
-                    'actividad.rut2',
-                    'actividad.idItem',
-                    'actividad.idtipo_post',
-                    'post.idPost',
-                    'post.descripcionPost',
-                    'post.foto',
-                    'post.tipoPost',
-                    'post.like',
-                    'post.rotador',
-                    'post.fecha'
-                        ]
-                )
-                ->from('post')
-                ->join('INNER JOIN', 'actividad', 'post.idPost=actividad.idItem')
-                
-                ->orderBy(['actividad.idactividad' => SORT_DESC])
-                ->limit(8)
-                ->all();
-
-        $command = $query->createCommand();
-        $model = $command->queryAll();
-
-        return $model;
-    }
-    
-        public function encuentraGrupos($rutColaborador) {
-        try{
-
-            if($rutColaborador==null){
-                
-            $model = new \app\models\Colaborador();
-            return $this->redirect(['login', 'model' => $model]);
-
-
-            }else{
-               $query = new \yii\db\Query;
-               $query->select([
-                    'grupo.nombreGrupo',
-                    'grupo_colaborador.idGrupo',
-                    'grupo.rutModerador',
-                    'grupo.descripcion',
-                    'grupo.foto as hola',
-                    'grupo.portada',
-                    'colaborador.nombreColaborador',
-                    'colaborador.foto'
-                        ]
-                )
-                ->from('grupo')
-                ->join('INNER JOIN', 'grupo_colaborador', 'grupo.idGrupo =grupo_colaborador.idGrupo')
-                ->join('INNER JOIN', 'colaborador', 'grupo.rutModerador =colaborador.rutColaborador')
-                ->where("grupo_colaborador.rutColaborador={$rutColaborador}")
-                ->all();
-
-        $command = $query->createCommand();
-        $model = $command->queryAll();
-
-
-
-        return $model;
-            }
-       
-        }
-        catch  (ErrorException $e){
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-        
-     
+        public function convertYoutube($string) {
+        return preg_replace(
+                "/\s*[a-zA-Z\/\/:\.]*youtu(be.com\/watch\?v=|.be\/)([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", "<iframe width='560' height='315' src=\"//www.youtube.com/embed/$2\"  allowfullscreen></iframe>", $string
+        );
     }
 
 }

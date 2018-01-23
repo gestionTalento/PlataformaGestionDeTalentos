@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\controllers\BuscarController;
 
 class SiteController extends Controller {
 
@@ -77,7 +78,12 @@ class SiteController extends Controller {
         $model = new \app\models\Colaborador();
         if ($model->load(Yii::$app->request->post())) {
 
-            $valid = $this->findColaborador($model->correo, $model->pass);
+
+            $valid = BuscarController::findColaborador($model->correo, $model->pass);
+
+
+
+
 
             if ($valid != false) {
 
@@ -92,7 +98,7 @@ class SiteController extends Controller {
             } else {
                 $model = new \app\models\Colaborador();
 
-                
+
                 if (Yii::$app->request->post()["Colaborador"]["correo"] == "" && Yii::$app->request->post()["Colaborador"]["pass"] == "") {
                     \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
                         <div class="alert alert-danger">
@@ -167,19 +173,6 @@ class SiteController extends Controller {
      */
     public function actionAbout() {
         return $this->render('about');
-    }
-
-    protected function findColaborador($correo, $pass) {
-
-        $model3 = \app\models\Colaborador::find()
-                ->where(['correo' => $correo, 'pass' => $pass])
-                ->one();
-
-        if ($model3 != null) {
-            return $model3;
-        } else {
-            return false;
-        }
     }
 
 }

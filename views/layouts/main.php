@@ -224,7 +224,7 @@ AppAsset::register($this);
 
                     <a class="navbar-brand hidden-xs hidden-md" >
 
-                        <b><img id="logo" src="../armas2.png"></b>
+                        <b><img id="logo" src="armas2.png"></b>
 
                     </a>
                     <a class="navbar-brand hidden-lg hidden-md" >

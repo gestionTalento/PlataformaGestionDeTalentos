@@ -23,21 +23,24 @@ use Yii;
  * @property Colaborador $rut20
  * @property RtipoPost $rtipoPost0
  */
-class Rpost extends \yii\db\ActiveRecord
-{
+class Rpost extends \yii\db\ActiveRecord {
+
+    public $file;
+    public $file1;
+    public $file2;
+    public $file3;
+
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'rpost';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['rfecha'], 'safe'],
             [['rtipoPost', 'rut1', 'rut2'], 'required'],
@@ -54,8 +57,7 @@ class Rpost extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'ridPost' => 'Rid Post',
             'rdecripcionPost' => 'Rdecripcion Post',
@@ -74,24 +76,22 @@ class Rpost extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRut10()
-    {
+    public function getRut10() {
         return $this->hasOne(Colaborador::className(), ['rutColaborador' => 'rut1']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRut20()
-    {
+    public function getRut20() {
         return $this->hasOne(Colaborador::className(), ['rutColaborador' => 'rut2']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRtipoPost0()
-    {
+    public function getRtipoPost0() {
         return $this->hasOne(RtipoPost::className(), ['ridtipo_post' => 'rtipoPost']);
     }
+
 }

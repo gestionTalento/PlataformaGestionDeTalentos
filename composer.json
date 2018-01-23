@@ -15,9 +15,18 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "~2.0.5",
-        "yiisoft/yii2-bootstrap": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.0.0"
+        "yiisoft/yii2": ">=2.0.6",
+        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "karpoff/yii2-crop-image-upload": "*",
+        "bupy7/yii2-widget-cropbox": "*",
+        "maxmirazh33/yii2-uploadable-cropable-image": "*",
+        "raoul2000/yii2-jcrop-widget": "*",
+        "mootensai/yii2-enhanced-gii": "dev-master",
+        "kartik-v/yii2-mpdf": "dev-master",
+        "kartik-v/yii2-datecontrol": "dev-master",
+        "kartik-v/yii2-tree-manager": "dev-master",
+        "kartik-v/yii2-widget-fileinput": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
