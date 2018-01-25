@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9bde0cc2f4bb0f6c7856579870d3e24c",
     "content-hash": "db42717397d6127ce3a9f643644991b2",
     "packages": [
         {
@@ -226,7 +225,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-05-22 09:59:54"
+            "time": "2017-05-22T09:59:54+00:00"
         },
         {
             "name": "cebe/markdown",
@@ -286,7 +285,7 @@
                 "markdown",
                 "markdown-extra"
             ],
-            "time": "2017-07-16 21:13:23"
+            "time": "2017-07-16T21:13:23+00:00"
         },
         {
             "name": "creocoder/yii2-nested-sets",
@@ -326,7 +325,7 @@
                 "nested sets",
                 "yii2"
             ],
-            "time": "2015-01-27 10:53:51"
+            "time": "2015-01-27T10:53:51+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -373,20 +372,20 @@
             "keywords": [
                 "html"
             ],
-            "time": "2017-06-03 02:28:16"
+            "time": "2017-06-03T02:28:16+00:00"
         },
         {
             "name": "imagine/imagine",
-            "version": "v0.6.3",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/avalanche123/Imagine.git",
-                "reference": "149041d2a1b517107bfe270ca2b1a17aa341715d"
+                "reference": "f64ec666baaa800edcbf237db41121a569230709"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/149041d2a1b517107bfe270ca2b1a17aa341715d",
-                "reference": "149041d2a1b517107bfe270ca2b1a17aa341715d",
+                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/f64ec666baaa800edcbf237db41121a569230709",
+                "reference": "f64ec666baaa800edcbf237db41121a569230709",
                 "shasum": ""
             },
             "require": {
@@ -401,11 +400,6 @@
                 "ext-imagick": "to use the Imagick implementation"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-develop": "0.7-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Imagine": "lib/"
@@ -430,7 +424,7 @@
                 "image manipulation",
                 "image processing"
             ],
-            "time": "2015-09-19 16:54:05"
+            "time": "2013-07-10T17:25:36+00:00"
         },
         {
             "name": "karpoff/yii2-crop-image-upload",
@@ -475,7 +469,7 @@
                 "upload",
                 "yii2"
             ],
-            "time": "2014-12-15 18:13:03"
+            "time": "2014-12-15T18:13:03+00:00"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
@@ -528,7 +522,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2018-01-22 17:05:07"
+            "time": "2018-01-22T17:05:07+00:00"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -572,7 +566,7 @@
                 "star",
                 "svg"
             ],
-            "time": "2017-11-03 07:22:19"
+            "time": "2017-11-03T07:22:19+00:00"
         },
         {
             "name": "kartik-v/bootstrap-tabs-x",
@@ -616,7 +610,7 @@
                 "tabs",
                 "tabs-x"
             ],
-            "time": "2015-06-26 14:48:16"
+            "time": "2015-06-26T14:48:16+00:00"
         },
         {
             "name": "kartik-v/dependent-dropdown",
@@ -663,7 +657,7 @@
                 "option",
                 "select"
             ],
-            "time": "2017-08-01 11:43:55"
+            "time": "2017-08-01T11:43:55+00:00"
         },
         {
             "name": "kartik-v/php-date-formatter",
@@ -712,7 +706,7 @@
                 "php-date-formatter.js",
                 "time"
             ],
-            "time": "2017-01-08 09:13:05"
+            "time": "2017-01-08T09:13:05+00:00"
         },
         {
             "name": "kartik-v/yii2-builder",
@@ -765,7 +759,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-08-29 13:04:56"
+            "time": "2017-08-29T13:04:56+00:00"
         },
         {
             "name": "kartik-v/yii2-datecontrol",
@@ -817,7 +811,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2018-01-06 13:08:48"
+            "time": "2018-01-06T13:08:48+00:00"
         },
         {
             "name": "kartik-v/yii2-dialog",
@@ -869,7 +863,7 @@
                 "modal",
                 "yii2"
             ],
-            "time": "2017-11-06 16:04:54"
+            "time": "2017-11-06T16:04:54+00:00"
         },
         {
             "name": "kartik-v/yii2-dynagrid",
@@ -929,7 +923,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-10-23 14:02:31"
+            "time": "2017-10-23T14:02:31+00:00"
         },
         {
             "name": "kartik-v/yii2-export",
@@ -990,7 +984,7 @@
                 "xlsx",
                 "yii2"
             ],
-            "time": "2017-11-19 18:30:55"
+            "time": "2017-11-19T18:30:55+00:00"
         },
         {
             "name": "kartik-v/yii2-grid",
@@ -1043,7 +1037,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-11-23 15:43:16"
+            "time": "2017-11-23T15:43:16+00:00"
         },
         {
             "name": "kartik-v/yii2-helpers",
@@ -1094,7 +1088,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2016-11-26 06:03:52"
+            "time": "2016-11-26T06:03:52+00:00"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -1145,7 +1139,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-09-29 06:18:14"
+            "time": "2017-09-29T06:18:14+00:00"
         },
         {
             "name": "kartik-v/yii2-mpdf",
@@ -1197,7 +1191,7 @@
                 "utf8",
                 "yii2"
             ],
-            "time": "2017-07-19 09:51:02"
+            "time": "2017-07-19T09:51:02+00:00"
         },
         {
             "name": "kartik-v/yii2-sortable",
@@ -1244,7 +1238,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-06-17 17:34:48"
+            "time": "2015-06-17T17:34:48+00:00"
         },
         {
             "name": "kartik-v/yii2-tabs-x",
@@ -1297,7 +1291,7 @@
                 "tabs",
                 "tabs-x"
             ],
-            "time": "2017-05-04 12:30:21"
+            "time": "2017-05-04T12:30:21+00:00"
         },
         {
             "name": "kartik-v/yii2-tree-manager",
@@ -1354,7 +1348,7 @@
                 "tree",
                 "treeview"
             ],
-            "time": "2018-01-18 10:40:42"
+            "time": "2018-01-18T10:40:42+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
@@ -1406,7 +1400,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-04-27 18:38:05"
+            "time": "2016-04-27T18:38:05+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-affix",
@@ -1455,7 +1449,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-11-09 04:56:27"
+            "time": "2014-11-09T04:56:27+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-alert",
@@ -1510,7 +1504,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-03-10 17:08:52"
+            "time": "2017-03-10T17:08:52+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-colorinput",
@@ -1564,7 +1558,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-01-14 11:15:49"
+            "time": "2016-01-14T11:15:49+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-datepicker",
@@ -1618,7 +1612,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-09-04 03:28:47"
+            "time": "2017-09-04T03:28:47+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-datetimepicker",
@@ -1667,7 +1661,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-06-08 05:53:28"
+            "time": "2017-06-08T05:53:28+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-depdrop",
@@ -1716,7 +1710,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-01-10 17:30:48"
+            "time": "2016-01-10T17:30:48+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-fileinput",
@@ -1771,7 +1765,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-12-06 12:34:31"
+            "time": "2017-12-06T12:34:31+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-growl",
@@ -1820,7 +1814,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-05-03 08:23:04"
+            "time": "2015-05-03T08:23:04+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-rangeinput",
@@ -1869,7 +1863,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-11-22 06:52:44"
+            "time": "2015-11-22T06:52:44+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-rating",
@@ -1925,7 +1919,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-11-18 12:24:51"
+            "time": "2017-11-18T12:24:51+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-select2",
@@ -1978,7 +1972,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-11-25 06:02:18"
+            "time": "2017-11-25T06:02:18+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-sidenav",
@@ -2027,7 +2021,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-11-09 08:07:23"
+            "time": "2014-11-09T08:07:23+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-spinner",
@@ -2075,7 +2069,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-11-09 05:02:05"
+            "time": "2014-11-09T05:02:05+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-switchinput",
@@ -2125,7 +2119,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-01-10 16:47:35"
+            "time": "2016-01-10T16:47:35+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-timepicker",
@@ -2179,7 +2173,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2017-01-08 06:36:24"
+            "time": "2017-01-08T06:36:24+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-touchspin",
@@ -2229,7 +2223,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-01-10 17:10:39"
+            "time": "2016-01-10T17:10:39+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-typeahead",
@@ -2277,7 +2271,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-06-28 18:05:41"
+            "time": "2015-06-28T18:05:41+00:00"
         },
         {
             "name": "kartik-v/yii2-widgets",
@@ -2339,7 +2333,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-11-09 19:54:17"
+            "time": "2014-11-09T19:54:17+00:00"
         },
         {
             "name": "maxmirazh33/yii2-uploadable-cropable-image",
@@ -2394,26 +2388,26 @@
                 "jcrop",
                 "yii2"
             ],
-            "time": "2015-10-20 07:25:47"
+            "time": "2015-10-20T07:25:47+00:00"
         },
         {
             "name": "mongosoft/yii2-upload-behavior",
-            "version": "0.1.6",
+            "version": "0.1.7",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mongosoft/yii2-upload-behavior.git",
-                "reference": "dca58ec2252d37fd941e6599735dfaf63a48c911"
+                "url": "https://github.com/mohorev/yii2-upload-behavior.git",
+                "reference": "06f91a2860aa1106b33a5d26ecd983dff68642f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongosoft/yii2-upload-behavior/zipball/dca58ec2252d37fd941e6599735dfaf63a48c911",
-                "reference": "dca58ec2252d37fd941e6599735dfaf63a48c911",
+                "url": "https://api.github.com/repos/mohorev/yii2-upload-behavior/zipball/06f91a2860aa1106b33a5d26ecd983dff68642f9",
+                "reference": "06f91a2860aa1106b33a5d26ecd983dff68642f9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
-                "yiisoft/yii2": "*",
-                "yiisoft/yii2-imagine": "*"
+                "yiisoft/yii2": "~2.0.0",
+                "yiisoft/yii2-imagine": "~2.0.0"
             },
             "require-dev": {
                 "phpunit/dbunit": "~1.0",
@@ -2447,7 +2441,7 @@
                 "upload",
                 "yii2"
             ],
-            "time": "2015-08-27 15:48:02"
+            "time": "2017-03-01T08:47:54+00:00"
         },
         {
             "name": "mootensai/yii2-enhanced-gii",
@@ -2506,7 +2500,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2017-09-14 07:34:23"
+            "time": "2017-09-14T07:34:23+00:00"
         },
         {
             "name": "mootensai/yii2-jsblock",
@@ -2541,7 +2535,7 @@
                 "javascript",
                 "yii2"
             ],
-            "time": "2015-06-27 03:49:10"
+            "time": "2015-06-27T03:49:10+00:00"
         },
         {
             "name": "mootensai/yii2-optimistic-lock-validator",
@@ -2589,7 +2583,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2015-08-15 03:27:57"
+            "time": "2015-08-15T03:27:57+00:00"
         },
         {
             "name": "mootensai/yii2-relation-trait",
@@ -2639,7 +2633,7 @@
                 "transaction",
                 "yii2"
             ],
-            "time": "2017-10-18 04:48:35"
+            "time": "2017-10-18T04:48:35+00:00"
         },
         {
             "name": "mootensai/yii2-uuid-behavior",
@@ -2694,7 +2688,7 @@
                 "uuid",
                 "yii2"
             ],
-            "time": "2015-06-22 02:06:14"
+            "time": "2015-06-22T02:06:14+00:00"
         },
         {
             "name": "mpdf/mpdf",
@@ -2761,7 +2755,7 @@
                 "php",
                 "utf-8"
             ],
-            "time": "2018-01-03 07:32:36"
+            "time": "2018-01-03T07:32:36+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2809,7 +2803,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-09-27 21:40:39"
+            "time": "2017-09-27T21:40:39+00:00"
         },
         {
             "name": "phpoffice/phpexcel",
@@ -2866,7 +2860,7 @@
                 "xls",
                 "xlsx"
             ],
-            "time": "2015-05-01 07:00:55"
+            "time": "2015-05-01T07:00:55+00:00"
         },
         {
             "name": "psr/log",
@@ -2913,7 +2907,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10 12:19:37"
+            "time": "2016-10-10T12:19:37+00:00"
         },
         {
             "name": "raoul2000/yii2-jcrop-widget",
@@ -2958,7 +2952,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2014-07-30 15:40:38"
+            "time": "2014-07-30T15:40:38+00:00"
         },
         {
             "name": "setasign/fpdi",
@@ -3007,7 +3001,7 @@
                 "fpdi",
                 "pdf"
             ],
-            "time": "2017-05-11 14:25:49"
+            "time": "2017-05-11T14:25:49+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3061,7 +3055,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2018-01-23 07:37:21"
+            "time": "2018-01-23T07:37:21+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -3161,7 +3155,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2017-11-14 11:08:21"
+            "time": "2017-11-14T11:08:21+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -3207,7 +3201,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2017-10-09 19:48:22"
+            "time": "2017-10-09T19:48:22+00:00"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -3257,25 +3251,25 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2016-12-20 13:26:02"
+            "time": "2016-12-20T13:26:02+00:00"
         },
         {
             "name": "yiisoft/yii2-imagine",
-            "version": "2.1.0",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-imagine.git",
-                "reference": "59dcd0b43c2b0e5495c7e5c0320e2cbc1cd57411"
+                "reference": "68ed3d96cd1895035cef3c0e9ce9cf6c2c0c7f1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-imagine/zipball/59dcd0b43c2b0e5495c7e5c0320e2cbc1cd57411",
-                "reference": "59dcd0b43c2b0e5495c7e5c0320e2cbc1cd57411",
+                "url": "https://api.github.com/repos/yiisoft/yii2-imagine/zipball/68ed3d96cd1895035cef3c0e9ce9cf6c2c0c7f1c",
+                "reference": "68ed3d96cd1895035cef3c0e9ce9cf6c2c0c7f1c",
                 "shasum": ""
             },
             "require": {
-                "imagine/imagine": "~0.6.0",
-                "yiisoft/yii2": "~2.0.0"
+                "imagine/imagine": "0.5.*",
+                "yiisoft/yii2": "*"
             },
             "type": "yii2-extension",
             "extra": {
@@ -3305,7 +3299,7 @@
                 "imagine",
                 "yii2"
             ],
-            "time": "2016-11-03 19:28:39"
+            "time": "2016-09-04T15:14:08+00:00"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -3355,7 +3349,7 @@
                 "swiftmailer",
                 "yii2"
             ],
-            "time": "2017-05-01 08:29:00"
+            "time": "2017-05-01T08:29:00+00:00"
         }
     ],
     "packages-dev": [
@@ -3416,7 +3410,7 @@
                 "gherkin",
                 "parser"
             ],
-            "time": "2016-10-30 11:50:56"
+            "time": "2016-10-30T11:50:56+00:00"
         },
         {
             "name": "bower-asset/typeahead.js",
@@ -3529,7 +3523,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2017-12-12 04:54:15"
+            "time": "2017-12-12T04:54:15+00:00"
         },
         {
             "name": "codeception/specify",
@@ -3569,7 +3563,7 @@
                 }
             ],
             "description": "BDD code blocks for PHPUnit and Codeception",
-            "time": "2016-10-21 09:42:00"
+            "time": "2016-10-21T09:42:00+00:00"
         },
         {
             "name": "codeception/verify",
@@ -3605,7 +3599,7 @@
                 }
             ],
             "description": "BDD assertion library for PHPUnit",
-            "time": "2017-01-09 10:58:51"
+            "time": "2017-01-09T10:58:51+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -3659,7 +3653,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2015-06-14 21:17:01"
+            "time": "2015-06-14T21:17:01+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -3709,7 +3703,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2017-08-15 16:48:10"
+            "time": "2017-08-15T16:48:10+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -3774,7 +3768,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-03-20 17:10:46"
+            "time": "2017-03-20T17:10:46+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -3819,7 +3813,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-10-19 19:58:43"
+            "time": "2017-10-19T19:58:43+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -3873,7 +3867,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2017-09-11 18:02:19"
+            "time": "2017-09-11T18:02:19+00:00"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -3918,7 +3912,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2017-11-10 14:09:06"
+            "time": "2017-11-10T14:09:06+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -3965,7 +3959,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-            "time": "2017-07-14 14:27:02"
+            "time": "2017-07-14T14:27:02+00:00"
         },
         {
             "name": "phpspec/php-diff",
@@ -4003,7 +3997,7 @@
                 }
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
-            "time": "2016-04-07 12:29:16"
+            "time": "2016-04-07T12:29:16+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -4066,7 +4060,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2017-11-24 13:59:53"
+            "time": "2017-11-24T13:59:53+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -4129,7 +4123,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-04-02 07:44:40"
+            "time": "2017-04-02T07:44:40+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4176,7 +4170,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2017-11-27 13:52:08"
+            "time": "2017-11-27T13:52:08+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -4217,7 +4211,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2015-06-21 13:50:34"
+            "time": "2015-06-21T13:50:34+00:00"
         },
         {
             "name": "phpunit/php-timer",
@@ -4266,7 +4260,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2017-02-26 11:10:40"
+            "time": "2017-02-26T11:10:40+00:00"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -4315,7 +4309,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2017-12-04 08:55:13"
+            "time": "2017-12-04T08:55:13+00:00"
         },
         {
             "name": "phpunit/phpunit",
@@ -4397,7 +4391,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-12-17 06:14:38"
+            "time": "2017-12-17T06:14:38+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4456,7 +4450,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2017-06-30 09:13:00"
+            "time": "2017-06-30T09:13:00+00:00"
         },
         {
             "name": "psr/http-message",
@@ -4506,7 +4500,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06 14:39:51"
+            "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -4551,7 +4545,7 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
-            "time": "2017-03-04 06:30:41"
+            "time": "2017-03-04T06:30:41+00:00"
         },
         {
             "name": "sebastian/comparator",
@@ -4615,7 +4609,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2017-01-29 09:50:25"
+            "time": "2017-01-29T09:50:25+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -4667,7 +4661,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2017-05-22 07:24:03"
+            "time": "2017-05-22T07:24:03+00:00"
         },
         {
             "name": "sebastian/environment",
@@ -4717,7 +4711,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-11-26 07:53:53"
+            "time": "2016-11-26T07:53:53+00:00"
         },
         {
             "name": "sebastian/exporter",
@@ -4784,7 +4778,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2016-11-19 08:54:04"
+            "time": "2016-11-19T08:54:04+00:00"
         },
         {
             "name": "sebastian/global-state",
@@ -4835,7 +4829,7 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2015-10-12 03:26:01"
+            "time": "2015-10-12T03:26:01+00:00"
         },
         {
             "name": "sebastian/object-enumerator",
@@ -4881,7 +4875,7 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "time": "2017-02-18 15:18:39"
+            "time": "2017-02-18T15:18:39+00:00"
         },
         {
             "name": "sebastian/recursion-context",
@@ -4934,7 +4928,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2016-11-19 07:33:16"
+            "time": "2016-11-19T07:33:16+00:00"
         },
         {
             "name": "sebastian/resource-operations",
@@ -4976,7 +4970,7 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
-            "time": "2015-07-28 20:34:47"
+            "time": "2015-07-28T20:34:47+00:00"
         },
         {
             "name": "sebastian/version",
@@ -5019,7 +5013,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2016-10-03 07:35:21"
+            "time": "2016-10-03T07:35:21+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -5076,7 +5070,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03 07:37:34"
+            "time": "2018-01-03T07:37:34+00:00"
         },
         {
             "name": "symfony/console",
@@ -5145,7 +5139,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03 07:37:34"
+            "time": "2018-01-03T07:37:34+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -5198,7 +5192,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03 07:37:34"
+            "time": "2018-01-03T07:37:34+00:00"
         },
         {
             "name": "symfony/debug",
@@ -5254,7 +5248,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03 17:14:19"
+            "time": "2018-01-03T17:14:19+00:00"
         },
         {
             "name": "symfony/dom-crawler",
@@ -5310,7 +5304,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03 07:37:34"
+            "time": "2018-01-03T07:37:34+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -5373,7 +5367,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03 07:37:34"
+            "time": "2018-01-03T07:37:34+00:00"
         },
         {
             "name": "symfony/finder",
@@ -5422,7 +5416,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03 07:37:34"
+            "time": "2018-01-03T07:37:34+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -5481,7 +5475,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-10-11 12:05:26"
+            "time": "2017-10-11T12:05:26+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -5539,7 +5533,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03 07:37:34"
+            "time": "2018-01-03T07:37:34+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -5589,7 +5583,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2016-11-23 20:04:58"
+            "time": "2016-11-23T20:04:58+00:00"
         },
         {
             "name": "yiisoft/yii2-debug",
@@ -5636,7 +5630,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2017-12-05 07:36:23"
+            "time": "2017-12-05T07:36:23+00:00"
         },
         {
             "name": "yiisoft/yii2-faker",
@@ -5683,7 +5677,7 @@
                 "faker",
                 "yii2"
             ],
-            "time": "2015-03-01 06:22:44"
+            "time": "2015-03-01T06:22:44+00:00"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -5736,7 +5730,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2017-12-22 23:53:06"
+            "time": "2017-12-22T23:53:06+00:00"
         }
     ],
     "aliases": [],

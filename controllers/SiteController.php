@@ -175,4 +175,16 @@ class SiteController extends Controller {
         return $this->render('about');
     }
 
+    public function actionCompadre($rutColaborador){
+        $model= BuscarController::findColaboradorRut($rutColaborador);
+        $model2= BuscarController::encuentraAmigos($rutColaborador);
+
+        $session['rfoto'] = $model[0]['rfoto'];
+        $session['apellidosColaborador'] = $model[0]['apellidosColaborador'];
+
+        return $this->render('perfilAmigo', [
+                    'model' => $model,
+                    'model2' => $model2,]);
+    }
+
 }

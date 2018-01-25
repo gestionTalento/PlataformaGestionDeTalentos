@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 namespace app\controllers;
@@ -7,7 +6,7 @@ use Yii;
 use app\controllers\SiteController;
 use app\models\Colaborador;
 use app\models\Rpost;
-use app\models\ControllerSearch;
+use app\models\ColaboradorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -52,6 +51,74 @@ class ColaboradorController extends Controller {
         ]);
     }
 
+     public function actionCine($video, $idContenido) {
+     
+        $session = Yii::$app->session;
+        $rutColaborador = $session['rut'];
+
+        if($rutColaborador==null){
+             $model = new Colaborador();
+            return $this->redirect(['site/login', 'model' => $model,]);
+        }
+
+
+        //var_dump($session['rut']);die();
+
+        $model = BuscarController::encuentraColaborador($rutColaborador);
+        // $model2 = $this->encuentraAmigos($rutColaborador);
+        $model3 = new Post();
+        $model4 = BuscarController::encuentraPost($rutColaborador);
+        $actividad = BuscarController::findMuro($rutColaborador);
+        $contenidos = BuscarController::findContenidos($idContenido);
+        //var_dump($model5);die();
+       $comentarios = BuscarController::findComentariosContenidos($idContenido);                                      
+
+
+
+        $session['foto'] = $model[0]['foto'];
+        $session['rutColaborador'] = $model[0]['rutColaborador'];
+        $session['nombreColaborador'] = $model[0]['nombreColaborador'];
+        $session['apellidosColaborador'] = $model[0]['apellidosColaborador'];
+
+        return $this->render('cine', [
+                    'model' => $model,
+                    'contenido' => $idContenido,
+                    'video' => $video,
+                    'contenidos' => $contenidos,
+                    'comentarios' => $comentarios,
+        ]);
+    }
+
+
+        public function actionPortal() {
+     
+        $session = Yii::$app->session;
+        $rutColaborador = $session['rut'];
+
+        if($rutColaborador==null){
+             $model = new Colaborador();
+            return $this->redirect(['site/login', 'model' => $model]);
+        }
+
+
+        //var_dump($session['rut']);die();
+
+        $model = BuscarController::encuentraColaborador($rutColaborador);
+    
+
+
+
+        $session['foto'] = $model[0]['rfoto'];
+        $session['rutColaborador'] = $model[0]['rutColaborador'];
+        $session['nombreColaborador'] = $model[0]['nombreColaborador'];
+        $session['apellidosColaborador'] = $model[0]['apellidosColaborador'];
+
+        return $this->render('contenidos', [
+                    'model' => $model,
+        ]);
+    }
+
+
     public function actionFoto($rutColaborador) {
         try {
             $num = rand(5, 600);
@@ -66,8 +133,8 @@ class ColaboradorController extends Controller {
                 $model->file = UploadedFile::getInstances($model, 'foto');
 
                 if (empty($model->file)) {
-                    $models = $this->findModel($rutColaborador);
-                    $models->bio = $model->bio;
+                    $models = BuscarController::findColaboradorRut($rutColaborador);
+                    $models->rbio = $model->rbio;
                     $models->save(false);
                 } else {
 
@@ -114,12 +181,51 @@ class ColaboradorController extends Controller {
         ];
     }
 
+  public function actionContenido($page, $rutColaborador){
+        $numpage =$page;
+        $perpage = 3;
+        $posisi = (($numpage-1) * $perpage);
+        $contenidos = BuscarController::findContenidos($rutColaborador, $posisi, $perpage);
+        $model = BuscarController::encuentraColaborador($rutColaborador);
+        $total = "";
+
+        foreach($contenidos as $conte){
+
+            
+             if ($conte["rtipo"] == 1) {
+
+               $comentarios = BuscarController::findComentariosContenidos($conte["idContenido"]);                                      
+               
+               $modelo = $this->renderAjax('elcontenido', [
+                              'model' => $model,
+                              'rcontenido' => $conte,
+                              'rcomentarios' => $comentarios,
+                                        ]);
+               $total =$total.$modelo;
+
+
+            }
+
+            
+
+
+
+        }
+
+        
+         return $total;
+
+
+
+    }
+
+    
     /**
      * Lists all Colaborador models.
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new ControllerSearch();
+        $searchModel = new ColaboradorSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -442,10 +548,10 @@ class ColaboradorController extends Controller {
                 
             } else {
                 $model->save(false);
-                $actividad = new \app\models\Ractividad();
+                $actividad = new Ractividad();
                 $actividad->rutColaborador1 = $model->rut1;
                 $actividad->rutColaborador2 = $model->rut2;
-                $actividad->ridpost = $model->idPost;
+                $actividad->ridpost = $model->ridPost;
                 $actividad->ridtipo_post = $model->rtipoPost;
                 $actividad->save(false);
             }
@@ -487,173 +593,313 @@ class ColaboradorController extends Controller {
         );
     }
 
+    public function actionRotate($rutColaborador) {
+        $model = BuscarController::findColaboradorRut($rutColaborador);
+        $model2 = BuscarController::findEstadistica($model->idestadisticas);
+        if ($model2->rrotador == 270) {
+            $model2->rrotador = 0;
+        } else {
+            $model2->rrotador = $model2->rotador + 90;
+        }
+        $model->save(false);
+        $model2->save(false);
+        return $model2->rrotador;
+    }
+
+    public function actionCompadre($rutAmigo) {
+        $session = Yii::$app->session;
+        $rutColaborador = $session['rut'];
+        if($rutColaborador==null){
+
+      $model = new Colaborador();
+            return $this->redirect(['site/login', 'model' => $model]);
+
+
+        }else{
+             $model = BuscarController::findColaboradorRut($rutAmigo);
+        $model2 = BuscarController::encuentraAmigos($rutAmigo);
+
+        $actividad = BuscarController::findMuroa($rutAmigo);
+        $model3 = new RPost();
+        $model4 = BuscarController::encuentraPost($rutAmigo);
+        return $this->render('perfilAmigo', [
+                    'model' => $model,
+                    'model2' => $model2,
+                    'model3' => $model3,
+                    'model4' => $model4,
+                    'actividad' => $actividad,
+                    'rutAmigo' => $rutAmigo,
+                    'rutColaborador' => $rutColaborador,
+        ]);
+        }
+      
+       }
+    
+
+    public function actionReload($page, $rutColaborador){
+        $numpage =$page;
+        $perpage = 3;
+        $posisi = (($numpage-1) * $perpage);
+        $actividad = BuscarController::findMuror($rutColaborador, $posisi, $perpage);
+        $model = BuscarController::encuentraColaborador($rutColaborador);
+        $total = "";
+
+        foreach($actividad as $rpost){
+
+            
+             if ($rpost["rtipoPost"] == 1) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
+               $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
+               $modelo = $this->renderAjax('estado', [
+                              'model' => $model,
+                              'rpost' => $rpost,
+                              'rcomentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+                                        ]);
+               $total =$total.$modelo;
+            }
+
+            if ($rpost["rtipoPost"] == 2) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
+               $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
+               $modelo = $this->renderAjax('imagen', [
+                              'model' => $model,
+                              'rpost' => $rpost,
+                              'rcomentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+
+                                        ]);
+               $total =$total.$modelo;
+            }
+
+
+            if ($rpost["rtipoPost"] == 3) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
+               $comentarios = BuscarController::findComentarios($rpost["ridPost"]);
+               $modelo = $this->renderAjax('video', [
+                              'model' => $model,
+                              'rpost' => $rpost,
+                              'rcomentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+
+                                        ]);
+               $total =$total.$modelo;
+            }
+           
+            if ($rpost["rtipoPost"] == 5) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
+               $comentarios = BuscarController::findComentarios($rpost["idPost"]);                                      
+               $modelo = $this->renderAjax('youtube', [
+                              'model' => $model,
+                              'rpost' => $rpost,
+                              'rcomentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+
+                                        ]);
+               $total =$total.$modelo;
+            }
+
+              if ($rpost["rtipoPost"] == 6) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
+               $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
+               $modelo = $this->renderAjax('archivo', [
+                              'model' => $model,
+                              'rpost' => $rpost,
+                              'rcomentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+
+                                        ]);
+               $total =$total.$modelo;
+            }
+
+             if ($rpost["rtipoPost"] == 12321) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
+               $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
+               $modelo = $this->renderAjax('facebook', [
+                              'model' => $model,
+                              'rpost' => $rpost,
+                              'rcomentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+
+                                        ]);
+               $total =$total.$modelo;
+            }
+
+
+
+        }
+
+        
+         return $total;
+
+
+
+    }
+
+
+     public function actionReloadr($page, $rutColaborador, $rutAmigo){
+        $numpage =$page;
+        $perpage = 3;
+        $posisi = (($numpage-1) * $perpage);
+        $actividad = BuscarController::findMurora($rutColaborador, $posisi, $perpage);
+        $model = BuscarController::findColaboradorRut($rutColaborador);
+        $total = "";
+        $session = Yii::$app->session;
+        $rutColaborador = $session['rut'];
+        foreach($actividad as $post){
+
+            
+             if ($post["rtipoPost"] == 1) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
+               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                     
+
+               $modelo = $this->renderAjax('estado', [
+                              'model' => $model,
+                              'post' => $post,
+                              'comentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+
+                                        ]);
+               $total =$total.$modelo;
+            }
+
+            if ($post["rtipoPost"] == 2) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
+               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
+
+               $modelo = $this->renderAjax('imagen', [
+                              'model' => $model,
+                              'rpost' => $post,
+                              'rcomentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+
+                                        ]);
+               $total =$total.$modelo;
+            }
+
+
+            if ($post["rtipoPost"] == 3) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
+               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
+
+               $modelo = $this->renderAjax('video', [
+                              'model' => $model,
+                              'rpost' => $post,
+                              'rcomentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+
+                                        ]);
+               $total =$total.$modelo;
+            }
+           
+            if ($post["rtipoPost"] == 5) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
+               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
+               $modelo = $this->renderAjax('youtube', [
+                              'model' => $model,
+                              'rpost' => $post,
+                              'rcomentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+
+                                        ]);
+               $total =$total.$modelo;
+            }
+
+              if ($post["rtipoPost"] == 6) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
+               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
+
+               $modelo = $this->renderAjax('archivo', [
+                              'model' => $model,
+                              'rpost' => $post,
+                              'rcomentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+
+                                        ]);
+               $total =$total.$modelo;
+            }
+             if ($post["rtipoPost"] == 12321321) {
+
+
+               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
+               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
+               $modelo = $this->renderAjax('facebook', [
+                              'model' => $model,
+                              'rpost' => $post,
+                              'rcomentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+                              'megusta' => $megusta,
+                              
+                                        ]);
+               $total =$total.$modelo;
+            }
+
+
+
+        }
+
+        
+         return $total;
+
+
+
+    }
 }
-=======
-<?php
-
-namespace app\controllers;
-
-use Yii;
-use app\models\Colaborador;
-use app\models\ColaboradorSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-
-/**
- * ColaboradorController implements the CRUD actions for Colaborador model.
- */
-class ColaboradorController extends Controller
-{
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * Lists all Colaborador models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new ColaboradorSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Colaborador model.
-     * @param integer $rutColaborador
-     * @param integer $idSucursal
-     * @param integer $idArea
-     * @param integer $idCargo
-     * @param integer $idRol
-     * @param integer $idGerencia
-     * @param integer $idperfil
-     * @param integer $idperfilRed
-     * @param integer $idestadisticas
-     * @param integer $idestado
-     * @param integer $idCC
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC),
-        ]);
-    }
-
-    /**
-     * Creates a new Colaborador model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Colaborador();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'rutColaborador' => $model->rutColaborador, 'idSucursal' => $model->idSucursal, 'idArea' => $model->idArea, 'idCargo' => $model->idCargo, 'idRol' => $model->idRol, 'idGerencia' => $model->idGerencia, 'idperfil' => $model->idperfil, 'idperfilRed' => $model->idperfilRed, 'idestadisticas' => $model->idestadisticas, 'idestado' => $model->idestado, 'idCC' => $model->idCC]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Colaborador model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $rutColaborador
-     * @param integer $idSucursal
-     * @param integer $idArea
-     * @param integer $idCargo
-     * @param integer $idRol
-     * @param integer $idGerencia
-     * @param integer $idperfil
-     * @param integer $idperfilRed
-     * @param integer $idestadisticas
-     * @param integer $idestado
-     * @param integer $idCC
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC)
-    {
-        $model = $this->findModel($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'rutColaborador' => $model->rutColaborador, 'idSucursal' => $model->idSucursal, 'idArea' => $model->idArea, 'idCargo' => $model->idCargo, 'idRol' => $model->idRol, 'idGerencia' => $model->idGerencia, 'idperfil' => $model->idperfil, 'idperfilRed' => $model->idperfilRed, 'idestadisticas' => $model->idestadisticas, 'idestado' => $model->idestado, 'idCC' => $model->idCC]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Deletes an existing Colaborador model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $rutColaborador
-     * @param integer $idSucursal
-     * @param integer $idArea
-     * @param integer $idCargo
-     * @param integer $idRol
-     * @param integer $idGerencia
-     * @param integer $idperfil
-     * @param integer $idperfilRed
-     * @param integer $idestadisticas
-     * @param integer $idestado
-     * @param integer $idCC
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC)
-    {
-        $this->findModel($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Colaborador model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $rutColaborador
-     * @param integer $idSucursal
-     * @param integer $idArea
-     * @param integer $idCargo
-     * @param integer $idRol
-     * @param integer $idGerencia
-     * @param integer $idperfil
-     * @param integer $idperfilRed
-     * @param integer $idestadisticas
-     * @param integer $idestado
-     * @param integer $idCC
-     * @return Colaborador the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC)
-    {
-        if (($model = Colaborador::findOne(['rutColaborador' => $rutColaborador, 'idSucursal' => $idSucursal, 'idArea' => $idArea, 'idCargo' => $idCargo, 'idRol' => $idRol, 'idGerencia' => $idGerencia, 'idperfil' => $idperfil, 'idperfilRed' => $idperfilRed, 'idestadisticas' => $idestadisticas, 'idestado' => $idestado, 'idCC' => $idCC])) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-}
->>>>>>> c1d08f4547a848b229094329bdddffff566f20a7
