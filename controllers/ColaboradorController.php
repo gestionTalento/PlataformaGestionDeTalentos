@@ -27,11 +27,13 @@ class ColaboradorController extends Controller {
             return $this->redirect(['site/login', 'model' => $model]);
         }
 
-        $model1 = new Rpost();
+
+
+        $model3 = new Rpost();
         $model = BuscarController::findColaboradorRut($rutColaborador);
         $perfil = BuscarController::findPerfil($model->idperfilRed);
-        $model2 = BuscarController::encuentraPost($rutColaborador);
-        $actividad = BuscarController::findMuro();
+        $model4 = BuscarController::encuentraPost($rutColaborador);
+        $actividad = BuscarController::findMuro($rutColaborador);
         $estadistica = BuscarController::findEstadistica($model->idestadisticas);
 
 
@@ -40,11 +42,11 @@ class ColaboradorController extends Controller {
         $session['rutColaborador'] = $model->rutColaborador;
         $session['nombreColaborador'] = $model->nombreColaborador;
         $session['apellidosColaborador'] = $model->apellidosColaborador;
-
+        // var_dump($actividad);die();
         return $this->render('perfil', [
                     'model' => $model,
-                    'model3' => $model1,
-                    'model4' => $model2,
+                    'model3' => $model3,
+                    'model4' => $model4,
                     'perfil' => $perfil,
                     'actividad' => $actividad,
                     'estadistica' => $estadistica,
@@ -70,12 +72,13 @@ class ColaboradorController extends Controller {
         $model4 = BuscarController::encuentraPost($rutColaborador);
         $actividad = BuscarController::findMuro($rutColaborador);
         $contenidos = BuscarController::findContenidos($idContenido);
+         $perfil = BuscarController::findPerfil($model->idperfilRed);
         //var_dump($model5);die();
        $comentarios = BuscarController::findComentariosContenidos($idContenido);                                      
 
 
 
-        $session['foto'] = $model[0]['foto'];
+        $session['foto'] = $perfil[0]['foto'];
         $session['rutColaborador'] = $model[0]['rutColaborador'];
         $session['nombreColaborador'] = $model[0]['nombreColaborador'];
         $session['apellidosColaborador'] = $model[0]['apellidosColaborador'];
@@ -104,7 +107,6 @@ class ColaboradorController extends Controller {
         //var_dump($session['rut']);die();
 
         $model = BuscarController::encuentraColaborador($rutColaborador);
-    
 
 
 
@@ -250,29 +252,30 @@ class ColaboradorController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC) {
-        return $this->render('view', [
-                    'model' => $this->findModel($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC),
-        ]);
-    }
 
     /**
      * Creates a new Colaborador model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+    
     public function actionCreate() {
+        $session = Yii::$app->session;
+        $rutColaborador = $session['rut'];
+
+
         $model = new Colaborador();
 
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'rutColaborador' => $model->rutColaborador, 'idSucursal' => $model->idSucursal, 'idArea' => $model->idArea, 'idCargo' => $model->idCargo, 'idRol' => $model->idRol, 'idGerencia' => $model->idGerencia, 'idperfil' => $model->idperfil, 'idperfilRed' => $model->idperfilRed, 'idestadisticas' => $model->idestadisticas, 'idestado' => $model->idestado, 'idCC' => $model->idCC]);
+            return $this->redirect(['view', 'id' => $model->rutColaborador]);
+        } else {
+            return $this->render('foto', [
+                        'model' => $model,
+                        'rutColaborador' => $rutColaborador,
+            ]);
         }
-
-        return $this->render('create', [
-                    'model' => $model,
-        ]);
     }
-
     /**
      * Updates an existing Colaborador model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -290,19 +293,15 @@ class ColaboradorController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC) {
-        $busqueda = SiteController::findColaborador($rutColaborador);
-
-
-        $model = $this->findModel($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC);
+    public function actionUpdate($rutColaborador) {
+        $model = BuscarController::findColaboradorRut($rutColaborador);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'rutColaborador' => $model->rutColaborador, 'idSucursal' => $model->idSucursal, 'idArea' => $model->idArea, 'idCargo' => $model->idCargo, 'idRol' => $model->idRol, 'idGerencia' => $model->idGerencia, 'idperfil' => $model->idperfil, 'idperfilRed' => $model->idperfilRed, 'idestadisticas' => $model->idestadisticas, 'idestado' => $model->idestado, 'idCC' => $model->idCC]);
+        } else {
+            return $this->render('update', [
+                        'model' => $model,
+            ]);
         }
-
-        return $this->render('update', [
-                    'model' => $model,
-        ]);
     }
 
     /**
@@ -326,31 +325,6 @@ class ColaboradorController extends Controller {
         $this->findModel($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC)->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Colaborador model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $rutColaborador
-     * @param integer $idSucursal
-     * @param integer $idArea
-     * @param integer $idCargo
-     * @param integer $idRol
-     * @param integer $idGerencia
-     * @param integer $idperfil
-     * @param integer $idperfilRed
-     * @param integer $idestadisticas
-     * @param integer $idestado
-     * @param integer $idCC
-     * @return Colaborador the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($rutColaborador, $idSucursal, $idArea, $idCargo, $idRol, $idGerencia, $idperfil, $idperfilRed, $idestadisticas, $idestado, $idCC) {
-        if (($model = Colaborador::findOne(['rutColaborador' => $rutColaborador, 'idSucursal' => $idSucursal, 'idArea' => $idArea, 'idCargo' => $idCargo, 'idRol' => $idRol, 'idGerencia' => $idGerencia, 'idperfil' => $idperfil, 'idperfilRed' => $idperfilRed, 'idestadisticas' => $idestadisticas, 'idestado' => $idestado, 'idCC' => $idCC])) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
     
         public function actionPost() {
@@ -650,13 +624,13 @@ class ColaboradorController extends Controller {
              if ($rpost["rtipoPost"] == 1) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut"]);
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
                $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
                $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
                $modelo = $this->renderAjax('estado', [
                               'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
+                              'post' => $rpost,
+                              'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
@@ -672,8 +646,8 @@ class ColaboradorController extends Controller {
                $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
                $modelo = $this->renderAjax('imagen', [
                               'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
+                              'post' => $rpost,
+                              'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
@@ -691,8 +665,8 @@ class ColaboradorController extends Controller {
                $comentarios = BuscarController::findComentarios($rpost["ridPost"]);
                $modelo = $this->renderAjax('video', [
                               'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
+                              'post' => $rpost,
+                              'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
@@ -709,8 +683,8 @@ class ColaboradorController extends Controller {
                $comentarios = BuscarController::findComentarios($rpost["idPost"]);                                      
                $modelo = $this->renderAjax('youtube', [
                               'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
+                              'post' => $rpost,
+                              'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
@@ -727,8 +701,8 @@ class ColaboradorController extends Controller {
                $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
                $modelo = $this->renderAjax('archivo', [
                               'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
+                              'post' => $rpost,
+                              'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
@@ -744,12 +718,13 @@ class ColaboradorController extends Controller {
                $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
                $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
                $modelo = $this->renderAjax('facebook', [
-                              'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
+                                'model' => $model,
+                              'post' => $rpost,
+                              'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
+
 
                                         ]);
                $total =$total.$modelo;
@@ -807,11 +782,12 @@ class ColaboradorController extends Controller {
 
                $modelo = $this->renderAjax('imagen', [
                               'model' => $model,
-                              'rpost' => $post,
-                              'rcomentarios' => $comentarios,
+                              'post' => $post,
+                              'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
+
 
                                         ]);
                $total =$total.$modelo;
@@ -827,8 +803,8 @@ class ColaboradorController extends Controller {
 
                $modelo = $this->renderAjax('video', [
                               'model' => $model,
-                              'rpost' => $post,
-                              'rcomentarios' => $comentarios,
+                              'post' => $post,
+                              'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
@@ -845,8 +821,8 @@ class ColaboradorController extends Controller {
                $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
                $modelo = $this->renderAjax('youtube', [
                               'model' => $model,
-                              'rpost' => $post,
-                              'rcomentarios' => $comentarios,
+                              'post' => $post,
+                              'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
@@ -864,8 +840,8 @@ class ColaboradorController extends Controller {
 
                $modelo = $this->renderAjax('archivo', [
                               'model' => $model,
-                              'rpost' => $post,
-                              'rcomentarios' => $comentarios,
+                              'post' => $post,
+                              'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
@@ -881,11 +857,12 @@ class ColaboradorController extends Controller {
                $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
                $modelo = $this->renderAjax('facebook', [
                               'model' => $model,
-                              'rpost' => $post,
-                              'rcomentarios' => $comentarios,
+                              'post' => $post,
+                              'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
+
                               'megusta' => $megusta,
                               
                                         ]);

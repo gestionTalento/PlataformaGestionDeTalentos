@@ -728,7 +728,7 @@ Modal::end();
 
     function like(idPost, rut) {
 
-        $.get("../post/like?rutPersona=" + rut + "&ridPost=" + idPost + "",
+        $.get("../rpost/like?rutPersona=" + rut + "&ridPost=" + idPost + "",
                 function (dato) {
 
                     $("#like-" + ridPost).addClass('btn-success');
@@ -750,7 +750,7 @@ Modal::end();
 
     function rotate(idPost) {
 
-        $.get("../post/rotate?ridPost=" + idPost + "",
+        $.get("../rpost/rotate?ridPost=" + idPost + "",
                 function (dato) {
                     // alert(dato);
                     //$("#rotate-" + idPost).css('transform', "deg(" + dato + ")");
@@ -787,7 +787,7 @@ Modal::end();
     }
     function eliminar(idPost) {
 
-        $.get("../post/eliminar?ridPost=" + ridPost + "",
+        $.get("../rpost/eliminar?ridPost=" + ridPost + "",
                 function (dato) {
                     if (dato == true) {
                         alert("Su post ha sido eliminado");

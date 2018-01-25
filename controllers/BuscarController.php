@@ -80,35 +80,7 @@ class BuscarController extends Controller {
         }
     }
 
-    public function findMuro() {
-
-        $query = new \yii\db\Query;
-        $query->select([
-                    'ractividad.idactividad',
-                    'ractividad.rutColaborador1',
-                    'ractividad.rutColaborador2',
-                    'ractividad.ridpost',
-                    'ractividad.ridtipo_post',
-                    'rpost.ridPost',
-                    'rpost.rdescripcionPost',
-                    'rpost.rfoto',
-                    'rpost.rtipoPost',
-                    'rpost.rlikes',
-                    'rpost.rrotador',
-                    'rpost.rfecha'
-                        ]
-                )
-                ->from('rpost')
-                ->join('INNER JOIN', 'ractividad', 'rpost.ridPost=ractividad.ridpost')
-                ->orderBy(['ractividad.idactividad' => SORT_DESC])
-                ->limit(8)
-                ->all();
-
-        $command = $query->createCommand();
-        $model = $command->queryAll();
-
-        return $model;
-    }
+    
 
     
 
@@ -183,6 +155,37 @@ class BuscarController extends Controller {
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function findMuro($rutColaborador) {
+
+        $query = new \yii\db\Query;
+        $query->select([
+                    'ractividad.idactividad',
+                    'ractividad.rutColaborador1',
+                    'ractividad.rutColaborador2',
+                    'ractividad.ridpost',
+                    'ractividad.ridtipo_post',
+                    'rpost.ridPost',
+                    'rpost.rdescripcionPost',
+                    'rpost.rfoto',
+                    'rpost.rtipoPost',
+                    'rpost.rlikes',
+                    'rpost.rrotador',
+                    'rpost.rfecha'
+                        ]
+                )
+                ->from('rpost')
+                ->join('INNER JOIN', 'ractividad', 'rpost.ridPost=ractividad.ridpost')
+                
+                ->orderBy(['ractividad.idactividad' => SORT_DESC])
+                ->limit(8)
+                ->all();
+
+        $command = $query->createCommand();
+        $model = $command->queryAll();
+
+        return $model;
     }
 
     public function findMuror($rutColaborador, $posisi, $perpage) {
