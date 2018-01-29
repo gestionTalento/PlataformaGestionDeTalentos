@@ -177,13 +177,15 @@ class SiteController extends Controller {
 
     public function actionCompadre($rutColaborador){
         $model= BuscarController::findColaboradorRut($rutColaborador);
+        $perfil = BuscarController::findPerfil($model->idperfilRed);
         $model2= BuscarController::encuentraAmigos($rutColaborador);
 
-        $session['rfoto'] = $model[0]['rfoto'];
+        $session['foto'] = $perfil[0]['rfoto'];
         $session['apellidosColaborador'] = $model[0]['apellidosColaborador'];
 
         return $this->render('perfilAmigo', [
                     'model' => $model,
+                    'perfil' => $perfil,
                     'model2' => $model2,]);
     }
 

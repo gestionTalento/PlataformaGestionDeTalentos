@@ -891,11 +891,11 @@ Modal::end();
 
                                             <li>
 
-                                                <a href="compadre?rutAmigo=<?php echo $modell3[0]['rutColaborador'] ?>">
+                                                <a href="compadre?rutAmigo=<?php echo $modell3->rutColaborador ?>">
 
-                                                    <img style="-ms-transform: rotate(<?php echo $modell3[0]['rrotador']; ?>deg);
-                                                         -webkit-transform: rotate(<?php echo $modell3[0]['rrotador']; ?>deg);
-                                                         transform: rotate(<?php echo $modell3[0]['rrotador']; ?>deg);" src="../img/perfil/t/<?php echo $modell3[0]['rfoto']; ?>" title="<?php echo $modell3[0]['nombreColaborador'] . " " . $modell3[0]['apellidosColaborador']; ?>" class="img-responsive tip">
+                                                    <img style="-ms-transform: rotate(<?php echo $modell3->rrotador; ?>deg);
+                                                         -webkit-transform: rotate(<?php echo $modell3->rrotador; ?>deg);
+                                                         transform: rotate(<?php echo $modell3->rrotador; ?>deg);" src="../img/perfil/t/<?php echo $modell3->rfoto; ?>" title="<?php echo $modell3->rutColaborador . " " . $modell3->apellidosColaborador; ?>" class="img-responsive tip">
 
                                                 </a>
 
@@ -1043,7 +1043,7 @@ Modal::end();
                                     function mycontent(mypage) {
 
                                         $('#ani_img').show();
-                                        $.get('index.php?r=reload?page=' + mypage + '&rutColaborador=<?php echo $rutColaborador; ?>', function (data) {
+                                        $.get('index.php?r=colaborador/reload&page=' + mypage + '&rutColaborador=<?php echo $rutColaborador; ?>', function (data) {
                                             if (data.trim().length == 0) {
                                                 $('#loading').append('<button style="margin-right:35%;" class="btn btn-primary">No existen mas post disponibles</button>');
                                                 var e = document.getElementById("loading");

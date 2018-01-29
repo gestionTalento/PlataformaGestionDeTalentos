@@ -6,7 +6,7 @@ use yii\bootstrap\Modal;
 use yii\helpers\Url;
 use kartik\widgets\FileInput;
 ?>
-                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['rpost/createImagen']]); ?>
+                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['rpost/create']]); ?>
 
                                 <textarea name="rdescripcionPost"  placeholder="Que estas pensando hoy???" rows="2" class="form-control input-lg p-text-area"></textarea>
 

@@ -45,13 +45,13 @@ Full screen Modal
     <div class="media activity-item">
         <div style="    margin-bottom: 10px;" class="row">
           <a href="<?php echo "compadre?rutAmigo=".$posteador[0]["rutColaborador"]; ?>" class="pull-left">
-            <img src="../img/perfil/t/<?php echo $posteador[0]['rfoto']; ?>" alt="Avatar" style="
-
-            -ms-transform: rotate(<?php echo $posteador[0]['rrotador']; ?>deg);
-            -webkit-transform: rotate(<?php echo $posteador[0]['rrotador']; ?>deg);
-            transform: rotate(<?php echo $posteador[0]['rrotador']; ?>deg);
+           <img src="../img/perfil/t/<?php echo $posteador[0]["rfoto"]; ?>" alt="Avatar" style="
+                -ms-transform: rotate(<?php echo $posteador->rrotador; ?>deg);
+            -webkit-transform: rotate(<?php echo $posteador->rrotador; ?>deg);
+            transform: rotate(<?php echo $posteador->rrotador; ?>deg);
 
             " class="media-object avatar <?php if($post["rut1"]==$session['rut']){echo "perfill";} ?>">
+           
         </a>
         <p class="activity-title"><a id="tituloPublicador" href="<?php echo "compadre?rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
         <small class="text-muted">fecha: <?php echo $post["rfecha"]; ?></small>
@@ -61,7 +61,7 @@ Full screen Modal
 
 
         <!-- Creates the bootstrap modal where the image will appear -->
-        <div class="modal fade fullscreen-modal " id="m<?php echo $post["idPost"]; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade fullscreen-modal " id="m<?php echo $post["ridPost"]; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-body">
@@ -124,31 +124,12 @@ Full screen Modal
 
         <?php
         $connection = Yii::$app->db;
-        $jefe = "select likes as cuenta from rpost where ridPost=" . $post["ridPost"] . "";
+        $jefe = "select rlikes as cuenta from rpost where ridPost=" . $post["ridPost"] . "";
         $command = $connection->createCommand($jefe);
         $dataReader = $command->query();
         $modela = $dataReader->readAll();
         ?>
         
-
-            <?php if($megusta==true){
-
-
-                ?>
-                <button class="stat-item btn btn-success"><p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i><?php echo $modela[0]["cuenta"]; ?></button>
-                 <?php
-                }else {?>
-
-                 <button id="like-<?php echo $post["ridPost"]; ?>" onclick="like(<?php echo $post["idPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);" class="stat-item btn visible-xs-*">
-                <p class="hidden-xs">Me Gusta</p>
-                <i class="fa fa-thumbs-up icon"></i><?php echo $modela[0]["cuenta"]; ?>
-
-                </button>
-                <?php
-                }?>
-
-
-
 
 
         <?php
@@ -163,15 +144,15 @@ Full screen Modal
             <i  class="fa fa-comments-o icon"></i><?php echo $modela[0]["cuenta"]; ?>
 
         </button>
-        <?php if ($post["rut1"] == $rutColaborador) { ?>
-        <button id="like-<?php echo $post["ridPost"]; ?>" onclick="rotate(<?php echo $post["idPost"]; ?>,<?php echo $model[0]['rutColaborador']; ?>);" class="stat-item btn">
+        <?php if ($post["rutColaborador1"] == $rutColaborador) { ?>
+        <button id="like-<?php echo $post["ridPost"]; ?>" onclick="rotate(<?php echo $post["ridPost"]; ?>,<?php echo $model[0]['rutColaborador']; ?>);" class="stat-item btn">
          <p class="hidden-xs"> Rotar Imagen</p>
          <i class="fa fa-undo" aria-hidden="true"></i>
 
 
      </button>
 
-     <button id="like-<?php echo $post["ridPost"]; ?>" onclick="eliminar(<?php echo $post["idPost"]; ?>,<?php echo $model[0]['rutColaborador']; ?>);" class="stat-item btn">
+     <button id="like-<?php echo $post["ridPost"]; ?>" onclick="eliminar(<?php echo $post["ridPost"]; ?>,<?php echo $model[0]['rutColaborador']; ?>);" class="stat-item btn">
          <p class="hidden-xs"> Eliminar post</p>
     <i class="fa fa-trash-o" aria-hidden="true"></i>
      </button>
@@ -182,7 +163,7 @@ Full screen Modal
         <div style="display:none;" id="post-<?php echo $post["ridPost"]; ?>" class="post-footer">
             <div class="input-group"> 
                 <textarea maxlength="180" id="comentario-<?php echo $post["ridPost"]; ?>" name="comentario-<?php echo $post["ridPost"]; ?>" class="form-control" placeholder="Agrega un comentario" type="text" onkeydown = "if (event.keyCode == 13) {
-                            enviar(<?php echo $post["idPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);
+                            enviar(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);
                         }" onKeyUp="contarCaracteress(this,180,<?php echo $post["ridPost"]; ?>);"></textarea>
                 <span class="input-group-addon">
                     <button  onclick="enviar(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);"><i class="fa fa-edit"></i></button>  
@@ -193,7 +174,7 @@ Full screen Modal
             <p>Contador: <font id="contadorc-comentario-<?php echo $post["ridPost"]; ?>" >180</font></p>
             <ul class="comments-list">
                 <?php
-                foreach ($rcomentarios as $c) {
+                foreach ($comentarios as $c) {
                     ?>
                     <li class="comment">
                         <a class="pull-left" href="#">
@@ -211,7 +192,7 @@ Full screen Modal
                     </li>
 
                 <?php } ?>
-                <li id="<?php echo $post["idPost"]; ?>" class="comment"></li>
+                <li id="<?php echo $post["ridPost"]; ?>" class="comment"></li>
             </ul>
         </div>
 </div>

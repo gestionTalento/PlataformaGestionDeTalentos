@@ -4,10 +4,15 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+use app\Controllers\BuscarController;
 use kartik\widgets\FileInput;
+use app\models\colaborador;
+use app\models\RAmigos;
+use yii\web\Controller;
 date_default_timezone_set("America/Santiago");
 
-
+$lugar = 1;
+$rut2 = 1;
 ?>
 
 <?php
@@ -743,7 +748,7 @@ a.navbar-brand {
 
     function like(idPost, rut) {
 
-        $.get("../post/like?rutPersona=" + rut + "&ridPost=" + idPost + "",
+        $.get("../rpost/like?rutPersona=" + rut + "&ridPost=" + idPost + "",
                 function (dato) {
 
                     $("#like-" + idPost).addClass('btn-success');
@@ -769,7 +774,7 @@ a.navbar-brand {
      
     function eliminar(idPost) {
 
-        $.get("../post/eliminar?idPost=" + idPost + "",
+        $.get("../rpost/eliminar?idPost=" + idPost + "",
                 function (dato) {
                   if(dato==true){
                       alert("Su post ha sido eliminado");
@@ -791,6 +796,29 @@ a.navbar-brand {
 </script>
 <style>
     p.card-text {text-align: justify;}
+    .rota {
+        color: #fff;
+        background-color: #193276!important;
+        border-color: #193276!important;
+        font-family: DINPro-Light;
+        text-transform: uppercase;
+        font-size: 13px;
+    }
+
+     .perfilll{
+        -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+        -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+        transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+
+
+    }
+    .perfill{
+        -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+        -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+        transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+
+
+    }
 </style>
 
 
@@ -799,7 +827,7 @@ a.navbar-brand {
     <div class="row-fluid">
         <div class="col-md-12 col-xs-12 col-sm-12  animated fadeInLeft">
             <div class="profile-header-background">
-                <?= Html::img('@web/img/portada/' . $model[0]['rportada'], ['alt' => 'Profile Header Background']); ?>
+                <?= Html::img('@web/img/portada/' . $perfil->rportada , ['alt' => 'Profile Header Background']); ?>
             </div>
             <div class="row">
                 <div class="col-md-4">
@@ -808,11 +836,9 @@ a.navbar-brand {
 
 
 
-                                <img id="colaborador-<?php echo $model[0]['rutColaborador']; ?>" src="../img/perfil/<?php echo $model[0]['rfoto']; ?>" alt="Avatar" width="200" style="-ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
-                         -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg); ?>deg);
-                         transform: rotate(<?php echo $perfil->rrotador; ?>deg);">
+                                <?= Html::img('@web/img/perfil/' . $perfil->rfoto, ['alt' => 'Avatar', 'width' => 200, 'class' => 'avatar perfilll', 'id' => 'colaborador-' . $model->rutColaborador]); ?>
 
-                            <h2><?php echo $model[0]['nombreColaborador'] . " " . $model[0]['apellidosColaborador']; ?></h2>
+                            <h2><?php echo $model->nombreColaborador . " " . $model->apellidosColaborador; ?></h2></h2>
                         </div>
                         <div class="action-buttons">
                             <div class="row">
@@ -821,12 +847,13 @@ a.navbar-brand {
                                     $global = $rutColaborador;
 
 
-                                    if ($rutColaborador == $model[0]['rutColaborador']) {
+                                    if ($rutColaborador == $model->rutColaborador) {
                                         ?> 
 
-                    <?= Html::button('Actualiza tus datos', ['value' => Url::to('../colaborador/foto?rutColaborador=' . $model[0]['rutColaborador'] .''), 'class' => 'btn btn-lg btn-raised btn-success', 'id' => 'modalButton']) ?>
-                     
-                     <button id="like-<?php echo $post["ridPost"]; ?>" onclick="rotates(<?php echo $model[0]['rutColaborador']; ?>);" class="btn btn-lg btn-raised btn-success rota">
+                    
+                      <?= Html::button('Actualiza tus datos', ['value' => Url::to('index.php?r=colaborador/foto&rutColaborador=' . $model->rutColaborador . ''), 'class' => 'btn btn-lg btn-raised btn-success', 'id' => 'modalButton']) ?>
+                                    <button  onclick="rotates(<?php echo $model->rutColaborador; ?>);" class="btn btn-lg btn-raised btn-success rota">
+                        
                         Rotar foto
                         <i class="fa fa-undo" aria-hidden="true"></i>
                         </button>
@@ -837,14 +864,14 @@ a.navbar-brand {
                         </div>
                         <div class="section">
                             <h3>Sobre Mi</h3>
-                            <p><?php echo $model[0]['rbio']; ?></p>
+                            <p><?php echo $perfil->rbio; ?></p>
                         </div>
                         <div class="section">
                             <h3>Mi Valoracion</h3>
-                            <p><span id="a" class="badge"><?php echo $model[0]['rcomentarios']; ?></span>Comentarios Realizados</p>
-                            <p><span id="b" class="badge"><?php echo $model[0]['rcomentariosR']; ?></span>Comentarios Recibidos</p>
-                            <p><span id="c" class="badge"><?php echo $model[0]['rlikes']; ?></span> Me gusta Realizados</p>
-                            <p><span id="d" class="badge"><?php echo $model[0]['rlikesR']; ?></span> Me gusta Recibidos</p>
+                            <p><span id="a" class="badge"><?php echo $estadistica->rcomentarios; ?></span>Comentarios Realizados</p>
+                            <p><span id="b" class="badge"><?php echo $estadistica->rcomentariosr; ?></span>Comentarios Recibidos</p>
+                            <p><span id="c" class="badge"><?php echo $estadistica->rlikes; ?></span> Me gusta Realizados</p>
+                            <p><span id="d" class="badge"><?php echo $estadistica->rlikesr; ?></span> Me gusta Recibidos</p>
                         </div>
 
                         <div class="section">
@@ -857,11 +884,11 @@ a.navbar-brand {
 
 
                                         <?php
-                                        $rutColaborador = $model[0]['rutColaborador'];
-                                        $model2 = BuscarController::encuentraAmigos2($model->rutColaborador);
+                                        $rutColaborador = $model->rutColaborador;
+                                        $model2 = BuscarController::encuentraAmigos($model->rutColaborador);
 
                                         foreach ($model2 as $amigo) {
-                                            $modell3 = BuscarController::encuentraColaborador2($amigo["rut2"]);
+                                            $modell3 = BuscarController::findColaboradorRut($amigo["rut2"]);
                                             ?>
 
                                             <li>
@@ -870,9 +897,9 @@ a.navbar-brand {
 
                                                     <img   style="
 
-                                                    -ms-transform: rotate(<?php echo $modell3[0]['rotador']; ?>deg);
-                                                     -webkit-transform: rotate(<?php echo $modell3[0]['rotador']; ?>deg);
-                                                     transform: rotate(<?php echo $modell3[0]['rotador']; ?>deg);
+                                                    -ms-transform: rotate(<?php echo $modell3[0]['rrotador']; ?>deg);
+                                                     -webkit-transform: rotate(<?php echo $modell3[0]['rrotador']; ?>deg);
+                                                     transform: rotate(<?php echo $modell3[0]['rrotador']; ?>deg);
 
 
                                                     " src="../img/perfil/t/<?php echo $modell3[0]['foto']; ?>" title="<?php echo $modell3[0]['nombreColaborador'] . " " . $modell3[0]['apellidosColaborador']; ?>" class="img-responsive tip perfill">
@@ -901,7 +928,7 @@ a.navbar-brand {
                           
                         </ul>
                         <div class="tab-content">
-                            <?php if ($global == $model[0]['rutColaborador']) { ?> 
+                            <?php if ($global == $model->rutColaborador) { ?> 
                           <div class="panel-body">
                         
                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['rpost/create']]); ?>
@@ -922,9 +949,9 @@ a.navbar-brand {
                                     <div class="form-group">
                                       <!-- rows="2" means "display the textarea as 2 rows high". The user can
                                            enter more than 2 rows of text. -->
-                                    <textarea name="rdescripcionPost"  onKeyDown="contarCaracteres(this.form.descripcionPost,this.form.remLen,180);" placeholder="Que estas pensando hoy??? " maxlength="180" rows="2" class="form-control input-lg p-text-area"></textarea>
-                                      
-                                    <p>Contador: <font id="contador">180</font></p>
+                                    <?= Yii::$app->session->getFlash('error'); ?>
+                                                    <textarea onKeyDown="contarCaracteres(this.form.rdescripcionPost, this.form.remLen, 180);" placeholder="Que estas pensando hoy??? " maxlength="180"  name="rdescripcionPost" data-ls-module="charCounter" placeholder="Que estas pensando hoy??? " rows="5" maxlength="180" class="form-control input-lg p-text-area"></textarea>
+                                                    <p>Contador: <font id="contador">180</font></p>
 
                                     </div>
                                   </div>
@@ -968,11 +995,11 @@ a.navbar-brand {
 
 
 
-                            if ($global != $model[0]['rutColaborador']) {
+                            if ($global != $model->rutColaborador) {
                                 ?>
                                 <div class="panel">
 
-                                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['rpost/creates']]); ?>
+                                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['rpost/create']]); ?>
 
                                     <textarea name="rdescripcionPost" required="true" placeholder="Saluda a <?php echo $model[0]['nombreColaborador']; ?> de seguro quiere recibir tu saludo!!  :D" rows="2" class="form-control input-lg p-text-area"></textarea>
 
@@ -1019,7 +1046,7 @@ a.navbar-brand {
                                         <div class="col-md-8 results"></div>
                                     </div>
                                     <div class="text-center" id="loading">
-                                        <img src="../ajax-loader.gif" id="ani_img"/>
+                                        <img src="ajax-loader.gif" id="ani_img"/>
                                     </div>
                                     <button class="btn btn-block btn-primary hidden-lg hidden-md" onclick="myContent2();">Cargar mas!</button>
                                 </div>
@@ -1035,7 +1062,7 @@ a.navbar-brand {
                                 function mycontent(mypage){
                                         
                                     $('#ani_img').show();
-                                    $.get('index.php?r=Buscar/reloadr?page='+mypage+'&rutColaborador=<?php echo $rutColaborador; ?>&rutAmigo=<?php echo $rutAmigo; ?>', function(data){
+                                    $.get('reloadr?page='+mypage+'&rutColaborador=<?php echo $rutColaborador; ?>&rutAmigo=<?php echo $rutAmigo; ?>', function(data){
                                         if(data.trim().length == 0){
                                              $('#loading').append('<button style="margin-right:35%;" class="btn btn-primary">No existen mas post disponibles</button>');
                                             var e = document.getElementById("loading");

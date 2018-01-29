@@ -6,6 +6,7 @@ use Yii;
 use app\controllers\SiteController;
 use app\models\Colaborador;
 use app\models\Rpost;
+use app\models\Ractividad;
 use app\models\ColaboradorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -78,7 +79,7 @@ class ColaboradorController extends Controller {
 
 
 
-        $session['foto'] = $perfil[0]['foto'];
+        $session['foto'] = $perfil[0]['rfoto'];
         $session['rutColaborador'] = $model[0]['rutColaborador'];
         $session['nombreColaborador'] = $model[0]['nombreColaborador'];
         $session['apellidosColaborador'] = $model[0]['apellidosColaborador'];
@@ -107,10 +108,11 @@ class ColaboradorController extends Controller {
         //var_dump($session['rut']);die();
 
         $model = BuscarController::encuentraColaborador($rutColaborador);
+        $perfil = BuscarController::findPerfil($model->idperfilRed);
 
 
 
-        $session['foto'] = $model[0]['rfoto'];
+        $session['foto'] = $perfil[0]['rfoto'];
         $session['rutColaborador'] = $model[0]['rutColaborador'];
         $session['nombreColaborador'] = $model[0]['nombreColaborador'];
         $session['apellidosColaborador'] = $model[0]['apellidosColaborador'];
@@ -129,14 +131,14 @@ class ColaboradorController extends Controller {
             ini_set('memory_limit', '128M');
 
             $model = BuscarController::findColaboradorRut($rutColaborador);
-
+            $perfil = BuscarController::findPerfil($model->idperfilRed);
             if ($model->load(Yii::$app->request->post())) {
 
-                $model->file = UploadedFile::getInstances($model, 'foto');
+                $model->file = UploadedFile::getInstances($perfil, 'rfoto');
 
                 if (empty($model->file)) {
                     $models = BuscarController::findColaboradorRut($rutColaborador);
-                    $models->rbio = $model->rbio;
+                    $models->rbio = $perfil->rbio;
                     $models->save(false);
                 } else {
 
@@ -151,8 +153,9 @@ class ColaboradorController extends Controller {
                         $ruta = 'img/perfil/' . $model->rutColaborador . $file->baseName . $num . "." . $file->extension;
                         Image::thumbnail($ruta, 120, 120)
                                 ->save('img/perfil/t/' . $model->rutColaborador . $file->baseName . $num . "." . $file->extension, ['quality' => 50]);
-                        $model->foto = $model->rutColaborador . $file->baseName . $num . "." . $file->extension;
+                        $perfil->rfoto = $model->rutColaborador . $file->baseName . $num . "." . $file->extension;
                         $model->save();
+                        $perfil->save();
                     }
                 }
 
@@ -162,25 +165,12 @@ class ColaboradorController extends Controller {
             } else {
                 return $this->renderAjax('update', [
                             'model' => $model,
+                            'perfil' => $perfil,
                 ]);
             }
         } catch (ErrorException $e) {
             throw new NotFoundHttpException('Intenta subir una foto mas liviana!!!');
         }
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function behaviors() {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
     }
 
   public function actionContenido($page, $rutColaborador){
@@ -236,28 +226,28 @@ class ColaboradorController extends Controller {
         ]);
     }
 
-    /**
-     * Displays a single Colaborador model.
-     * @param integer $rutColaborador
-     * @param integer $idSucursal
-     * @param integer $idArea
-     * @param integer $idCargo
-     * @param integer $idRol
-     * @param integer $idGerencia
-     * @param integer $idperfil
-     * @param integer $idperfilRed
-     * @param integer $idestadisticas
-     * @param integer $idestado
-     * @param integer $idCC
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+     public function actionNotificacion($rutColaborador){
 
-    /**
-     * Creates a new Colaborador model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
+        $model = BuscarController::findNotificacion($rutColaborador);
+        $total = "";
+        $contador = 0;
+        foreach($model as $m){
+      
+          $m = "<p>".$m["contenido"]."</p><br>";
+          $total = $total.$m;
+          $contador = $contador= $contador+1;
+        }
+        $array["contador"] = $contador;
+        $array["contenido"] = $total;
+
+        if($total==""){
+          
+        }else{
+         return json_encode($array);
+
+        }
+
+      }
     
     public function actionCreate() {
         $session = Yii::$app->session;
@@ -265,13 +255,14 @@ class ColaboradorController extends Controller {
 
 
         $model = new Colaborador();
-
+        $perfil = BuscarController::findPerfil($model->idperfilRed);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->rutColaborador]);
         } else {
             return $this->render('foto', [
                         'model' => $model,
+                        'perfil' => $perfil,
                         'rutColaborador' => $rutColaborador,
             ]);
         }
@@ -396,7 +387,7 @@ class ColaboradorController extends Controller {
             $pos = strpos($mystring, $findme);
             $num = rand(5, 600);
 
-            ini_set('memory_limit', '8192M');
+           
 
 
             if ($pos == false) {
@@ -416,8 +407,7 @@ class ColaboradorController extends Controller {
             $pos2 = strpos($mystring2, $findme2);
             $num2 = rand(5, 600);
 
-            ini_set('memory_limit', '8192M');
-
+         
 
             if ($pos2 == false) {
                 $model->rfecha = date("Y-m-d G:i:s");
@@ -451,7 +441,7 @@ class ColaboradorController extends Controller {
                         Image::thumbnail($ruta, 5000, 5000)
                                 ->save('img/post/' . $model->rut1 . $file->baseName . $num . "." . $file->extension, ['quality' => 50]);
 
-                        $model->foto = $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        $model->rfoto = $model->rut1 . $file->baseName . $num . "." . $file->extension;
                     }
                 }
 
@@ -460,9 +450,9 @@ class ColaboradorController extends Controller {
                     foreach ($model->file as $file) {
                         $file->saveAs('img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
                         $ruta = 'img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
-                        $model->foto = "word.png";
+                        $model->rfoto = "word.png";
                         $model->rdescripcionPost = $model->rut1 . $file->baseName . $num . "." . $file->extension;
-                        $model->nombreArchivo = $file->baseName . "." . $file->extension;
+                        $model->rnombreArchivo = $file->baseName . "." . $file->extension;
                     }
                 }
                 if ($model->file[0]->type == "application/vnd.openxmlformats-officedocument.presentationml.presentation") {
@@ -472,9 +462,9 @@ class ColaboradorController extends Controller {
 
                         $file->saveAs('img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
                         $ruta = 'img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
-                        $model->foto = "power.png";
+                        $model->rfoto = "power.png";
                         $model->rdescripcionPost = $model->rut1 . $file->baseName . $num . "." . $file->extension;
-                        $model->nombreArchivo = $file->baseName . "." . $file->extension;
+                        $model->rnombreArchivo = $file->baseName . "." . $file->extension;
                     }
                 }
                 if ($model->file[0]->type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
@@ -482,9 +472,9 @@ class ColaboradorController extends Controller {
                     foreach ($model->file as $file) {
                         $file->saveAs('img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
                         $ruta = 'img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
-                        $model->foto = "excel.png";
+                        $model->rfoto = "excel.png";
                         $model->rdescripcionPost = $model->rut1 . $file->baseName . $num . "." . $file->extension;
-                        $model->nombreArchivo = $file->baseName . "." . $file->extension;
+                        $model->rnombreArchivo = $file->baseName . "." . $file->extension;
                     }
                 }
 
@@ -493,9 +483,9 @@ class ColaboradorController extends Controller {
                     foreach ($model->file as $file) {
                         $file->saveAs('img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
                         $ruta = 'img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
-                        $model->foto = "pdf.png";
+                        $model->rfoto = "pdf.png";
                         $model->rdescripcionPost = $model->rut1 . $file->baseName . $num . "." . $file->extension;
-                        $model->nombreArchivo = $file->baseName . "." . $file->extension;
+                        $model->rnombreArchivo = $file->baseName . "." . $file->extension;
                     }
                 }
 
@@ -506,7 +496,7 @@ class ColaboradorController extends Controller {
 
                         $ruta = 'img/post/video/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
                         $file->saveAs('img/post/video/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
-                        $model->foto = $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        $model->rfoto = $model->rut1 . $file->baseName . $num . "." . $file->extension;
                     }
                 }
             }
@@ -542,15 +532,10 @@ class ColaboradorController extends Controller {
             $model2 = \app\controllers\BuscarController::encuentraAmigos($rutColaborador);
             $model3 = new Rpost();
 
-            $session['foto'] = $model[0]['foto'];
-            $session['apellidosColaborador'] = $model[0]['apellidosColaborador'];
 
-            if ($model->ridPost != null) {
-                $this->actionCrean($rutColaborador, $rutColaborador, 3);
-            }
+      
 
-
-            return $this->redirect(['colaborador/perfil',
+            return $this->redirect(['index.php?r=colaborador/perfil',
                         'model' => $model,
                         'model2' => $model2,
                         'model3' => $model3]);
@@ -560,6 +545,40 @@ class ColaboradorController extends Controller {
             ]);
         }
     }
+
+    public function actionCrean($rutColaborador, $rutColaborador2, $id){
+
+
+
+        if($id==1){
+          $model = new RNotificacion();
+          $model->rrutNotificado = $rutColaborador;
+          $model->rcontenido = $rutColaborador2." Ha comentado su post";
+          $model->save(false);
+        }
+        if($id==2){
+          $model = new Notificacion();
+          $model->rrutNotificado = $rutColaborador;
+          $model->rcontenido = $rutColaborador2." le ha dado me gusta a su imagen";
+          $model->save(false);
+        }
+        if($id==3){
+
+          $modelo = $this->findColaboradores();
+
+          foreach($modelo as $m){
+          $model = new Notificacion();
+          $model->rrutNotificado = $m["rutColaborador"];
+          $model->rcontenido = $rutColaborador2." ha subido un nuevo post";
+          $model->save(false);
+          }
+
+          
+        }
+             
+
+
+      }
     
         public function convertYoutube($string) {
         return preg_replace(
@@ -569,7 +588,7 @@ class ColaboradorController extends Controller {
 
     public function actionRotate($rutColaborador) {
         $model = BuscarController::findColaboradorRut($rutColaborador);
-        $model2 = BuscarController::findEstadistica($model->idestadisticas);
+        $model2 = BuscarController::findPerfil($model->idperfilRed);
         if ($model2->rrotador == 270) {
             $model2->rrotador = 0;
         } else {
@@ -590,17 +609,20 @@ class ColaboradorController extends Controller {
 
 
         }else{
-             $model = BuscarController::findColaboradorRut($rutAmigo);
+        $model = BuscarController::findColaboradorRut($rutAmigo);
         $model2 = BuscarController::encuentraAmigos($rutAmigo);
-
+        $perfil = BuscarController::findPerfil($model->idperfilRed);
         $actividad = BuscarController::findMuroa($rutAmigo);
         $model3 = new RPost();
+        $estadistica = BuscarController::findEstadistica($model->idestadisticas);
         $model4 = BuscarController::encuentraPost($rutAmigo);
         return $this->render('perfilAmigo', [
                     'model' => $model,
                     'model2' => $model2,
                     'model3' => $model3,
                     'model4' => $model4,
+                    'perfil' => $perfil,
+                    'estadistica' => $estadistica,
                     'actividad' => $actividad,
                     'rutAmigo' => $rutAmigo,
                     'rutColaborador' => $rutColaborador,
@@ -616,6 +638,7 @@ class ColaboradorController extends Controller {
         $posisi = (($numpage-1) * $perpage);
         $actividad = BuscarController::findMuror($rutColaborador, $posisi, $perpage);
         $model = BuscarController::encuentraColaborador($rutColaborador);
+        
         $total = "";
 
         foreach($actividad as $rpost){
@@ -624,26 +647,34 @@ class ColaboradorController extends Controller {
              if ($rpost["rtipoPost"] == 1) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+               //var_dump($posteador );die();
+               $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+               $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);     
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);           
+                                    
                $modelo = $this->renderAjax('estado', [
                               'model' => $model,
                               'post' => $rpost,
-                              'comentarios' => $comentarios,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
+                              'rcomentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
+                              'megusta' => $rpost,
                                         ]);
                $total =$total.$modelo;
             }
 
-            if ($rpost["rtipoPost"] == 2) {
+            if ($rpost["rtipoPost"] == 22222222222) {
+                //2
 
-
-               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
+                $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);     
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);   
+                                                   
                $modelo = $this->renderAjax('imagen', [
                               'model' => $model,
                               'post' => $rpost,
@@ -657,12 +688,12 @@ class ColaboradorController extends Controller {
             }
 
 
-            if ($rpost["rtipoPost"] == 3) {
+            if ($rpost["rtipoPost"] == 3222222222) {
+                //3
 
-
-               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = BuscarController::findComentarios($rpost["ridPost"]);
+           $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);     
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);    
                $modelo = $this->renderAjax('video', [
                               'model' => $model,
                               'post' => $rpost,
@@ -675,12 +706,12 @@ class ColaboradorController extends Controller {
                $total =$total.$modelo;
             }
            
-            if ($rpost["rtipoPost"] == 5) {
+            if ($rpost["rtipoPost"] == 598798789) {
+                //5
 
-
-               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = BuscarController::findComentarios($rpost["idPost"]);                                      
+                $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);     
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);                                         
                $modelo = $this->renderAjax('youtube', [
                               'model' => $model,
                               'post' => $rpost,
@@ -693,12 +724,12 @@ class ColaboradorController extends Controller {
                $total =$total.$modelo;
             }
 
-              if ($rpost["rtipoPost"] == 6) {
+              if ($rpost["rtipoPost"] == 231231236) {
 
-
-               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
+                //6
+                 $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);     
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);                                             
                $modelo = $this->renderAjax('archivo', [
                               'model' => $model,
                               'post' => $rpost,
@@ -714,9 +745,9 @@ class ColaboradorController extends Controller {
              if ($rpost["rtipoPost"] == 12321) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rut1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = BuscarController::findComentarios($rpost["ridPost"]);                                      
+              $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);     
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);                                             
                $modelo = $this->renderAjax('facebook', [
                                 'model' => $model,
                               'post' => $rpost,
@@ -757,9 +788,9 @@ class ColaboradorController extends Controller {
              if ($post["rtipoPost"] == 1) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
-               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                     
+               $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
+               $comentarios = BuscarController::findComentarios($post->ridPost);                                    
 
                $modelo = $this->renderAjax('estado', [
                               'model' => $model,
@@ -776,9 +807,9 @@ class ColaboradorController extends Controller {
             if ($post["rtipoPost"] == 2) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
-               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
+               $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
+               $comentarios = BuscarController::findComentarios($post->ridPost);                                     
 
                $modelo = $this->renderAjax('imagen', [
                               'model' => $model,
@@ -797,9 +828,9 @@ class ColaboradorController extends Controller {
             if ($post["rtipoPost"] == 3) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
-               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
+              $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
+               $comentarios = BuscarController::findComentarios($post->ridPost);                               
 
                $modelo = $this->renderAjax('video', [
                               'model' => $model,
@@ -816,9 +847,9 @@ class ColaboradorController extends Controller {
             if ($post["rtipoPost"] == 5) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
-               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
+              $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
+               $comentarios = BuscarController::findComentarios($post->ridPost);                                              
                $modelo = $this->renderAjax('youtube', [
                               'model' => $model,
                               'post' => $post,
@@ -834,9 +865,9 @@ class ColaboradorController extends Controller {
               if ($post["rtipoPost"] == 6) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
-               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
+               $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
+               $comentarios = BuscarController::findComentarios($post->ridPost);                                               
 
                $modelo = $this->renderAjax('archivo', [
                               'model' => $model,
@@ -852,9 +883,9 @@ class ColaboradorController extends Controller {
              if ($post["rtipoPost"] == 12321321) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($post["rutColaborador1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post["rutColaborador2"]);
-               $comentarios = BuscarController::findComentarios($post["ridPost"]);                                      
+               $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
+               $comentarios = BuscarController::findComentarios($post->ridPost);                                            
                $modelo = $this->renderAjax('facebook', [
                               'model' => $model,
                               'post' => $post,

@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
 
-    <?= $form->field($model, 'rbio') ?>
+    <?= $form->field($perfil, 'rbio') ?>
     <input type="hidden" name="idDependencia"  value="<?php echo $model->rutColaborador; ?>"/>  
 
     <div class="form-group">
