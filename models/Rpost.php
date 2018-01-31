@@ -48,6 +48,7 @@ class Rpost extends \yii\db\ActiveRecord {
             [['rdecripcionPost'], 'string', 'max' => 2000],
             [['rfoto'], 'string', 'max' => 100],
             [['rnombreArchivo'], 'string', 'max' => 200],
+            [['file'], 'file', 'maxSize' => 8120000, 'tooBig' => 'excede el limite, 8 MB Aprox', 'extensions' => 'png, jpg, mp4, mov, xls, xlsx, pptx, docx, pdf'],
             [['rut1'], 'exist', 'skipOnError' => true, 'targetClass' => Colaborador::className(), 'targetAttribute' => ['rut1' => 'rutColaborador']],
             [['rut2'], 'exist', 'skipOnError' => true, 'targetClass' => Colaborador::className(), 'targetAttribute' => ['rut2' => 'rutColaborador']],
             [['rtipoPost'], 'exist', 'skipOnError' => true, 'targetClass' => RtipoPost::className(), 'targetAttribute' => ['rtipoPost' => 'ridtipo_post']],

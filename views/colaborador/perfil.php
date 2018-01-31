@@ -698,10 +698,10 @@ Modal::end();
 
 
 
-            $.get("../rpost/comentario?rutPersona=" + rut + "&ridPost=" + post + "&comentario=" + comentario + "",
+            $.get("index.php?r=rpost/comentario&rutPersona=" + rut + "&idPost=" + post + "&comentario=" + comentario + "",
                     function (dato) {
                         var data = JSON.parse(dato);
-                        $('#' + post).html('<a class="pull-left" href="#"><img style="-ms-transform: rotate(' + data.rotate + 'deg);-webkit-transform: rotate(' + data.rotate + 'deg);transform: rotate(' + data.rotate + 'deg);" class="avatar perfill" alt="Avatar" src="web/img/perfil/t/' + data.foto + '"></a><div class="comment-body"><div class="comment-heading"><h4 class="comment-user-name"><a href="#">' + data.nombre + ' ' + data.apellidos + '</a></h4><h5 class="time">Ahora</h5></div><p style="text-transform: initial;">' + comentario + '</p></div>');
+                        $('#' + post).html('<a class="pull-left" href="#"><img style="-ms-transform: rotate(' + data.rotate + 'deg);-webkit-transform: rotate(' + data.rotate + 'deg);transform: rotate(' + data.rotate + 'deg);" class="avatar perfill" alt="Avatar" src="../web/img/perfil/t/' + data.foto + '"></a><div class="comment-body"><div class="comment-heading"><h4 class="comment-user-name"><a href="#">' + data.nombre + ' ' + data.apellidos + '</a></h4><h5 class="time">Ahora</h5></div><p style="text-transform: initial;">' + comentario + '</p></div>');
                         $("#comentario-" + post + "").val('');
 
                     }).fail(function () {
@@ -721,23 +721,22 @@ Modal::end();
     function reveal(idPost) {
 
 
-        $("#post-" + ridPost).css("display", "block");
+        $("#post-" + idPost).css("display", "block");
 
 
     }
 
     function like(idPost, rut) {
 
-        $.get("../rpost/like?rutPersona=" + rut + "&ridPost=" + idPost + "",
+        $.get("index.php?r=rpost/like&rutPersona=" + rut + "&idPost=" + idPost + "",
                 function (dato) {
 
-                    $("#like-" + ridPost).addClass('btn-success');
-                    $("#like-" + ridPost).attr('onclick', " ");
-                    $("#like-" + ridPost).html('<p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i>' + dato);
+                    $("#like-" + idPost).addClass('btn-success');
+                    $("#like-" + idPost).attr('onclick', " ");
+                    $("#like-" + idPost).html('<p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i>' + dato);
                     var ca = $('#c').text();
                     var c = document.getElementById('c');
                     c.innerHTML = parseInt(ca) + 1;
-
 
 
                 }).fail(function () {
@@ -750,14 +749,14 @@ Modal::end();
 
     function rotate(idPost) {
 
-        $.get("../rpost/rotate?ridPost=" + idPost + "",
+        $.get("index.php?r=rpost/rotate&idPost=" + idPost + "",
                 function (dato) {
                     // alert(dato);
                     //$("#rotate-" + idPost).css('transform', "deg(" + dato + ")");
                     //$('#busniessmenu').css('background-color', '#323232');
                     // $("#rotate-" + idPost).rotate(dato);
-                    $('#rotate-' + ridPost).css('transform', 'rotate(' + dato + 'deg)');
-                    $('.rotate-' + ridPost).css('transform', 'rotate(' + dato + 'deg)');
+                    $('#rotate-' + idPost).css('transform', 'rotate(' + dato + 'deg)');
+                    $('.rotate-' + idPost).css('transform', 'rotate(' + dato + 'deg)');
 
 
                 }).fail(function () {
@@ -769,7 +768,7 @@ Modal::end();
     }
     function rotates(rutColaborador) {
 
-        $.get("rotate?rutColaborador=" + rutColaborador + "",
+        $.get("index.php?r=colaborador/rotate&rutColaborador=" + rutColaborador + "",
                 function (dato) {
                     // alert(dato);
                     //$("#rotate-" + idPost).css('transform', "deg(" + dato + ")");
@@ -787,7 +786,7 @@ Modal::end();
     }
     function eliminar(idPost) {
 
-        $.get("../rpost/eliminar?ridPost=" + ridPost + "",
+        $.get("index.php?r=rpost/eliminar&idPost=" + idPost + "",
                 function (dato) {
                     if (dato == true) {
                         alert("Su post ha sido eliminado");
@@ -851,6 +850,8 @@ Modal::end();
                                 <div class="col-xs-12">
 
                                     <?= Html::button('Actualiza tus datos', ['value' => Url::to('index.php?r=colaborador/foto&rutColaborador=' . $model->rutColaborador . ''), 'class' => 'btn btn-lg btn-raised btn-success', 'id' => 'modalButton']) ?>
+
+
                                     <button  onclick="rotates(<?php echo $model->rutColaborador; ?>);" class="btn btn-lg btn-raised btn-success rota">
                                         Rotar foto
                                         <i class="fa fa-undo" aria-hidden="true"></i>
@@ -887,15 +888,16 @@ Modal::end();
 
                                         foreach ($model2 as $amigo) {
                                             $modell3 = BuscarController::findColaboradorRut($amigo["rut2"]);
+                                            $perfilamigo = BuscarController::findPerfil($modell3->idperfilred);
                                             ?>
 
                                             <li>
 
-                                                <a href="compadre?rutAmigo=<?php echo $modell3->rutColaborador ?>">
+                                                <a href="index.php?r=colaborador/compadre&rutAmigo=<?php echo $modell3->rutColaborador ?>">
 
-                                                    <img style="-ms-transform: rotate(<?php echo $modell3->rrotador; ?>deg);
-                                                         -webkit-transform: rotate(<?php echo $modell3->rrotador; ?>deg);
-                                                         transform: rotate(<?php echo $modell3->rrotador; ?>deg);" src="../img/perfil/t/<?php echo $modell3->rfoto; ?>" title="<?php echo $modell3->rutColaborador . " " . $modell3->apellidosColaborador; ?>" class="img-responsive tip">
+                                                    <img style="-ms-transform: rotate(<?php echo $perfilamigo->rrotador; ?>deg);
+                                                         -webkit-transform: rotate(<?php echo $perfilamigo->rrotador; ?>deg);
+                                                         transform: rotate(<?php echo $perfilamigo->rrotador; ?>deg);" src="../web/img/perfil/t/<?php echo $perfilamigo->rfoto; ?>" title="<?php echo $modell3->rutColaborador . " " . $modell3->apellidosColaborador; ?>" class="img-responsive tip">
 
                                                 </a>
 
@@ -961,7 +963,7 @@ Modal::end();
 
                                                     <img alt="Avatar" style="-ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
                                                          -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
-                                                         transform: rotate(<?php echo $perfil->rrotador; ?>deg);" src="img/perfil/t/<?php echo $perfil->rfoto; ?>" title="<?php echo $model->nombreColaborador . " " . $model->apellidosColaborador; ?>" class="media-object avatar">
+                                                         transform: rotate(<?php echo $perfil->rrotador; ?>deg);" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>" title="<?php echo $model->nombreColaborador . " " . $model->apellidosColaborador; ?>" class="media-object avatar">
                                                     <br>
                                                 </div>
                                                 <div class="col-md-10 col-xs-7">

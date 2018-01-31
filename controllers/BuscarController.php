@@ -106,7 +106,19 @@ class BuscarController extends Controller {
     public function findPost($idPost)
 
     {
-        if (($model = Rpost::findOne(['idPost' => $idPost])) !== null){
+        if (($model = Rpost::findOne(['RidPost' => $idPost])) !== null){
+            return $model;
+        } else
+        {
+            throw new NotFoundHttpException("The requested page does not exists");
+            
+        }
+    }
+
+    public function findActividad($idPost)
+
+    {
+        if (($model = RActividad::findOne(['ridpost' => $idPost])) !== null){
             return $model;
         } else
         {
@@ -446,7 +458,7 @@ public function encuentraComentarios($idPost) {
                     'rpost.rdescripcionPost',
                     'rpost.rfoto',
                     'rpost.rtipoPost',
-                    'rpost.rlike',
+                    'rpost.rlikes',
                     'rpost.rnombreArchivo',
                     'rpost.rrotador',
                     'rpost.rfecha'
@@ -507,6 +519,14 @@ public function encuentraComentarios($idPost) {
         }
        
     }
+    public function megusta($rutColaborador, $idPost) {
+        if (($model = Rpost::find()->where(['rut1' => $rutColaborador, 'ridPost' => $idPost])->one()) !== null) {
 
+            return true;
+        }
+        else{
+          return false;
+        }
+    }
 
 }

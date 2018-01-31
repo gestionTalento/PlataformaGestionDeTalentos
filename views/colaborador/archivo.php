@@ -8,16 +8,17 @@ use yii\helpers\Html;
     <div style="height: 100%" class="media activity-item">
     <div class="row">
           <a  class="pull-left">
-            <img src="../img/perfil/t/<?php echo $posteador[0]['rfoto']; ?>" alt="Avatar" style="
+          <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>" class="pull-left">
+            <img src="../web/img/perfil/t/<?php echo $perfil['rfoto']; ?>" alt="Avatar" style="
 
-                         -ms-transform: rotate(<?php echo $posteador[0]['rrotador']; ?>deg);
-                         -webkit-transform: rotate(<?php echo $posteador[0]['rrotador']; ?>deg);
-                         transform: rotate(<?php echo $posteador[0]['rrotador']; ?>deg);
+                         -ms-transform: rotate(<?php echo $perfil['rrotador']; ?>deg);
+                         -webkit-transform: rotate(<?php echo $perfil['rrotador']; ?>deg);
+                         transform: rotate(<?php echo $perfil['rrotador']; ?>deg);
 
-            " class="media-object avatar <?php if($post["rut1"]==$session['rut']){echo "perfill";} ?>">
+            " class="media-object avatar <?php echo $post["rutColaborador1"]; ?>">
         </a>
-        <p class="activity-title"><a id="tituloPublicador" href="<?php echo "compadre?rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
-            <small class="text-muted">fecha de publicacion <?php echo $post["fecha"]; ?></small>
+        <p class="activity-title"><a id="tituloPublicador" href="<?php echo "compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
+            <small class="text-muted">fecha de publicacion <?php echo $post["rfecha"]; ?></small>
     </div>
       
         <div class="media-body">
@@ -28,20 +29,20 @@ use yii\helpers\Html;
 
 
                     <?php if($post['rfoto']=="pdf.png"){ ?>
-                    <a target="_blank" href="../img/archivos/<?php echo $post['rdescripcionPost']; ?>"><img id="rotate-<?php echo $post["ridPost"]; ?>" src="../img/pdf.png" alt="Uploaded photo"></a>
+                    <a target="_blank" href="../web/img/archivos/<?php echo $post['rdescripcionPost']; ?>"><img id="rotate-<?php echo $post["ridPost"]; ?>" src="../web/img/pdf.png" alt="Uploaded photo"></a>
                     <?php } ?>
                     <?php if($post['rfoto']=="word.png"){ ?>
-                    <a target="_blank" href="../img/archivos/<?php echo $post['rdescripcionPost']; ?>"><img id="rotate-<?php echo $post["ridPost"]; ?>" src="../img/word.png" alt="Uploaded photo"></a>
+                    <a target="_blank" href="../web/img/archivos/<?php echo $post['rdescripcionPost']; ?>"><img id="rotate-<?php echo $post["ridPost"]; ?>" src="../web/img/word.png" alt="Uploaded photo"></a>
                     <?php } ?>
                     <?php if($post['rfoto']=="excel.png"){ ?>
-                    <a target="_blank" href="../img/archivos/<?php echo $post['rdescripcionPost']; ?>"><img id="rotate-<?php echo $post["ridPost"]; ?>" src="../img/excel.png" alt="Uploaded photo"></a>
+                    <a target="_blank" href="../web/img/archivos/<?php echo $post['rdescripcionPost']; ?>"><img id="rotate-<?php echo $post["ridPost"]; ?>" src="../web/img/excel.png" alt="Uploaded photo"></a>
                     <?php } ?>
                     <?php if($post['rfoto']=="power.png"){ ?>
-                    <a target="_blank" href="../img/archivos/<?php echo $post['rdescripcionPost']; ?>"><img id="rotate-<?php echo $post["ridPost"]; ?>" src="../img/power.png" alt="Uploaded photo"></a>
+                    <a target="_blank" href="../web/img/archivos/<?php echo $post['rdescripcionPost']; ?>"><img id="rotate-<?php echo $post["ridPost"]; ?>" src="../web/img/power.png" alt="Uploaded photo"></a>
                     <?php } ?>
                 
               
-                <a target="_blank" href="../img/archivos/<?php echo $post['rdescripcionPost']; ?>"> Descargar archivo <?php echo $post['nombreArchivo']; ?></a>
+                <a target="_blank" href="../web/img/archivos/<?php echo $post['rdescripcionPost']; ?>"> Descargar archivo <?php echo $post['rnombreArchivo']; ?></a>
                
             </div>
 
@@ -56,7 +57,7 @@ use yii\helpers\Html;
 
                 <?php
                 $connection = Yii::$app->db;
-                $jefe = "select likes as cuenta from rpost where ridPost=" . $post["ridPost"] . "";
+                $jefe = "select rlikes as cuenta from rpost where ridPost=" . $post["ridPost"] . "";
                 $command = $connection->createCommand($jefe);
                 $dataReader = $command->query();
                 $modela = $dataReader->readAll();
@@ -92,12 +93,12 @@ use yii\helpers\Html;
                     <i  class="fa fa-comments-o icon"></i><?php echo $modela[0]["cuenta"]; ?>
 
                 </button>
-                <?php if ($post["rut1"] == $rutColaborador) { ?>
+                <?php if ($post["rutColaborador1"] == $rutColaborador) { ?>
                  
 
-                    <button id="like-<?php echo $post["ridPost"]; ?>" onclick="eliminar(<?php echo $post["ridPost"]; ?>,<?php echo $model[0]['rutColaborador']; ?>);" class="stat-item btn">
-                        <p class="hidden-xs">Eliminar post</p>
-<i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <button id="like-<?php echo $post["ridPost"]; ?>" onclick="eliminar(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);" class="stat-item btn">
+     <p class="hidden-xs"> Eliminar post</p>
+     <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </button>
                 <?php } ?>
             </div>
@@ -117,25 +118,25 @@ use yii\helpers\Html;
             <p>Contador: <font id="contadorc-comentario-<?php echo $post["ridPost"]; ?>" >180</font></p>
             <ul class="comments-list">
                 <?php
-                foreach ($rcomentarios as $c) {
+                foreach ($comentarios as $c) {
                     ?>
                     <li class="comment">
                         <a class="pull-left" href="#">
-<img class="avatar" style="-ms-transform: rotate(<?php echo $c['rrotador']; ?>deg);-webkit-transform: rotate(<?php echo $c['rrotador']; ?>deg);transform: rotate(<?php echo $c['rrotador']; ?>deg);" src="../img/perfil/t/<?php echo $c['rfoto']; ?>" alt="avatar">
+<img class="avatar" style="-ms-transform: rotate(<?php echo $c['rrotador']; ?>deg);-webkit-transform: rotate(<?php echo $c['rrotador']; ?>deg);transform: rotate(<?php echo $c['rrotador']; ?>deg);" src="../web/img/perfil/t/<?php echo $c['rfoto']; ?>" alt="avatar">
                         </a>
                         <div class="comment-body">
                             <div class="comment-heading">
                                 <h4 class="user"><?php echo $c["nombreColaborador"] . " " . $c["apellidosColaborador"]; ?></h4>
-                                <h5 class="time"><?php echo $c["rfecha"]; ?></h5>
+                                <h5 class="time"><?php echo $c["fecha"]; ?></h5>
                             </div>
                             <br>
-                            <p style="text-transform: initial;" id="elComentario"><?php echo $c["contenido"]; ?></p>
+                            <p style="text-transform: initial;" id="elComentario"><?php echo $c["rcontenido"]; ?></p>
                         </div>
 
                     </li>
 
                 <?php } ?>
-                <li id="<?php echo $post["idPost"]; ?>" class="comment"></li>
+                <li id="<?php echo $post["ridPost"]; ?>" class="comment"></li>
             </ul>
         </div>
     </div>

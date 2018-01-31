@@ -12,6 +12,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\imagine\Image;
 
 /**
  * ColaboradorController implements the CRUD actions for Colaborador model.
@@ -131,18 +132,23 @@ class ColaboradorController extends Controller {
             ini_set('memory_limit', '128M');
 
             $model = BuscarController::findColaboradorRut($rutColaborador);
+
             $perfil = BuscarController::findPerfil($model->idperfilRed);
-            if ($model->load(Yii::$app->request->post())) {
 
-                $model->file = UploadedFile::getInstances($perfil, 'rfoto');
+            if ($perfil->load(Yii::$app->request->post())) {
 
-                if (empty($model->file)) {
+                $perfil->file = UploadedFile::getInstances($perfil, 'rfoto');
+
+                if (empty($perfil->file)) {
+
                     $models = BuscarController::findColaboradorRut($rutColaborador);
-                    $models->rbio = $perfil->rbio;
+                    $perfils = BuscarController::findPerfil($models->idperfilRed);
+                    $perfils->rbio = $perfil->rbio;
                     $models->save(false);
+                    $perfils->save(false);
                 } else {
 
-                    foreach ($model->file as $file) {
+                    foreach ($perfil->file as $file) {
                         ini_set('memory_limit', '512M');
                         $file->saveAs('img/perfil/' . $model->rutColaborador . $file->baseName . $num . "." . $file->extension);
                         Image::thumbnail('img/perfil/' . $model->rutColaborador . $file->baseName . $num . "." . $file->extension, 200, 187)
@@ -154,12 +160,12 @@ class ColaboradorController extends Controller {
                         Image::thumbnail($ruta, 120, 120)
                                 ->save('img/perfil/t/' . $model->rutColaborador . $file->baseName . $num . "." . $file->extension, ['quality' => 50]);
                         $perfil->rfoto = $model->rutColaborador . $file->baseName . $num . "." . $file->extension;
-                        $model->save();
-                        $perfil->save();
+
+                        $perfil->save(false);
+                        $model->save(false);
+                      
                     }
                 }
-
-
 
                 return $this->redirect(['perfil', 'rutColaborador' => $model->rutColaborador]);
             } else {
@@ -190,8 +196,8 @@ class ColaboradorController extends Controller {
                
                $modelo = $this->renderAjax('elcontenido', [
                               'model' => $model,
-                              'rcontenido' => $conte,
-                              'rcomentarios' => $comentarios,
+                              'contenido' => $conte,
+                              'comentarios' => $comentarios,
                                         ]);
                $total =$total.$modelo;
 
@@ -286,11 +292,13 @@ class ColaboradorController extends Controller {
      */
     public function actionUpdate($rutColaborador) {
         $model = BuscarController::findColaboradorRut($rutColaborador);
+        $perfil = BuscarController::findPerfil($model->$idperfilRed);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         } else {
             return $this->render('update', [
                         'model' => $model,
+                        'perfil' => $perfil,
             ]);
         }
     }
@@ -507,7 +515,7 @@ class ColaboradorController extends Controller {
             $model->rut1 = Yii::$app->request->post()["rutColaborador"];
             $model->rut2 = 1;
             
-
+            $model->save(false);
             if ($model->rfoto == NULL && $model->rdescripcionPost == "0") {
                 
             } else {
@@ -517,6 +525,7 @@ class ColaboradorController extends Controller {
                 $actividad->rutColaborador2 = $model->rut2;
                 $actividad->ridpost = $model->ridPost;
                 $actividad->ridtipo_post = $model->rtipoPost;
+                
                 $actividad->save(false);
             }
 
@@ -528,16 +537,18 @@ class ColaboradorController extends Controller {
             $session = Yii::$app->session;
             $rutColaborador = $session['rut'];
 
-            $model = \app\controllers\BuscarController::encuentraColaborador($rutColaborador);
-            $model2 = \app\controllers\BuscarController::encuentraAmigos($rutColaborador);
+            $model = BuscarController::encuentraColaborador($rutColaborador);
+            $model2 = BuscarController::encuentraAmigos($rutColaborador);
+            $perfil = BuscarController::findPerfil($model[0]["idperfilRed"]);
             $model3 = new Rpost();
 
 
       
 
-            return $this->redirect(['index.php?r=colaborador/perfil',
+            return $this->redirect(['colaborador/perfil',
                         'model' => $model,
                         'model2' => $model2,
+                        'perfil' => $perfil,
                         'model3' => $model3]);
         } else {
             return $this->render('create', [
@@ -592,7 +603,7 @@ class ColaboradorController extends Controller {
         if ($model2->rrotador == 270) {
             $model2->rrotador = 0;
         } else {
-            $model2->rrotador = $model2->rotador + 90;
+            $model2->rrotador = $model2->rrotador + 90;
         }
         $model->save(false);
         $model2->save(false);
@@ -648,95 +659,119 @@ class ColaboradorController extends Controller {
 
 
                $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
-               //var_dump($posteador );die();
                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
                $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
                $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);     
                $comentarios = BuscarController::findComentarios($rpost["ridpost"]);           
-                                    
+                $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);
                $modelo = $this->renderAjax('estado', [
                               'model' => $model,
                               'post' => $rpost,
                               'perfil' => $perfil,
                               'perfil2' => $perfil2,
-                              'rcomentarios' => $comentarios,
-                              'posteador' => $posteador,
-                              'posteador2' => $posteador2,
-                              'rutColaborador' => $rutColaborador,
-                              'megusta' => $rpost,
-                                        ]);
-               $total =$total.$modelo;
-            }
-
-            if ($rpost["rtipoPost"] == 22222222222) {
-                //2
-
-                $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);     
-               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);   
-                                                   
-               $modelo = $this->renderAjax('imagen', [
-                              'model' => $model,
-                              'post' => $rpost,
                               'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
+                              'megusta' => $megusta,
+                              
+                                        ]);
+               $total =$total.$modelo;
+            }
+
+            if ($rpost["rtipoPost"] == 2) {
+                //2
+
+                $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+                $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+                $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);    
+                $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);  
+                 $comentarios = BuscarController::findComentarios($rpost["ridpost"]);   
+                                                    
+               $modelo = $this->renderAjax('imagen', [
+                              'model' => $model,
+                              'post' => $rpost,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
+                              'comentarios' => $comentarios,
+                              'posteador' => $posteador,
+                              'posteador2' => $posteador2,
+                              'rutColaborador' => $rutColaborador,
+                              'megusta' => $megusta,
 
                                         ]);
                $total =$total.$modelo;
             }
 
 
-            if ($rpost["rtipoPost"] == 3222222222) {
+            if ($rpost["rtipoPost"] == 3) {
                 //3
 
-           $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);     
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+               $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);  
+               $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);        
                $comentarios = BuscarController::findComentarios($rpost["ridpost"]);    
                $modelo = $this->renderAjax('video', [
                               'model' => $model,
                               'post' => $rpost,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
                               'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
+                              'megusta' => $megusta,
 
                                         ]);
                $total =$total.$modelo;
             }
            
-            if ($rpost["rtipoPost"] == 598798789) {
+            if ($rpost["rtipoPost"] == 5) {
                 //5
 
                 $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);     
-               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);                                         
+                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+               $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);         
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);
+               $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);                                         
                $modelo = $this->renderAjax('youtube', [
                               'model' => $model,
                               'post' => $rpost,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
                               'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
+                              'megusta' => $megusta,
 
                                         ]);
                $total =$total.$modelo;
             }
 
-              if ($rpost["rtipoPost"] == 231231236) {
+              if ($rpost["rtipoPost"] == 6) {
 
                 //6
                  $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);     
-               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);                                             
+                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+               $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);         
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);
+               $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);                                             
                $modelo = $this->renderAjax('archivo', [
                               'model' => $model,
                               'post' => $rpost,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
                               'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
+                              'megusta' => $megusta,
 
                                         ]);
                $total =$total.$modelo;
@@ -746,16 +781,21 @@ class ColaboradorController extends Controller {
 
 
               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);     
-               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);                                             
+                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+               $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);          
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);
+               $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);                                             
                $modelo = $this->renderAjax('facebook', [
-                                'model' => $model,
+                              'model' => $model,
                               'post' => $rpost,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
                               'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
-
+                              'megusta' => $megusta,
 
                                         ]);
                $total =$total.$modelo;
@@ -782,118 +822,148 @@ class ColaboradorController extends Controller {
         $total = "";
         $session = Yii::$app->session;
         $rutColaborador = $session['rut'];
-        foreach($actividad as $post){
+        foreach($actividad as $rpost){
 
             
-             if ($post["rtipoPost"] == 1) {
+             if ($rpost["rtipoPost"] == 1) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
-               $comentarios = BuscarController::findComentarios($post->ridPost);                                    
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+               $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);          
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);                      
+               $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);
 
                $modelo = $this->renderAjax('estado', [
                               'model' => $model,
-                              'post' => $post,
+                              'post' => $rpost,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
                               'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
+                              'megusta' => $megusta,
 
                                         ]);
                $total =$total.$modelo;
             }
 
-            if ($post["rtipoPost"] == 2) {
+            if ($rpost["rtipoPost"] == 2) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
-               $comentarios = BuscarController::findComentarios($post->ridPost);                                     
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+               $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);          
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);
+               $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);                                     
 
                $modelo = $this->renderAjax('imagen', [
                               'model' => $model,
-                              'post' => $post,
+                              'post' => $rpost,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
                               'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
-
+                              'megusta' => $megusta,
 
                                         ]);
                $total =$total.$modelo;
             }
 
 
-            if ($post["rtipoPost"] == 3) {
+            if ($rpost["rtipoPost"] == 3) {
 
 
-              $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
-               $comentarios = BuscarController::findComentarios($post->ridPost);                               
+              $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+               $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);          
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);
+               $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);                              
 
                $modelo = $this->renderAjax('video', [
                               'model' => $model,
-                              'post' => $post,
+                              'post' => $rpost,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
                               'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
-
+                              'megusta' => $megusta,
                                         ]);
                $total =$total.$modelo;
             }
            
-            if ($post["rtipoPost"] == 5) {
+            if ($rpost["rtipoPost"] == 5) {
 
 
-              $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
-               $comentarios = BuscarController::findComentarios($post->ridPost);                                              
+              $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+               $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);          
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);
+               $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);                                              
                $modelo = $this->renderAjax('youtube', [
                               'model' => $model,
-                              'post' => $post,
+                              'post' => $rpost,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
                               'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
-
+                              'megusta' => $megusta,
                                         ]);
                $total =$total.$modelo;
             }
 
-              if ($post["rtipoPost"] == 6) {
+              if ($rpost["rtipoPost"] == 6) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
-               $comentarios = BuscarController::findComentarios($post->ridPost);                                               
+                $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+               $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);          
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);
+               $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);                                               
 
                $modelo = $this->renderAjax('archivo', [
                               'model' => $model,
-                              'post' => $post,
+                              'post' => $rpost,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
                               'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
-
+                              'megusta' => $megusta,
                                         ]);
                $total =$total.$modelo;
             }
-             if ($post["rtipoPost"] == 12321321) {
+             if ($rpost["rtipoPost"] == 12321321) {
 
 
-               $posteador = BuscarController::encuentraColaboradorEstado($post->rutColaborador1);
-               $posteador2 = BuscarController::encuentraColaboradorEstado($post->rutColaborador2);     
-               $comentarios = BuscarController::findComentarios($post->ridPost);                                            
+               $posteador = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador1"]);
+                $perfil = BuscarController::findPerfil($posteador[0]["idperfilRed"]);
+               $posteador2 = BuscarController::encuentraColaboradorEstado($rpost["rutColaborador2"]);
+               $perfil2 = BuscarController::findPerfil($posteador2[0]["idperfilRed"]);          
+               $comentarios = BuscarController::findComentarios($rpost["ridpost"]);              
+               $megusta = BuscarController::megusta($rutColaborador, $rpost["ridpost"]);
                $modelo = $this->renderAjax('facebook', [
                               'model' => $model,
-                              'post' => $post,
+                              'post' => $rpost,
+                              'perfil' => $perfil,
+                              'perfil2' => $perfil2,
                               'comentarios' => $comentarios,
                               'posteador' => $posteador,
                               'posteador2' => $posteador2,
                               'rutColaborador' => $rutColaborador,
-
                               'megusta' => $megusta,
                               
                                         ]);

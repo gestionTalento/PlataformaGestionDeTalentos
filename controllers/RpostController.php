@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Controllers;
+namespace app\controllers;
 use Yii;
 use app\models\Rpost;
 use yii\web\Controller;
@@ -720,7 +720,8 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
 
     public function actionEliminar($idPost){
     	$model = BuscarController::findPost($idPost)->delete();
-    	//var_dump($model).die();
+
+    	var_dump($model).die();
     	return true;
     }
 
@@ -787,8 +788,8 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
         ini_set('memory_limit', '256M');
         
         $model = new Rpost();
-        $model->rut1 = Yii::$app->request->post()["rut1"];
-        $model->rut2 = Yii::$app->request->post()["rut2"];	
+        $model->rut1 = Yii::$app->request->post()["rutColaborador1"];
+        $model->rut2 = Yii::$app->request->post()["rutColaborador2"];	
         $model->rdescripcionPost = Yii::$app->request->post()["rdescripcionPost"];
         $model->grupo = 1;
         $model->file = UploadedFile::getInstances($model, 'rfoto');
@@ -802,11 +803,12 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
 
         $model->rtipoPost = 3;
         $model->rfecha = date("Y-m-d G:i:s");
+
         $model->save(false);
         		$actividad = new RActividad();
         		$actividad->rutColaborador1 = $model->rut1;
         		$actividad->rutColaborador2 = $model->rut2;
-        		$actividad->ridPost = $model->ridPost;
+        		$actividad->ridpost = $model->ridPost;
         		$actividad->ridtipo_post = $model->rtipoPost;
 
         		$actividad->save(false);
@@ -1013,7 +1015,7 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
             	$actividad = new RActividad();
             	$actividad->rutColaborador1 = $model->rut1;
             	$actividad->rutColaborador2 = $model->rut2;
-            	$actividad->ridpos = $model->ridPost;
+            	$actividad->ridpost = $model->ridPost;
             	$actividad->ridtipo_post = $model->rtipoPost;
             	$actividad->save(false);
             }
@@ -1111,12 +1113,12 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
                     }
                 }
             }
-
+            $model->idGrupo = 1;
             $model->save(false);
             $actividad = new RActividad();
-            $actividad->rutColaborador1t1 = $model->rut1;
+            $actividad->rutColaborador1 = $model->rut1;
             $actividad->rutColaborador2 = $model->rut2;
-            $actividad->ridpost = $model->ridpost;
+            $actividad->ridpost = $model->ridPost;
             $actividad->ridtipo_post = $model->rtipoPost;
             $actividad->save(false);
 
@@ -1143,38 +1145,45 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
     }
 
     public function actionComentario($rutPersona, $idPost, $comentario){
-    	$model = new RComentarios();
+    	$model = new Rcomentarios();
         $model->rcontenido = $comentario;
         $model->rut = $rutPersona;
-        $model->ridPost = $idPost;
+        $model->ridpost = $idPost;
         date_default_timezone_set("America/Santiago");
-        $model->rfecha = date("Y-m-d G:i:s");
+        $model->fecha = date("Y-m-d G:i:s");
         $model->save(false);
 
         $post = BuscarController::findPost($idPost);
         $post->rcomentarios = $post->rcomentarios +1;
         $post->save(false);
-        $persona = BuscarController::encuentraColaborador($rutPersona);
-        $perfilPersona = BuscarController::findPerfil($persona->idperfilRed);
-        $persona1 = BuscarController::findColaboradorRut($rutPersona);
-        $persona1->rcomentarios = $persona1->rcomentarios + 1;
-        $persona1->save(false);
+        
 
         if($post->rut1 != $rutPersona){
-        	$persona2 = BuscarController::encuentraColaborador($post->rut1);
+        	$persona2 = BuscarController::encuentraColaboradorRut($post->rut1);
         	$estadistica = BuscarController::findEstadistica($persona2->idestadisticas);
+            $estadistica->idestadisticas = $persona2->idestadisticas;
         	$estadistica->rcomentariosr = $estadistica->rcomentariosr + 1;
+
         	$persona2->save(false);
         	$estadistica->save(false);
         }
 
+        $persona1 = BuscarController::findColaboradorRut($rutPersona);
+        $estadistica = BuscarController::findEstadistica($persona1->idestadisticas);
+        $perfilPersona = BuscarController::findPerfil($persona1->idperfilRed);
+        $estadistica->rcomentarios = $estadistica->rcomentarios + 1;
+        $persona1->save(false);
+        $estadistica->save(false);
+
         $objeto = new \yii\helpers\ArrayHelper();
-        $objeto->rfoto = $perfilPersona[0]["rfoto"];
-        $objeto->nombre = $persona[0]["nombreColaborador"];
-        $objeto->apellidos = $persona[0]["apellidosColaborador"];
-        $objeto->rotate = $perfilPersona[0]["rrotador"];
-         $this->actionCrean($post->rut1,$post->rut2,1);
+        $objeto->foto = $perfilPersona["rfoto"];
+        $objeto->nombre = $persona1["nombreColaborador"];
+        $objeto->apellidos = $persona1["apellidosColaborador"];
+        $objeto->rotate = $perfilPersona["rrotador"];
+
+       $this->actionCrean($post->rut1,$post->rut2,1);
         return \yii\helpers\Json::encode($objeto);
+         
 
     }
 
@@ -1187,43 +1196,51 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
         $model->save(false);
 
         $contenido = BuscarController::findContenido($idContenido);
+        $persona = BuscarController::findColaboradorRut($rutPersona);
         $perfilPersona = BuscarController::findPerfil($persona->idperfilRed);
         $contenido->rcomentarios = $contenido->rcomentarios + 1;
         $contenido->save(false);
-        $persona = BuscarController::findColaboradorRut($rutPersona);
-      
+        
+        
 
 
         $objeto = new \yii\helpers\ArrayHelper();
         $objeto->foto = $perfilPersona[0]["rfoto"];
         $objeto->nombre = $persona[0]["nombreColaborador"];
         $objeto->apellidos = $persona[0]["apellidosColaborador"];
-        $objeto->rotate = $persona[0]["rrotador"];
+        $objeto->rotate = $perfilPersona[0]["rrotador"];
 
         return \yii\helpers\Json::encode($objeto);
     }
 
 
     public function actionLike($rutPersona, $idPost){
+
     	$post = BuscarController::findPost($idPost);
     	$post->rlikes = $post->rlikes + 1;
     	$post->save(false);
-
+        
     	if ($post->rut1 != $rutPersona){
     		$persona2 = BuscarController::findColaboradorRut($post->rut1);
     		$estadistica = BuscarController::findEstadistica($persona2->idestadisticas);
     		$estadistica->idestadisticas = $persona2->idestadisticas;
     		$estadistica->rlikesr = $estadistica->rlikesr + 1;
-    		$estadistica.save(false);
-    		$persona2.save(false);
+    		$estadistica->save(false);
+    		$persona2->save(false);
 
     	}
 
+        $likePost = BuscarController::findPost($idPost);
+        $likePost->ridPost = $idPost;
+        $likePost->rlikes = $likePost->rlikes +1;
+        $likePost->rut1 = $rutPersona;
+        $likePost->save(false);
+
     	$persona = BuscarController::findColaboradorRut($rutPersona);
-    	$estadistica = BuscarController::findEstadistica($persona2->idestadisticas);
+    	$estadistica = BuscarController::findEstadistica($persona->idestadisticas);
     	$estadistica->rlikes = $estadistica->rlikes + 1;
     	$persona->save(false);
-    	$estadistica.save(false);
+    	$estadistica->save(false);
     	$this->actionCrean($post->rut1, $post->rut2,1);
     	return $post->rlikes;
 

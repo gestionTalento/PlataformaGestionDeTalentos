@@ -20,7 +20,7 @@ use kartik\widgets\FileInput;
                                                             ],
                                             ])->label(false);
                                 ?>
-                                <textarea name="descripcionPost"  placeholder="Asocia un mensaje al video!!!" rows="2" class="form-control input-lg p-text-area"></textarea>
+                                <textarea name="rdescripcionPost"  placeholder="Asocia un mensaje al video!!!" rows="2" class="form-control input-lg p-text-area"></textarea>
 
 
                                 <div class="panel-footer">

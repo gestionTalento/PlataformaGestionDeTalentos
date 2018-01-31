@@ -639,10 +639,10 @@ Modal::end();
 
 
 
-            $.get("../rpost/comentarioc?rutPersona=" + rut + "&idContenido=" + post + "&rcomentarios=" + comentario + "",
+            $.get("index.php=?r=rpost/comentarioc&rutPersona=" + rut + "&idContenido=" + post + "&rcomentarios=" + comentario + "",
                     function (dato) {
                         var data = JSON.parse(dato);
-                        $('#' + post).html('<a class="pull-left" href="#"><img style="-ms-transform: rotate('+ data.rotate + 'deg);-webkit-transform: rotate('+ data.rotate + 'deg);transform: rotate('+ data.rotate + 'deg);" class="avatars" alt="Avatar" src="/frontend/web/img/perfil/t/' + data.foto + '"></a><div class="comment-body"><div class="comment-heading"><h4 style="font-size: 11px;" class="comment-user-name"><a href="#">' + data.nombre + ' ' + data.apellidos + '</a></h4><h5 class="time">Ahora</h5></div><p>' + comentario + '</p></div>');
+                        $('#' + post).html('<a class="pull-left" href="#"><img style="-ms-transform: rotate('+ data.rotate + 'deg);-webkit-transform: rotate('+ data.rotate + 'deg);transform: rotate('+ data.rotate + 'deg);" class="avatars" alt="Avatar" src="../web/img/perfil/t/' + data.foto + '"></a><div class="comment-body"><div class="comment-heading"><h4 style="font-size: 11px;" class="comment-user-name"><a href="#">' + data.nombre + ' ' + data.apellidos + '</a></h4><h5 class="time">Ahora</h5></div><p>' + comentario + '</p></div>');
                         $("#comentario-" + post + "").val('');
 
                     }).fail(function () {

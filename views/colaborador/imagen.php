@@ -44,16 +44,16 @@ Full screen Modal
 <div class="panel panel-white post panel-shadow">        
     <div class="media activity-item">
         <div style="    margin-bottom: 10px;" class="row">
-          <a href="<?php echo "compadre?rutAmigo=".$posteador[0]["rutColaborador"]; ?>" class="pull-left">
-           <img src="../img/perfil/t/<?php echo $posteador[0]["rfoto"]; ?>" alt="Avatar" style="
-                -ms-transform: rotate(<?php echo $posteador->rrotador; ?>deg);
-            -webkit-transform: rotate(<?php echo $posteador->rrotador; ?>deg);
-            transform: rotate(<?php echo $posteador->rrotador; ?>deg);
+           <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>" class="pull-left">
+           <img src="../web/img/perfil/t/<?php echo $perfil2->rfoto; ?>" alt="Avatar" style="
+                -ms-transform: rotate(<?php echo $perfil2->rrotador; ?>deg);
+            -webkit-transform: rotate(<?php echo $perfil2->rrotador; ?>deg);
+            transform: rotate(<?php echo $perfil2->rrotador; ?>deg);
 
-            " class="media-object avatar <?php if($post["rut1"]==$session['rut']){echo "perfill";} ?>">
+            " class="media-object avatar <?php echo $post["rutColaborador1"]; ?>">
            
         </a>
-        <p class="activity-title"><a id="tituloPublicador" href="<?php echo "compadre?rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
+       <p class="activity-title"><a id="tituloPublicador" href="<?php echo "compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
         <small class="text-muted">fecha: <?php echo $post["rfecha"]; ?></small>
     </div>
 
@@ -79,7 +79,7 @@ Full screen Modal
                 -webkit-transform: rotate(<?php echo $post['rrotador']; ?>deg);
                 transform: rotate(<?php echo $post['rrotador']; ?>deg);
 
-                " src="../img/post/<?php echo $post['rfoto']; ?>" alt="...">
+                " src="../web/img/post/<?php echo $post['rfoto']; ?>" alt="...">
             </div>
             <div class="modal-footer">
                 
@@ -96,7 +96,7 @@ Full screen Modal
         -webkit-transform: rotate(<?php echo $post['rrotador']; ?>deg);
         transform: rotate(<?php echo $post['rrotador']; ?>deg);
 
-        " src="../img/post/<?php echo $post['rfoto']; ?>" alt="...">
+        " src="../web/img/post/<?php echo $post['rfoto']; ?>" alt="...">
     </a>
 
 </div>
@@ -130,7 +130,20 @@ Full screen Modal
         $modela = $dataReader->readAll();
         ?>
         
+         <?php if($megusta["rlikes"]>0){
 
+
+                ?>
+                <button class="stat-item btn btn-success"><p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i><?php echo $megusta[0]["rlikes"]; ?></button>
+                 <?php
+                }else {?>
+
+                  <button id="like-<?php echo $post["ridPost"]; ?>" onclick="like(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);" class="stat-item btn visible-xs-*">
+                <p class="hidden-xs">Me Gusta</p>
+                <i class="fa fa-thumbs-up icon"></i>
+                </button>
+                <?php
+                }?>
 
         <?php
         $connection = Yii::$app->db;
@@ -145,14 +158,14 @@ Full screen Modal
 
         </button>
         <?php if ($post["rutColaborador1"] == $rutColaborador) { ?>
-        <button id="like-<?php echo $post["ridPost"]; ?>" onclick="rotate(<?php echo $post["ridPost"]; ?>,<?php echo $model[0]['rutColaborador']; ?>);" class="stat-item btn">
+        <button id="like-<?php echo $post["ridPost"]; ?>" onclick="rotate(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);" class="stat-item btn">
          <p class="hidden-xs"> Rotar Imagen</p>
          <i class="fa fa-undo" aria-hidden="true"></i>
 
 
      </button>
 
-     <button id="like-<?php echo $post["ridPost"]; ?>" onclick="eliminar(<?php echo $post["ridPost"]; ?>,<?php echo $model[0]['rutColaborador']; ?>);" class="stat-item btn">
+     <button id="like-<?php echo $post["ridPost"]; ?>" onclick="eliminar(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);" class="stat-item btn">
          <p class="hidden-xs"> Eliminar post</p>
     <i class="fa fa-trash-o" aria-hidden="true"></i>
      </button>
@@ -178,15 +191,15 @@ Full screen Modal
                     ?>
                     <li class="comment">
                         <a class="pull-left" href="#">
-<img class="avatar" style="-ms-transform: rotate(<?php echo $c['rrotador']; ?>deg);-webkit-transform: rotate(<?php echo $c['rrotador']; ?>deg);transform: rotate(<?php echo $c['rrotador']; ?>deg);" src="../img/perfil/t/<?php echo $c['rfoto']; ?>" alt="avatar">
+<img class="avatar" style="-ms-transform: rotate(<?php echo $c['rrotador']; ?>deg);-webkit-transform: rotate(<?php echo $c['rrotador']; ?>deg);transform: rotate(<?php echo $c['rrotador']; ?>deg);" src="../web/img/perfil/t/<?php echo $c['rfoto']; ?>" alt="avatar">
                         </a>
                         <div class="comment-body">
                             <div class="comment-heading">
                                 <h4 class="user"><?php echo $c["nombreColaborador"] . " " . $c["apellidosColaborador"]; ?></h4>
-                                <h5 class="time"><?php echo $c["rfecha"]; ?></h5>
+                                <h5 class="time"><?php echo $c["fecha"]; ?></h5>
                             </div>
                             <br>
-                            <p style="text-transform: initial;" id="elComentario"><?php echo $c["contenido"]; ?></p>
+                            <p style="text-transform: initial;" id="elComentario"><?php echo $c["rcontenido"]; ?></p>
                         </div>
 
                     </li>

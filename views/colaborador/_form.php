@@ -5,47 +5,23 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Colaborador */
-/* @var $form yii\widgets\ActiveForm */ 
+/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="colaborador-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'rutColaborador')->textInput() ?>
 
-    <?= $form->field($model, 'dvColaborador')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pass')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($perfil, 'rfoto')->fileInput() ?>
+    <?= $form->field($perfil, 'rbio')->textarea(['rows' => '6']) ?>
 
-    <?= $form->field($model, 'nombreColaborador')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'apellidosColaborador')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'idSucursal')->textInput() ?>
-
-    <?= $form->field($model, 'idArea')->textInput() ?>
-
-    <?= $form->field($model, 'idCargo')->textInput() ?>
-
-    <?= $form->field($model, 'idRol')->textInput() ?>
-
-    <?= $form->field($model, 'idGerencia')->textInput() ?>
-
-    <?= $form->field($model, 'westadoJefe')->textInput() ?>
-
-    <?= $form->field($model, 'idperfil')->textInput() ?>
-
-    <?= $form->field($model, 'idperfilRed')->textInput() ?>
-
-    <?= $form->field($model, 'idestadisticas')->textInput() ?>
-
-    <?= $form->field($model, 'idestado')->textInput() ?>
-
-    <?= $form->field($model, 'idCC')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Actualiza tus datos',  ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+
     </div>
 
     <?php ActiveForm::end(); ?>

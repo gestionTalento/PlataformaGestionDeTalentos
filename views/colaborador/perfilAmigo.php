@@ -641,7 +641,7 @@ a.navbar-brand {
 
     function rotate(idPost) {
 
-        $.get("../post/rotate?ridPost=" + idPost + "",
+        $.get("index.php?r=rpost/rotate&idPost=" + idPost + "",
                 function (dato) {
                      //alert(dato);
                     $('#rotate-' + idPost).css('transform', 'rotate(' + dato + 'deg)');
@@ -656,7 +656,7 @@ a.navbar-brand {
 
      function rotates(rutColaborador) {
 
-        $.get("rotate?rutColaborador=" + rutColaborador + "",
+        $.get("index.php?r=colaborador/rotate&rutColaborador=" + rutColaborador + "",
                 function (dato) {
                    
                     //$("#rotate-" + idPost).css('transform', "deg(" + dato + ")");
@@ -713,11 +713,11 @@ a.navbar-brand {
 
 
 
-            $.get("../rpost/comentario?rutPersona=" + rut + "&ridPost=" + post + "&comentario=" + comentario + "",
+            $.get("index.php?r=rpost/comentario&rutPersona=" + rut + "&idPost=" + post + "&comentario=" + comentario + "",
                 function (dato) {
                  
                     var data = JSON.parse(dato);
-                    $('#' + post).html('<a class="pull-left" href="#"><img style="-ms-transform: rotate('+ data.rotate + 'deg);-webkit-transform: rotate('+ data.rotate + 'deg);transform: rotate('+ data.rotate + 'deg);"class="avatar" alt="Avatar" src="web/img/perfil/' + data.foto + '"></a><div class="comment-body"><div class="comment-heading"><h4 class="comment-user-name"><a href="#">' + data.nombre + ' ' + data.apellidos + '</a></h4><h5 class="time">Ahora</h5></div><p style="text-transform: capitalize;">' + comentario + '</p></div>');
+                    $('#' + post).html('<a class="pull-left" href="#"><img style="-ms-transform: rotate('+ data.rotate + 'deg);-webkit-transform: rotate('+ data.rotate + 'deg);transform: rotate('+ data.rotate + 'deg);"class="avatar" alt="Avatar" src="../web/img/perfil/' + data.foto + '"></a><div class="comment-body"><div class="comment-heading"><h4 class="comment-user-name"><a href="#">' + data.nombre + ' ' + data.apellidos + '</a></h4><h5 class="time">Ahora</h5></div><p style="text-transform: capitalize;">' + comentario + '</p></div>');
                     $("#comentario-" + post + "").val('');
 
                     
@@ -748,7 +748,7 @@ a.navbar-brand {
 
     function like(idPost, rut) {
 
-        $.get("../rpost/like?rutPersona=" + rut + "&ridPost=" + idPost + "",
+        $.get("index.php?r=rpost/like&rutPersona=" + rut + "&idPost=" + idPost + "",
                 function (dato) {
 
                     $("#like-" + idPost).addClass('btn-success');
@@ -774,7 +774,7 @@ a.navbar-brand {
      
     function eliminar(idPost) {
 
-        $.get("../rpost/eliminar?idPost=" + idPost + "",
+        $.get("index.php?r=rpost/eliminar?idPost=" + idPost + "",
                 function (dato) {
                   if(dato==true){
                       alert("Su post ha sido eliminado");
@@ -889,20 +889,21 @@ a.navbar-brand {
 
                                         foreach ($model2 as $amigo) {
                                             $modell3 = BuscarController::findColaboradorRut($amigo["rut2"]);
+                                             $perfilamigo = BuscarController::findPerfil($modell3->idperfilred);
                                             ?>
 
                                             <li>
 
-                                                <a href="compadre?rutAmigo=<?php echo $modell3[0]['rutColaborador'] ?>">
+                                                <a href="index.php?r=site/compadre&rutAmigo=<?php echo $modell3[0]['rutColaborador'] ?>">
 
                                                     <img   style="
 
-                                                    -ms-transform: rotate(<?php echo $modell3[0]['rrotador']; ?>deg);
-                                                     -webkit-transform: rotate(<?php echo $modell3[0]['rrotador']; ?>deg);
-                                                     transform: rotate(<?php echo $modell3[0]['rrotador']; ?>deg);
+                                                    -ms-transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
+                                                     -webkit-transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
+                                                     transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
 
 
-                                                    " src="../img/perfil/t/<?php echo $modell3[0]['foto']; ?>" title="<?php echo $modell3[0]['nombreColaborador'] . " " . $modell3[0]['apellidosColaborador']; ?>" class="img-responsive tip perfill">
+                                                    " src="../web/img/perfil/t/<?php echo $perfilamigo[0]['rfoto']; ?>" title="<?php echo $modell3[0]['nombreColaborador'] . " " . $modell3[0]['apellidosColaborador']; ?>" class="img-responsive tip perfill">
 
                                                 </a>
 
@@ -931,7 +932,7 @@ a.navbar-brand {
                             <?php if ($global == $model->rutColaborador) { ?> 
                           <div class="panel-body">
                         
-                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['rpost/create']]); ?>
+                             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['colaborador/post']]); ?>
 
                             <div class="row">
                                 
@@ -959,7 +960,7 @@ a.navbar-brand {
                             <ul class="nav nav-pills">
                               <li role="presentation" class="active">
 
-
+                                <?= $form->errorSummary($model); ?>
                              <?=
                                             $form->field($model3, 'file')->widget(FileInput::classname(), [
                                                 'pluginOptions' => [
@@ -982,7 +983,7 @@ a.navbar-brand {
                             
                             </ul>
 
-<?php ActiveForm::end(); ?>
+            <?php ActiveForm::end(); ?>
 
 
 
@@ -999,9 +1000,9 @@ a.navbar-brand {
                                 ?>
                                 <div class="panel">
 
-                                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['rpost/create']]); ?>
+                                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['colaborador/post']]); ?>
 
-                                    <textarea name="rdescripcionPost" required="true" placeholder="Saluda a <?php echo $model[0]['nombreColaborador']; ?> de seguro quiere recibir tu saludo!!  :D" rows="2" class="form-control input-lg p-text-area"></textarea>
+                                    <textarea name="rdescripcionPost" required="true" placeholder="Saluda a <?php echo $model['nombreColaborador']; ?> de seguro quiere recibir tu saludo!!  :D" rows="2" class="form-control input-lg p-text-area"></textarea>
 
 
                                     <div class="panel-footer">
@@ -1016,7 +1017,7 @@ a.navbar-brand {
 
                                             
                                                 <input type="hidden" name="rutColaborador" value="<?php echo $global; ?>" />
-                                                <input type="hidden" name="rutColaborador2" value="<?php echo $model[0]['rutColaborador']; ?>" />
+                                                <input type="hidden" name="rutColaborador2" value="<?php echo $model['rutColaborador']; ?>" />
                                             </li>
 
 
@@ -1062,7 +1063,7 @@ a.navbar-brand {
                                 function mycontent(mypage){
                                         
                                     $('#ani_img').show();
-                                    $.get('reloadr?page='+mypage+'&rutColaborador=<?php echo $rutColaborador; ?>&rutAmigo=<?php echo $rutAmigo; ?>', function(data){
+                                    $.get('index.php?r=colaborador/reloadr&page='+mypage+'&rutColaborador=<?php echo $rutColaborador; ?>&rutAmigo=<?php echo $rutAmigo; ?>', function(data){
                                         if(data.trim().length == 0){
                                              $('#loading').append('<button style="margin-right:35%;" class="btn btn-primary">No existen mas post disponibles</button>');
                                             var e = document.getElementById("loading");

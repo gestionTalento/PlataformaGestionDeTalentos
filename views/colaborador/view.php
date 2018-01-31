@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DetailView::widget([
         'model' => $model,
+        'perfil' => $perfil,
         'attributes' => [
             'rutColaborador',
             'dvColaborador',
@@ -36,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'idSucursal',
             'idArea',
             'idCargo',
+            'rfoto',
             'idRol',
             'idGerencia',
             'westadoJefe',

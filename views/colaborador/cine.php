@@ -641,10 +641,10 @@ li.comment {
 
 
 
-            $.get("../rpost/comentarioc?rutPersona=" + rut + "&idContenido=" + post + "&comentario=" + comentario + "",
+            $.get("index.php?r=rpost/comentarioc&rutPersona=" + rut + "&idContenido=" + post + "&comentario=" + comentario + "",
                     function (dato) {
                         var data = JSON.parse(dato);
-                        $('#' + post).html('<a class="pull-left" href="#"><img class="avatars" alt="Avatar" src="/frontend/web/img/perfil/t/' + data.foto + '"></a><div class="comment-body"><div class="comment-heading"><h4 style="font-size: 11px;" class="comment-user-name"><a href="#">' + data.nombre + ' ' + data.apellidos + '</a></h4><h5 class="time">Ahora</h5></div><p>' + comentario + '</p></div>');
+                        $('#' + post).html('<a class="pull-left" href="#"><img class="avatars" alt="Avatar" src="../web/img/perfil/t/' + data.foto + '"></a><div class="comment-body"><div class="comment-heading"><h4 style="font-size: 11px;" class="comment-user-name"><a href="#">' + data.nombre + ' ' + data.apellidos + '</a></h4><h5 class="time">Ahora</h5></div><p>' + comentario + '</p></div>');
                         $("#comentario-" + post + "").val('');
 
                     }).fail(function () {
@@ -761,9 +761,9 @@ li.comment {
     font-size: 13px;
     }
     .perfill{
-                         -ms-transform: rotate(<?php echo $model[0]['rotador']; ?>deg);
-                         -webkit-transform: rotate(<?php echo $model[0]['rotador']; ?>deg);
-                         transform: rotate(<?php echo $model[0]['rotador']; ?>deg);
+                         -ms-transform: rotate(<?php echo $perfil[0]['rotador']; ?>deg);
+                         -webkit-transform: rotate(<?php echo $perfil[0]['rotador']; ?>deg);
+                         transform: rotate(<?php echo $perfil[0]['rotador']; ?>deg);
 
                          
     }
@@ -852,8 +852,8 @@ video::-webkit-media-controls-panel {
 
         <div class="col-xs-12">
         <div class="input-group"> 
-            <input id="comentario-<?php echo $crontenido; ?>" name="comentario-<?php echo $rcontenido; ?>" class="form-control" placeholder="Agrega un comentario" type="text" onkeydown = "if (event.keyCode == 13) {
-                        enviarc(<?php echo $contenido; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);
+            <input id="comentario-<?php echo $rcontenido; ?>" name="comentario-<?php echo $rcontenido; ?>" class="form-control" placeholder="Agrega un comentario" type="text" onkeydown = "if (event.keyCode == 13) {
+                        enviarc(<?php echo $rcontenido; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);
                     }">
             <span class="input-group-addon">
                 <button  onclick="enviar(<?php echo $rcontenido; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);"><i class="fa fa-edit"></i></button>  
@@ -866,13 +866,13 @@ video::-webkit-media-controls-panel {
                 ?>
                 <li class="comment">
                     <a class="pull-left" href="#">
-<img class="avatars" style="-ms-transform: rotate(<?php echo $c['rotador']; ?>deg);-webkit-transform: rotate(<?php echo $c['rotador']; ?>deg);transform: rotate(<?php echo $c['rotador']; ?>deg);" src="../img/perfil/t/<?php echo $c['foto']; ?>" alt="avatar">
+<img class="avatars" style="-ms-transform: rotate(<?php echo $c['rrotador']; ?>deg);-webkit-transform: rotate(<?php echo $c['rrotador']; ?>deg);transform: rotate(<?php echo $c['rrotador']; ?>deg);" src="../web/img/perfil/t/<?php echo $c['rfoto']; ?>" alt="avatar">
                         </a>
                     <div class="comment-body">
                         <div class="comment-heading">
                             <h4 class="user"><?php echo $c["nombreColaborador"] . " " . $c["apellidosColaborador"]; ?></h4>
                             <h5 class="time">5 minutes ago</h5>
-                            <p style="text-transform: capitalize;" id="elComentario"><?php echo $c["contenido"]; ?></p>
+                            <p style="text-transform: capitalize;" id="elComentario"><?php echo $c["rcontenido"]; ?></p>
 
                         </div>
                     </div>
