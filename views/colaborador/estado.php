@@ -10,8 +10,9 @@ use yii\helpers\Html;
 
             <?php if ($posteador2[0]["rutColaborador"]!=1) { ?>
             <div class="media-body">
+            <div style="    margin-bottom: 10px;" class="row">
                 <div class="col-md-12 col-xs-12">
-                     <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>" class="pull-left hidden-xs">
+                     <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>" class="pull-left">
                         <img src="../web/img/perfil/t/<?php echo $perfil2->rfoto; ?>" alt="Avatar" style="
 
 
@@ -25,21 +26,19 @@ use yii\helpers\Html;
                         " class="media-object avatar <?php echo $perfil2->rrotador; ?>">
                     </a>
 
-                    <div class="media-body">
-                <p class="activity-title"><a id="tituloPublicador" href="<?php echo "compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>"><?php echo $posteador2[0]['nombreColaborador'] . " " . $posteador2[0]['apellidosColaborador']; ?></a> </p>
+                    
+                <p class="activity-title"><a id="tituloPublicador" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>"><?php echo $posteador2[0]['nombreColaborador'] . " " . $posteador2[0]['apellidosColaborador']; ?></a> </p>
             <small class="text-muted">fecha: <?php echo $post["rfecha"]; ?></small>
+            </div>
+             </div>
                 <div class="activity-attachment">
                     <a href="#" class="thumbnail">
                     </a>
                 </div>
 
-            </div>
-            <small class="text-muted">fecha: <?php echo $post["rfecha"]; ?></small>
-            <div class="activity-attachment">
-                <a href="#" class="thumbnail">
-                </a>
-            </div>
-        </div>
+    
+           
+        
 
 
     </div>
@@ -55,7 +54,7 @@ use yii\helpers\Html;
 
         " class="media-object avatar <?php $session = Yii::$app->session;  if($post["rutColaborador1"]==$session['rut']){echo "perfill";} ?>">
     </a>
-    <p class="activity-title"><a id="tituloPublicador" href="<?php echo "compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
+    <p class="activity-title"><a id="tituloPublicador" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
     <small class="text-muted">fecha: <?php echo $post["rfecha"]; ?></small>
 </div>
 

@@ -884,17 +884,21 @@ a.navbar-brand {
 
 
                                         <?php
-                                        $rutColaborador = $model->rutColaborador;
-                                        $model2 = BuscarController::encuentraAmigos($model->rutColaborador);
+                                        $rutColaborador = $model['rutColaborador'];
+                                        $model2 = BuscarController::encuentraAmigos($model['rutColaborador']);
 
                                         foreach ($model2 as $amigo) {
                                             $modell3 = BuscarController::findColaboradorRut($amigo["rut2"]);
-                                             $perfilamigo = BuscarController::findPerfil($modell3->idperfilred);
+                                            
+                                            $perfilamigo = BuscarController::findPerfiles($modell3["idperfilRed"]);
+                                            
                                             ?>
+
 
                                             <li>
 
-                                                <a href="index.php?r=site/compadre&rutAmigo=<?php echo $modell3[0]['rutColaborador'] ?>">
+                                                  <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$modell3["rutColaborador"]; ?>">
+
 
                                                     <img   style="
 
@@ -903,7 +907,7 @@ a.navbar-brand {
                                                      transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
 
 
-                                                    " src="../web/img/perfil/t/<?php echo $perfilamigo[0]['rfoto']; ?>" title="<?php echo $modell3[0]['nombreColaborador'] . " " . $modell3[0]['apellidosColaborador']; ?>" class="img-responsive tip perfill">
+                                                    " src="../web/img/perfil/t/<?php echo $perfilamigo[0]["rfoto"]; ?>" title="<?php echo $modell3['nombreColaborador'] . " " . $modell3['apellidosColaborador']; ?>" class="img-responsive tip perfill">
 
                                                 </a>
 
@@ -1000,7 +1004,7 @@ a.navbar-brand {
                                 ?>
                                 <div class="panel">
 
-                                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['colaborador/post']]); ?>
+                                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['rpost/creates']]); ?>
 
                                     <textarea name="rdescripcionPost" required="true" placeholder="Saluda a <?php echo $model['nombreColaborador']; ?> de seguro quiere recibir tu saludo!!  :D" rows="2" class="form-control input-lg p-text-area"></textarea>
 
@@ -1018,6 +1022,7 @@ a.navbar-brand {
                                             
                                                 <input type="hidden" name="rutColaborador" value="<?php echo $global; ?>" />
                                                 <input type="hidden" name="rutColaborador2" value="<?php echo $model['rutColaborador']; ?>" />
+                                               
                                             </li>
 
 

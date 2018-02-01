@@ -44,19 +44,20 @@ Full screen Modal
 <div class="panel panel-white post panel-shadow">        
     <div class="media activity-item">
         <div style="    margin-bottom: 10px;" class="row">
-           <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>" class="pull-left">
-           <img src="../web/img/perfil/t/<?php echo $perfil2->rfoto; ?>" alt="Avatar" style="
-                -ms-transform: rotate(<?php echo $perfil2->rrotador; ?>deg);
-            -webkit-transform: rotate(<?php echo $perfil2->rrotador; ?>deg);
-            transform: rotate(<?php echo $perfil2->rrotador; ?>deg);
+        <div class="col-md-12 col-xs-12">
+           <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>" class="pull-left">
+           <img src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>" alt="Avatar" style="
+                -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+            -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+            transform: rotate(<?php echo $perfil->rrotador; ?>deg);
 
             " class="media-object avatar <?php echo $post["rutColaborador1"]; ?>">
            
         </a>
-       <p class="activity-title"><a id="tituloPublicador" href="<?php echo "compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
+       <p class="activity-title"><a id="tituloPublicador" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
         <small class="text-muted">fecha: <?php echo $post["rfecha"]; ?></small>
     </div>
-
+</div>
     <div class="media-body">
 
 

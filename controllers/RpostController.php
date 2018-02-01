@@ -721,7 +721,7 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
     public function actionEliminar($idPost){
     	$model = BuscarController::findPost($idPost)->delete();
 
-    	var_dump($model).die();
+    	//var_dump($model).die();
     	return true;
     }
 
@@ -1163,9 +1163,9 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
         	$estadistica = BuscarController::findEstadistica($persona2->idestadisticas);
             $estadistica->idestadisticas = $persona2->idestadisticas;
         	$estadistica->rcomentariosr = $estadistica->rcomentariosr + 1;
-
+            $estadistica->save(false);
         	$persona2->save(false);
-        	$estadistica->save(false);
+
         }
 
         $persona1 = BuscarController::findColaboradorRut($rutPersona);

@@ -161,6 +161,16 @@ class BuscarController extends Controller {
         }
     }
 
+    public function findPerfiles($idperfil) {
+        if (($model = Rperfilredsocial::find()->where(['idperfilRed' => $idperfil])->all()) !== null) {
+
+            return $model;
+        } else {
+
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
     public function findContenido($idContenido) {
         if (($model = Rcontenido::findOne(['idcontenido' => $idContenido])) !== null) {
             return $model;

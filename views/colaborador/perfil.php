@@ -883,21 +883,25 @@ Modal::end();
 
 
                                         <?php
-                                        $rutColaborador = $model->rutColaborador;
-                                        $model2 = BuscarController::encuentraAmigos($model->rutColaborador);
+                                        $rutColaborador = $model['rutColaborador'];
+                                        $model2 = BuscarController::encuentraAmigos($model['rutColaborador']);
 
                                         foreach ($model2 as $amigo) {
                                             $modell3 = BuscarController::findColaboradorRut($amigo["rut2"]);
-                                            $perfilamigo = BuscarController::findPerfil($modell3->idperfilred);
+                                            
+                                            $perfilamigo = BuscarController::findPerfiles($modell3["idperfilRed"]);
+                                            
                                             ?>
 
                                             <li>
 
-                                                <a href="index.php?r=colaborador/compadre&rutAmigo=<?php echo $modell3->rutColaborador ?>">
+                                               <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$modell3["rutColaborador"]; ?>">
+                                               
+                                                    <img style="-ms-transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
+                                                         -webkit-transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
+                                                         transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
 
-                                                    <img style="-ms-transform: rotate(<?php echo $perfilamigo->rrotador; ?>deg);
-                                                         -webkit-transform: rotate(<?php echo $perfilamigo->rrotador; ?>deg);
-                                                         transform: rotate(<?php echo $perfilamigo->rrotador; ?>deg);" src="../web/img/perfil/t/<?php echo $perfilamigo->rfoto; ?>" title="<?php echo $modell3->rutColaborador . " " . $modell3->apellidosColaborador; ?>" class="img-responsive tip">
+                                                         " src="../web/img/perfil/t/<?php echo $perfilamigo[0]["rfoto"]; ?>" title="<?php echo $modell3["rutColaborador"] . " " . $modell3['apellidosColaborador']; ?>" class="img-responsive tip">
 
                                                 </a>
 
