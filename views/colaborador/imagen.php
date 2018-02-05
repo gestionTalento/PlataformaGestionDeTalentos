@@ -135,13 +135,13 @@ Full screen Modal
 
 
                 ?>
-                <button class="stat-item btn btn-success"><p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i><?php echo $megusta[0]["rlikes"]; ?></button>
+                <button class="stat-item btn btn-success"><p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i><?php echo $modela[0]["cuenta"]; ?></button>
                  <?php
                 }else {?>
 
                   <button id="like-<?php echo $post["ridPost"]; ?>" onclick="like(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);" class="stat-item btn visible-xs-*">
                 <p class="hidden-xs">Me Gusta</p>
-                <i class="fa fa-thumbs-up icon"></i>
+                <i class="fa fa-thumbs-up icon"></i><?php echo $modela[0]["cuenta"]; ?>
                 </button>
                 <?php
                 }?>

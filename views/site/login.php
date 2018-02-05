@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
 
             <?=
-            Html::img('armas.png', $options = [
+            Html::img('web/armas.png', $options = [
                 'class' => 'jp',
             ]);
             ?></div>

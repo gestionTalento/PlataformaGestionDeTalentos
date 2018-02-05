@@ -676,7 +676,7 @@ li.comment {
 
     function like(idPost, rut) {
 
-        $.get("../rpost/like?rutPersona=" + rut + "&ridPost=" + idPost + "",
+        $.get("index.php?r=rpost/like?rutPersona=" + rut + "&idPost=" + idPost + "",
                 function (dato) {
 
                     $("#like-" + idPost).addClass('btn-success');
@@ -696,7 +696,7 @@ li.comment {
 
     function rotate(idPost) {
 
-        $.get("../rpost/rotate?idPost=" + idPost + "",
+        $.get("index.php?r=rpost/rotate?idPost=" + idPost + "",
                 function (dato) {
                     // alert(dato);
                     //$("#rotate-" + idPost).css('transform', "deg(" + dato + ")");
@@ -714,7 +714,7 @@ li.comment {
     }
         function rotates(rutColaborador) {
 
-        $.get("rotate?rutColaborador=" + rutColaborador + "",
+        $.get("index.php?r=rotate&rutColaborador=" + rutColaborador + "",
                 function (dato) {
                     // alert(dato);
                     //$("#rotate-" + idPost).css('transform', "deg(" + dato + ")");
@@ -732,7 +732,7 @@ li.comment {
     }
     function eliminar(idPost) {
 
-        $.get("../rpost/eliminar?idPost=" + idPost + "",
+        $.get("index.php?r=rpost/eliminar&idPost=" + idPost + "",
                 function (dato) {
                   if(dato==true){
                       alert("Su post ha sido eliminado");
@@ -827,7 +827,7 @@ video::-webkit-media-controls-panel {
                                                 <p style="text-align: center;">
                                                 <video id="video2" controls preload="auto" autoplay="true">
 
-                                                    <source src="../rcontenido/<?php echo $video; ?>" type="video/mp4">
+                                                    <source src="index.php?r=rcontenido/<?php echo $video; ?>" type="video/mp4">
                                                     Tu navegador no implementa el elemento <code>video</code>.
                                                 </video>
                                                 <br>

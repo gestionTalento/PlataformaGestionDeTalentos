@@ -18,6 +18,7 @@ use app\models\Restadisticas;
 use app\models\Ramigos;
 use app\models\RcomentarioContenidos;
 use app\models\Rcontenido;
+use app\models\RActividad;
 class BuscarController extends Controller {
 
     public function findColaborador($correo, $pass) {

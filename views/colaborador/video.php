@@ -7,7 +7,7 @@ use yii\helpers\Html;
     <div class="media activity-item">
 
             <div class="row">
-          <a href="<?php echo "compadre?rutAmigo=".$posteador2[0]["rutColaborador"]; ?>" class="pull-left">
+          <a href="<?php echo "index.php?r=colaborador/compadre?rutAmigo=".$posteador2[0]["rutColaborador"]; ?>" class="pull-left">
             <img src="../web/img/perfil/t/<?php echo $perfil2['rfoto']; ?>" alt="Avatar" style="
 
                          -ms-transform: rotate(<?php echo $perfil2->rrotador;; ?>deg);
@@ -16,7 +16,7 @@ use yii\helpers\Html;
 
             " class="media-object avatar <?php echo $post["rutColaborador1"]; ?>">
         </a>
-        <p class="activity-title"><a id="tituloPublicador" href="<?php echo "compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>"><?php echo $posteador2[0]['nombreColaborador'] . " " . $posteador2[0]['apellidosColaborador']; ?></a> </p>
+        <p class="activity-title"><a id="tituloPublicador" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>"><?php echo $posteador2[0]['nombreColaborador'] . " " . $posteador2[0]['apellidosColaborador']; ?></a> </p>
             <small class="text-muted">fecha: <?php echo $post["rfecha"]; ?></small>
     </div>
 
@@ -63,13 +63,13 @@ use yii\helpers\Html;
 
 
                 ?>
-                <button class="stat-item btn btn-success"><p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i><?php echo $megusta[0]["rlikes"]; ?></button>
+                <button class="stat-item btn btn-success"><p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i><?php echo $modela[0]["cuenta"]; ?></button>
                  <?php
                 }else {?>
 
                 <button id="like-<?php echo $post["ridPost"]; ?>" onclick="like(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);" class="stat-item btn visible-xs-*">
                 <p class="hidden-xs">Me Gusta</p>
-                <i class="fa fa-thumbs-up icon"></i>
+                <i class="fa fa-thumbs-up icon"></i><?php echo $modela[0]["cuenta"]; ?>
                 </button>
                 <?php
                 }?>
@@ -104,7 +104,7 @@ use yii\helpers\Html;
                             enviar(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);
                         }" onKeyUp="contarCaracteress(this,180,<?php echo $post["ridPost"]; ?>);"></textarea>
                 <span class="input-group-addon">
-                    <button  onclick="enviar(<?php echo $post["idPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);"><i class="fa fa-edit"></i></button>  
+                    <button  onclick="enviar(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);"><i class="fa fa-edit"></i></button>  
                 </span>
                  
             </div>
@@ -121,10 +121,10 @@ use yii\helpers\Html;
                         <div class="comment-body">
                             <div class="comment-heading">
                                 <h4 class="user"><?php echo $c["nombreColaborador"] . " " . $c["apellidosColaborador"]; ?></h4>
-                                <h5 class="time"><?php echo $c["rfecha"]; ?></h5>
+                                <h5 class="time"><?php echo $c["fecha"]; ?></h5>
                             </div>
                             <br>
-                            <p style="text-transform: initial;" id="elComentario"><?php echo $c["contenido"]; ?></p>
+                            <p style="text-transform: initial;" id="elComentario"><?php echo $c["rcontenido"]; ?></p>
                         </div>
 
                     </li>

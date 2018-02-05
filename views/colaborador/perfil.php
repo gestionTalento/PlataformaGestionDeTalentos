@@ -7,7 +7,7 @@ use yii\helpers\Url;
 use kartik\widgets\FileInput;
 use yii\web\Controller;
 use app\Controllers\BuscarController;
-use app\models\colaborador;
+use app\models\Colaborador;
 use app\models\RAmigos;
 
 
@@ -901,7 +901,7 @@ Modal::end();
                                                          -webkit-transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
                                                          transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
 
-                                                         " src="../web/img/perfil/t/<?php echo $perfilamigo[0]["rfoto"]; ?>" title="<?php echo $modell3["rutColaborador"] . " " . $modell3['apellidosColaborador']; ?>" class="img-responsive tip">
+                                                         " src="../web/img/perfil/t/<?php echo $perfilamigo[0]["rfoto"]; ?>" title="<?php echo $modell3["nombreColaborador"] . " " . $modell3['apellidosColaborador']; ?>" class="img-responsive tip">
 
                                                 </a>
 

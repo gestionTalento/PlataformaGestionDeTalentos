@@ -7,6 +7,7 @@ use app\controllers\SiteController;
 use app\models\Colaborador;
 use app\models\Rpost;
 use app\models\Ractividad;
+use app\models\Rperfilredsocial;
 use app\models\ColaboradorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -258,9 +259,18 @@ class ColaboradorController extends Controller {
     public function actionCreate() {
         $session = Yii::$app->session;
         $rutColaborador = $session['rut'];
+         $model = new Colaborador();
+         $perfil = new Rperfilredsocial();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'rutColaborador' => $model->rutColaborador, 'idSucursal' => $model->idSucursal, 'idArea' => $model->idArea, 'idCargo' => $model->idCargo, 'idRol' => $model->idRol, 'idGerencia' => $model->idGerencia, 'idperfil' => $model->idperfil, 'idperfilRed' => $model->idperfilRed, 'idestadisticas' => $model->idestadisticas, 'idestado' => $model->idestado, 'idCC' => $model->idCC]);
+        }
 
+        return $this->render('create', [
+                    'model' => $model,
+                    'perfil' => $perfil,
+        ]);
 
-        $model = new Colaborador();
+        /*$model = new Colaborador();
         $perfil = BuscarController::findPerfil($model->idperfilRed);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -272,6 +282,10 @@ class ColaboradorController extends Controller {
                         'rutColaborador' => $rutColaborador,
             ]);
         }
+        return $this->render('create', [
+                    'model' => $model,
+        ]);
+        */
     }
     /**
      * Updates an existing Colaborador model.
@@ -528,9 +542,6 @@ class ColaboradorController extends Controller {
                 
                 $actividad->save(false);
             }
-
-
-
 
 
 
@@ -818,7 +829,7 @@ class ColaboradorController extends Controller {
         $perpage = 3;
         $posisi = (($numpage-1) * $perpage);
         $actividad = BuscarController::findMurora($rutColaborador, $posisi, $perpage);
-        $model = BuscarController::findColaboradorRut($rutColaborador);
+        $model = BuscarController::encuentraColaborador($rutColaborador);
         $total = "";
         $session = Yii::$app->session;
         $rutColaborador = $session['rut'];

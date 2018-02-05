@@ -6,7 +6,7 @@ use yii\bootstrap\Modal;
 use yii\helpers\Url;
 use app\Controllers\BuscarController;
 use kartik\widgets\FileInput;
-use app\models\colaborador;
+use app\models\Colaborador;
 use app\models\RAmigos;
 use yii\web\Controller;
 date_default_timezone_set("America/Santiago");
@@ -774,7 +774,7 @@ a.navbar-brand {
      
     function eliminar(idPost) {
 
-        $.get("index.php?r=rpost/eliminar?idPost=" + idPost + "",
+        $.get("index.php?r=rpost/eliminar&idPost=" + idPost + "",
                 function (dato) {
                   if(dato==true){
                       alert("Su post ha sido eliminado");
@@ -943,7 +943,7 @@ a.navbar-brand {
                             
                                             <input type="hidden" name="rutColaborador" value="<?php echo $rutColaborador; ?>">
                                             <input type="hidden" name="rut2" value="<?php echo $rut2; ?>">
-                                            <input type="hidden" name="lugar" value="<?php echo $lugar; ?>">
+                                            
                             </div>
                         
                             <div class="media">

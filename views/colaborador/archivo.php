@@ -17,7 +17,7 @@ use yii\helpers\Html;
 
             " class="media-object avatar <?php echo $post["rutColaborador1"]; ?>">
         </a>
-        <p class="activity-title"><a id="tituloPublicador" href="<?php echo "compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
+        <p class="activity-title"><a id="tituloPublicador" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
             <small class="text-muted">fecha de publicacion <?php echo $post["rfecha"]; ?></small>
     </div>
       
@@ -62,7 +62,7 @@ use yii\helpers\Html;
                 $dataReader = $command->query();
                 $modela = $dataReader->readAll();
                 ?>
-                      <?php if($megusta==true){
+                      <?php if($megusta["rlikes"]>0){
 
 
                 ?>

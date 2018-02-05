@@ -719,9 +719,12 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
     }
 
     public function actionEliminar($idPost){
-    	$model = BuscarController::findPost($idPost)->delete();
 
-    	//var_dump($model).die();
+        $actividad = BuscarController::findActividad($idPost)->delete();
+    	//$model = BuscarController::findPost($idPost)->delete();
+        if($actividad->delete()){
+        Yii::app()->db->createCommand("Delete from Rpost where ridPost={$actividad->ridpost}")->execute();
+        }
     	return true;
     }
 
@@ -877,7 +880,7 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
                                 Debe ingresar algun contenido a postear.</p>
                         </div>
                     </div>');
-                    return $this->redirect('../colaborador/perfil');
+                    return $this->redirect('index.php?r=colaborador/perfil');
                 }else{
 
                 }
@@ -1009,6 +1012,7 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
             $model->rut2 = 1;
             $model->grupo = 1;
 
+            $model->save(false);
             if ($model->rfoto == NULL && $model->rdescripcionPost == "0") {
             } else{
             	$model->save(false);
@@ -1024,8 +1028,8 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
             $rutColaborador = $session['rut'];
 
             $model = BuscarController::encuentraColaborador($rutColaborador);
-            $perfil = BuscarController::findPerfil($model->idperfilRed);
             $model2 = BuscarController::encuentraAmigos($rutColaborador);
+            $perfil = BuscarController::findPerfil($model->idperfilRed);
             $model3 = new Rpost();
 
             $session['foto'] = $perfil->rfoto;
@@ -1041,7 +1045,8 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
         				'model2' =>$model2,
         				'model3' =>$model3]);
         }else{
-        	return $this->render('create', ['model' => $model,
+        	return $this->render('create', 
+                ['model' => $model,
         	]);
         }
 	}
@@ -1052,11 +1057,13 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
         ini_set('memory_limit', '256M');
 
         $model = new Rpost();
+
         if (Yii::$app->request->post()) {
 
             $model->file = UploadedFile::getInstances($model, 'rfoto');
-            $model->rut1 = Yii::$app->request->post()["rut1"];
-            $rut2 = Yii::$app->request->post()["rut2"];
+
+            $model->rut1 = Yii::$app->request->post()["rutColaborador"];
+            $rut2 = Yii::$app->request->post()["rutColaborador2"];
             $model->rut2 = $rut2;
             if (empty(Yii::$app->request->post()["rdescripcionPost"])) {
                 $model->rdescripcionPost = "0";
@@ -1113,7 +1120,7 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
                     }
                 }
             }
-            $model->idGrupo = 1;
+           
             $model->save(false);
             $actividad = new RActividad();
             $actividad->rutColaborador1 = $model->rut1;
@@ -1126,12 +1133,10 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
             $rutColaborador = $session['rut'];
 
             $model = BuscarController::encuentraColaborador($rutColaborador);
-            $perfil = BuscarController::findPerfil($model->idperfilRed);
+            $perfil = BuscarController::findPerfil($model[0]['idperfilRed']);
             $model2 = BuscarController::encuentraAmigos($rutColaborador);
             $model3 = new Rpost();
-
-            $session['foto'] = $perfil->rfoto;
-            $session['apellidosColaborador'] = $model->apellidosColaborador; 
+            
             return $this->redirect(['colaborador/perfil',
                         'model' => $model,
                         'perfil' => $perfil,
@@ -1156,18 +1161,8 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
         $post = BuscarController::findPost($idPost);
         $post->rcomentarios = $post->rcomentarios +1;
         $post->save(false);
-        
 
-        if($post->rut1 != $rutPersona){
-        	$persona2 = BuscarController::encuentraColaboradorRut($post->rut1);
-        	$estadistica = BuscarController::findEstadistica($persona2->idestadisticas);
-            $estadistica->idestadisticas = $persona2->idestadisticas;
-        	$estadistica->rcomentariosr = $estadistica->rcomentariosr + 1;
-            $estadistica->save(false);
-        	$persona2->save(false);
-
-        }
-
+        $persona = BuscarController::encuentraColaborador($rutPersona);
         $persona1 = BuscarController::findColaboradorRut($rutPersona);
         $estadistica = BuscarController::findEstadistica($persona1->idestadisticas);
         $perfilPersona = BuscarController::findPerfil($persona1->idperfilRed);
@@ -1175,6 +1170,17 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
         $persona1->save(false);
         $estadistica->save(false);
 
+        if($post->rut1 != $rutPersona){
+            $persona2 = BuscarController::findColaboradorRut($post->rut1);
+            $estadistica = BuscarController::findEstadistica($persona2->idestadisticas);
+            $estadistica->rcomentariosr = $estadistica->rcomentariosr + 1;
+           
+            $estadistica->save(false);
+           
+            $persona2->save(false);
+
+        }
+         
         $objeto = new \yii\helpers\ArrayHelper();
         $objeto->foto = $perfilPersona["rfoto"];
         $objeto->nombre = $persona1["nombreColaborador"];
