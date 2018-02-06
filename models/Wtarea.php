@@ -13,12 +13,11 @@ use Yii;
  * @property string $wfechainicio
  * @property string $wfechafin
  * @property int $westado
- * @property int $rutColaboradorRecibido
- * @property int $rutColaboradorJefe
  * @property string $wfeedback
+ * @property int $idDependencias
+ * @property int $westadofeed
  *
- * @property Colaborador $rutColaboradorRecibido0
- * @property Colaborador $rutColaboradorJefe0
+ * @property Dependencia $dependencias
  */
 class Wtarea extends \yii\db\ActiveRecord
 {
@@ -37,14 +36,15 @@ class Wtarea extends \yii\db\ActiveRecord
     {
         return [
             [['wfechainicio', 'wfechafin'], 'safe'],
-            [['westado', 'rutColaboradorRecibido', 'rutColaboradorJefe'], 'integer'],
-            [['rutColaboradorRecibido', 'rutColaboradorJefe'], 'required'],
+            [['westado', 'idDependencias', 'westadofeed'], 'integer'],
+            [['idDependencias'], 'required'],
             [['wnombreTarea'], 'string', 'max' => 50],
             [['wdescripcion', 'wfeedback'], 'string', 'max' => 300],
-            [['rutColaboradorRecibido'], 'exist', 'skipOnError' => true, 'targetClass' => Colaborador::className(), 'targetAttribute' => ['rutColaboradorRecibido' => 'rutColaborador']],
-            [['rutColaboradorJefe'], 'exist', 'skipOnError' => true, 'targetClass' => Colaborador::className(), 'targetAttribute' => ['rutColaboradorJefe' => 'rutColaborador']],
+            [['idDependencias'], 'exist', 'skipOnError' => true, 'targetClass' => Dependencia::className(), 'targetAttribute' => ['idDependencias' => 'idDependencias']],
         ];
     }
+
+    
 
     /**
      * @inheritdoc
@@ -53,30 +53,22 @@ class Wtarea extends \yii\db\ActiveRecord
     {
         return [
             'widtarea' => 'Widtarea',
-            'wnombreTarea' => 'Wnombre Tarea',
-            'wdescripcion' => 'Wdescripcion',
-            'wfechainicio' => 'Wfechainicio',
-            'wfechafin' => 'Wfechafin',
-            'westado' => 'Westado',
-            'rutColaboradorRecibido' => 'Rut Colaborador Recibido',
-            'rutColaboradorJefe' => 'Rut Colaborador Jefe',
-            'wfeedback' => 'Wfeedback',
+            'wnombreTarea' => 'Actividad',
+            'wdescripcion' => 'Descripción',
+            'wfechainicio' => 'Fecha Inicio',
+            'wfechafin' => 'Fecha de Vencimiento',
+            'westado' => 'Estado',
+            'wfeedback' => 'Feedback',
+            'idDependencias' => 'Id Dependencias',
+            'westadofeed' => 'Estado Feedback',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRutColaboradorRecibido0()
+    public function getDependencias()
     {
-        return $this->hasOne(Colaborador::className(), ['rutColaborador' => 'rutColaboradorRecibido']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRutColaboradorJefe0()
-    {
-        return $this->hasOne(Colaborador::className(), ['rutColaborador' => 'rutColaboradorJefe']);
+        return $this->hasOne(Dependencia::className(), ['idDependencias' => 'idDependencias']);
     }
 }

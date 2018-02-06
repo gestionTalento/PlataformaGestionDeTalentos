@@ -1,8 +1,8 @@
-body{
-  font-family: 'Roboto', sans-serif !important;
-  background: #fff;
-  overflow-x: hidden;
-  margin-bottom: 60px;
+body {
+    font-family: 'Roboto', sans-serif !important;
+    background: #efeeee;
+    overflow-x: hidden;
+    margin-bottom: 60px;
 }
 
 html {
@@ -42,7 +42,7 @@ button#modalButton {
 .navbar-principal .navbar-brand,
 .navbar-principal .navbar-brand li a:visited,
 .navbar-principal .navbar-nav li a {
-  color: #212121;
+  color: #272626;
   font-weight: 500;
 }
 
@@ -56,7 +56,7 @@ button#modalButton {
 .navbar-principal .navbar-nav li a:focus, 
 .navbar-principal .navbar-nav .active a, 
 .navbar-principal .navbar-nav .active a:hover {
-  color: #000;
+  color: #fff;
   background: rgba(255, 255, 255, 0.2);
 }
 .navbar-cover .navbar-nav li a:hover{

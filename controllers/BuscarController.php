@@ -19,6 +19,9 @@ use app\models\Ramigos;
 use app\models\RcomentarioContenidos;
 use app\models\Rcontenido;
 use app\models\RActividad;
+use app\models\Dependencia;
+use app\models\WTarea;
+
 class BuscarController extends Controller {
 
     public function findColaborador($correo, $pass) {
@@ -42,6 +45,14 @@ class BuscarController extends Controller {
         die();
     }
 
+    public function findDependencias($rut) {
+        if (($model = Dependencia::findOne($rut)) !== null) {
+            return $model;
+        }
+        var_dump("no lo encontro");
+        die();
+    }
+
     public function findPerfil($id) {
         if (($model = Rperfilredsocial::findOne($id)) !== null) {
             return $model;
@@ -57,6 +68,17 @@ class BuscarController extends Controller {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function findDependencia2($rutColaborador2)
+    {
+        if (($model = Dependencia::findOne(['rutColaborador2' => $rutColaborador2 ])) !== null) {
+            return $model;
+        }
+    
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+
 
     public function findEmpresa($id) {
         if (($model = Empresas::findOne($id)) !== null) {
@@ -150,6 +172,14 @@ class BuscarController extends Controller {
         }
     }
 
+    public function findTareaRecibida($idDependencias){
+        if(($model = WTarea::findOne(['idDependencias' => $idDependencias])) !== null){
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
     public function encuentraColaboradorPost($idpost) {
         if (($model = \app\models\Colaborador::find()->where(['ridpost' => $idPost])->all()) !== null) {
 
@@ -164,6 +194,16 @@ class BuscarController extends Controller {
 
     public function findPerfiles($idperfil) {
         if (($model = Rperfilredsocial::find()->where(['idperfilRed' => $idperfil])->all()) !== null) {
+
+            return $model;
+        } else {
+
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function findTareasRecibidas($idDependencias) {
+        if (($model = WTarea::find()->where(['idDependencias' => $idDependencias])->all()) !== null) {
 
             return $model;
         } else {

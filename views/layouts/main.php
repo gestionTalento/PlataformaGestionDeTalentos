@@ -51,6 +51,29 @@ AppAsset::register($this);
         <?php $this->head() ?>
     </head>
     <style>
+        .navbar-principal .navbar-brand, .navbar-principal .navbar-brand li a:visited, .navbar-principal .navbar-nav li a {
+        color: #ffffff;
+        font-weight: 500;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif !important;
+            background: #cacaca;
+            overflow-x: hidden;
+            margin-bottom: 60px;
+        }
+
+        .navbar-principal {
+            background-color: #000;
+            /* background-color: #9f9fa2; */
+            border-color: rgba(202, 86, 67, 0.42);
+            /*box-shadow: 0 2px 2px -2p xrgba(0, 0, 0, .52);*/
+        }
+         .navbar-principal .navbar-nav .open a, .navbar-principal .navbar-nav .open a:hover, .navbar-principal .navbar-nav li a:hover, .navbar-principal .navbar-nav li a:focus, .navbar-principal .navbar-nav .active a, .navbar-principal .navbar-nav .active a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2);
+        }
+       
         a.navbar-brand {
             padding: 15px 8px!important;
         }
@@ -61,6 +84,7 @@ AppAsset::register($this);
             margin-top: -5px;
         }
         ul.nav.navbar-nav.navbar-right {
+            color: #fff;
             margin-top: -17px!important;
         }
         video#video2 {
@@ -98,6 +122,7 @@ AppAsset::register($this);
             overflow:hidden;
         }
 
+
         video::-webkit-media-controls-panel {
             width: calc(100% + 30px); /* Adjust as needed */
         }
@@ -112,7 +137,7 @@ AppAsset::register($this);
             }
 
             .navbar-header {
-                background-color: #14377d;
+                background-color: #404040;
             }
             button.navbar-toggle.collapsed {
                 background-color: #02398b;
@@ -204,7 +229,7 @@ AppAsset::register($this);
         ?>
 
 
-        <nav class="navbar navbar-default navbar-fixed-top navbar-principal">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-principal"  >
 
             <div class="container">
 
@@ -224,12 +249,12 @@ AppAsset::register($this);
 
                     <a class="navbar-brand hidden-xs hidden-md" >
 
-                        <b><img id="logo" src="armas2.png"></b>
+                        <b><img id="logo" src=""></b>
 
                     </a>
                     <a class="navbar-brand hidden-lg hidden-md" >
 
-                        <b><img style="width: 132px; margin-left: 5px;" id="logo" src="../armas1.png"></b>
+                        <b><img style="width: 132px; margin-left: 5px;" id="logo" src="../web/armas1.png"></b>
 
                     </a>
 
@@ -260,7 +285,7 @@ AppAsset::register($this);
                     <ul class="nav navbar-nav navbar-right">
 
                         <li class="active">
-                            <?= Html::a('<i class="fa fa-user"></i>&nbsp;' . $session['nombreColaborador'], ['colaborador/compadre', 'rutAmigo' => $rutColaborador]) ?>
+                            <?= Html::a('<i  class="fa fa-user"></i>&nbsp;' . $session['nombreColaborador'], ['colaborador/compadre', 'rutAmigo' => $rutColaborador]) ?>
 
                         </li>
 
@@ -269,10 +294,27 @@ AppAsset::register($this);
 
                             <?= Html::a('<i class="fa fa-home"></i>&nbsp;Inicio', ['colaborador/perfil', 'rutColaborador' => $rutColaborador]) ?>
 
+                        <li>
+
+                            <?= Html::a('<i class="fa fa-book"></i>&nbsp;Procesos', ['colaborador/perfil']) ?>
+
+                        </li>
 
                         <li>
 
-                            <?= Html::a('<i class="fa fa-book"></i>&nbsp;Contenidos', ['colaborador/portal']) ?>
+                            <?= Html::a('<i class="fa fa-book"></i>&nbsp;Ranking', ['colaborador/perfil']) ?>
+
+                        </li>
+
+                        <li>
+
+                            <?= Html::a('<i class="fa fa-book"></i>&nbsp;Mis tareas', ['colaborador/tareas']) ?>
+
+                        </li>
+
+                        <li>
+
+                            <?= Html::a('<i class="fa fa-book"></i>&nbsp;Inbox', ['colaborador/perfil']) ?>
 
                         </li>
 

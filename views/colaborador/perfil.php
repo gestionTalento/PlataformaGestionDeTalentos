@@ -9,7 +9,9 @@ use yii\web\Controller;
 use app\Controllers\BuscarController;
 use app\models\Colaborador;
 use app\models\RAmigos;
-
+use yii\widgets\DetailView;
+use yii\grid\GridView;
+use yii\data\ActiveDataProvider;
 
 date_default_timezone_set("America/Santiago");
 
@@ -74,6 +76,14 @@ Modal::end();
 
     }
 
+    a {
+    color: #e8e8e8;
+    text-decoration: none;
+}
+    .table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+    background-color: #206c7d;
+}
     .profile-info-left {
         position: relative;
         top: -92px;
@@ -891,6 +901,7 @@ Modal::end();
                                             
                                             $perfilamigo = BuscarController::findPerfiles($modell3["idperfilRed"]);
                                             
+
                                             ?>
 
                                             <li>
@@ -940,7 +951,51 @@ Modal::end();
                                     padding-top: 5px;
                                 }
                             </style>
+                            <h2>Misiones de la Semana</h2>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div>
+                                        <h3 align="center">Lista Misiones</h3>
+                                       
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <h2>Mis Tareas</h2>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div>
+                                    
+                                           <?= GridView::widget([
+                                                'dataProvider' => $dataProvider,
+                                                'columns' => [
+                                                    ['class' => 'yii\grid\SerialColumn'],
+                                                    //.........
+                                                    [
+                                                        'attribute'=>'wnombreTarea',
+
+                                                        
+                                                    ],
+                                                    [
+                                                        'attribute'=>'wfechafin',
+                                                        
+                                                        
+                                                    ],
+                                                    [
+                                                        'attribute'=>'westado',
+                                                    ],
+                                                    //.........
+                                                    ['class' => 'yii\grid\ActionColumn'],
+                                                ],
+                                            ]); 
+                                            ?>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2>Actividades en la Red</h2>
                             <div class="panel panel-default">
                                 <div class="panel-body">
 
@@ -970,6 +1025,7 @@ Modal::end();
                                                          transform: rotate(<?php echo $perfil->rrotador; ?>deg);" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>" title="<?php echo $model->nombreColaborador . " " . $model->apellidosColaborador; ?>" class="media-object avatar">
                                                     <br>
                                                 </div>
+
                                                 <div class="col-md-10 col-xs-7">
                                                     <?= Yii::$app->session->getFlash('error'); ?>
                                                     <textarea onKeyDown="contarCaracteres(this.form.rdescripcionPost, this.form.remLen, 180);" placeholder="Que estas pensando hoy??? " maxlength="180"  name="rdescripcionPost" data-ls-module="charCounter" placeholder="Que estas pensando hoy??? " rows="5" maxlength="180" class="form-control input-lg p-text-area"></textarea>
@@ -1094,6 +1150,8 @@ Modal::end();
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>

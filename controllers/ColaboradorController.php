@@ -7,6 +7,9 @@ use app\controllers\SiteController;
 use app\models\Colaborador;
 use app\models\Rpost;
 use app\models\Ractividad;
+use app\models\Wtarea;
+use app\models\Dependencia;
+use app\models\TareasSearch;
 use app\models\Rperfilredsocial;
 use app\models\ColaboradorSearch;
 use yii\web\Controller;
@@ -15,12 +18,17 @@ use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use yii\imagine\Image;
 
+use app\controllers\BuscarController;
+
 /**
  * ColaboradorController implements the CRUD actions for Colaborador model.
  */
 class ColaboradorController extends Controller {
 
     public function actionPerfil() {
+
+        $searchModel = new TareasSearch();
+       
 
         $session = Yii::$app->session;
         $rutColaborador = $session['rut'];
@@ -39,6 +47,12 @@ class ColaboradorController extends Controller {
         $actividad = BuscarController::findMuro($rutColaborador);
         $estadistica = BuscarController::findEstadistica($model->idestadisticas);
 
+        $model = BuscarController::findColaboradorRut($rutColaborador);
+        $dependencia = BuscarController::findDependencia2($rutColaborador);
+        $tarea = BuscarController::findTareasRecibidas($dependencia->idDependencias);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+       
 
 
         $session['foto'] = $perfil->rfoto;
@@ -46,14 +60,20 @@ class ColaboradorController extends Controller {
         $session['nombreColaborador'] = $model->nombreColaborador;
         $session['apellidosColaborador'] = $model->apellidosColaborador;
         // var_dump($actividad);die();
+
+      
         return $this->render('perfil', [
+                    'dataProvider' => $dataProvider,
                     'model' => $model,
                     'model3' => $model3,
                     'model4' => $model4,
                     'perfil' => $perfil,
                     'actividad' => $actividad,
                     'estadistica' => $estadistica,
+                    'dependencia' => $dependencia,
+                    'tarea' => $tarea,
         ]);
+
     }
 
      public function actionCine($video, $idContenido) {
@@ -96,33 +116,32 @@ class ColaboradorController extends Controller {
     }
 
 
-        public function actionPortal() {
-     
+    public function actionTareas($rutColaborador){
         $session = Yii::$app->session;
         $rutColaborador = $session['rut'];
 
-        if($rutColaborador==null){
-             $model = new Colaborador();
-            return $this->redirect(['site/login', 'model' => $model]);
-        }
+        $model = BuscarController::findColaboradorRut($rutColaborador);
+        $dependencia = BuscarController::findDependencia2($rutColaborador);
+        $tarea = BuscarController::findTareasRecibidas($dependencia->idDependencias);
 
-
-        //var_dump($session['rut']);die();
-
-        $model = BuscarController::encuentraColaborador($rutColaborador);
-        $perfil = BuscarController::findPerfil($model->idperfilRed);
-
-
-
-        $session['foto'] = $perfil[0]['rfoto'];
         $session['rutColaborador'] = $model[0]['rutColaborador'];
         $session['nombreColaborador'] = $model[0]['nombreColaborador'];
         $session['apellidosColaborador'] = $model[0]['apellidosColaborador'];
 
-        return $this->render('contenidos', [
-                    'model' => $model,
-        ]);
+
+        
+
+        $modelo = $this->renderAjax('perfil', [
+                              'model' => $model,
+                              'dependencia' => $dependencia,
+                              'tarea' => $tarea,
+
+                            ]);
+
+
     }
+
+
 
 
     public function actionFoto($rutColaborador) {
@@ -626,32 +645,31 @@ class ColaboradorController extends Controller {
         $rutColaborador = $session['rut'];
         if($rutColaborador==null){
 
-      $model = new Colaborador();
+            $model = new Colaborador();
             return $this->redirect(['site/login', 'model' => $model]);
 
 
         }else{
-        $model = BuscarController::findColaboradorRut($rutAmigo);
-        $model2 = BuscarController::encuentraAmigos($rutAmigo);
-        $perfil = BuscarController::findPerfil($model->idperfilRed);
-        $actividad = BuscarController::findMuroa($rutAmigo);
-        $model3 = new RPost();
-        $estadistica = BuscarController::findEstadistica($model->idestadisticas);
-        $model4 = BuscarController::encuentraPost($rutAmigo);
-        return $this->render('perfilAmigo', [
-                    'model' => $model,
-                    'model2' => $model2,
-                    'model3' => $model3,
-                    'model4' => $model4,
-                    'perfil' => $perfil,
-                    'estadistica' => $estadistica,
-                    'actividad' => $actividad,
-                    'rutAmigo' => $rutAmigo,
-                    'rutColaborador' => $rutColaborador,
-        ]);
-        }
-      
-       }
+            $model = BuscarController::findColaboradorRut($rutAmigo);
+            $model2 = BuscarController::encuentraAmigos($rutAmigo);
+            $perfil = BuscarController::findPerfil($model->idperfilRed);
+            $actividad = BuscarController::findMuroa($rutAmigo);
+            $model3 = new RPost();
+            $estadistica = BuscarController::findEstadistica($model->idestadisticas);
+            $model4 = BuscarController::encuentraPost($rutAmigo);
+            return $this->render('perfilAmigo', [
+                        'model' => $model,
+                        'model2' => $model2,
+                        'model3' => $model3,
+                        'model4' => $model4,
+                        'perfil' => $perfil,
+                        'estadistica' => $estadistica,
+                        'actividad' => $actividad,
+                        'rutAmigo' => $rutAmigo,
+                        'rutColaborador' => $rutColaborador,
+            ]);
+            }
+    }
     
 
     public function actionReload($page, $rutColaborador){
@@ -829,7 +847,7 @@ class ColaboradorController extends Controller {
         $perpage = 3;
         $posisi = (($numpage-1) * $perpage);
         $actividad = BuscarController::findMurora($rutColaborador, $posisi, $perpage);
-        $model = BuscarController::encuentraColaborador($rutColaborador);
+        $model = BuscarController::findColaboradorRut($rutColaborador);
         $total = "";
         $session = Yii::$app->session;
         $rutColaborador = $session['rut'];
