@@ -47,9 +47,10 @@ class ColaboradorController extends Controller {
         $actividad = BuscarController::findMuro($rutColaborador);
         $estadistica = BuscarController::findEstadistica($model->idestadisticas);
 
-        $model = BuscarController::findColaboradorRut($rutColaborador);
+    
         $dependencia = BuscarController::findDependencia2($rutColaborador);
         $tarea = BuscarController::findTareasRecibidas($dependencia->idDependencias);
+        //var_dump($tarea);die();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
        

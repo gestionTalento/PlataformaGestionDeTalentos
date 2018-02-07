@@ -1,6 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif !important;
-    background: #efeeee;
+    background: #cdcdcd;
     overflow-x: hidden;
     margin-bottom: 60px;
 }
@@ -2317,13 +2317,7 @@ hr {
   border-bottom: 1px solid #C2C2C2;
   padding-bottom: 0;
 }
-.table tbody > tr > td {
-  font-size: 0.875em;
-  background: #f5f5f5;
-  border-top: 10px solid #fff;
-  vertical-align: middle;
-  padding: 12px 8px;
-}
+
 .table tbody > tr > td:first-child,
 .table thead > tr > th:first-child {
   padding-left: 20px;

@@ -212,6 +212,14 @@ class BuscarController extends Controller {
         }
     }
 
+    public function findtarea($widtarea) {
+        if (($model = WTarea::findOne(['widtarea' => $widtarea])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
     public function findContenido($idContenido) {
         if (($model = Rcontenido::findOne(['idcontenido' => $idContenido])) !== null) {
             return $model;

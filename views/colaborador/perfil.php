@@ -34,6 +34,26 @@ Modal::end();
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <style>
+table.table.table-striped.carla {
+    -webkit-box-shadow: 0px 0px 7px 1px rgba(169, 160, 160, 0.75);
+    -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 7px 1px rgba(162, 151, 151);
+}
+thead {
+    background-color: #006463!important;
+}
+
+th {
+    background-color: #006463!important;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+
+tbody {
+    font-size: 18px;
+}
     .nav-pills > li {
         float: left;
         margin-left: 40px;
@@ -85,8 +105,11 @@ Modal::end();
     background-color: #206c7d;
 }
     .profile-info-left {
-        position: relative;
-        top: -92px;
+    position: relative;
+    top: -100px;
+    box-shadow: 0 0 3px 1px #00000036;
+    padding: 10px;
+    background-color: white;
     }
     .profile-info-left img.avatar {
         border: 2px solid #fff;
@@ -614,7 +637,7 @@ Modal::end();
         height: 100%;
     }
     .profile-info-right {
-        margin-top: -50px;
+        margin-top: -100px;
     }
     .truncate {
         width: 50%;
@@ -888,7 +911,7 @@ Modal::end();
                             <div class="widget panel-friends">
 
                                 <div class="widget-body bordered-top bordered-red text-center">
-
+ 
                                     <ul class="friends">
 
 
@@ -956,44 +979,108 @@ Modal::end();
                                 <div class="panel-body">
                                     <div>
                                         <h3 align="center">Lista Misiones</h3>
+                                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+
+                                    <th>
+                                        Actividad
+                                    </th>
+                                    <th>
+                                        Fecha de Vencimiento
+                                    </th>
+                                   
+
+                                    <th>
+                                        Estado
+                                    </th>
+
+                                    <th>
+                                        
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <?php
+                                    $rutColaborador = $model['rutColaborador'];
+                                    $dependencia = BuscarController::findDependencia2($rutColaborador);
+                                    
+                                    $tar = BuscarController::findTareasRecibidas($dependencia["idDependencias"]);
+                                    
+                                    
+
+                                    foreach ($tar as $t) {
+                                    $tt = BuscarController::findtarea($t["widtarea"]);
+                                    //var_dump($tt);die();
+                                    
+                                    ?>
+                                    <tr>
+
+                                    <td>
+                                    <th>
+                                        <?php echo $tt['wnombreTarea']; ?> <br>
+                                    </th>
+                                        
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                    
+
+
+                                    <td>
                                        
+                                    </td>
+                                     <td>
+                                       
+                                    </td>
+                                </tr>
+
+                        </tbody>
+                    </table>
+
+
+                                             <?php } ?>
+                                    
+                                
                                         <br>
                                     </div>
                                 </div>
                             </div>
+
 
                             <h2>Mis Tareas</h2>
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div>
-                                    
-                                           <?= GridView::widget([
-                                                'dataProvider' => $dataProvider,
-                                                'columns' => [
-                                                    ['class' => 'yii\grid\SerialColumn'],
-                                                    //.........
-                                                    [
-                                                        'attribute'=>'wnombreTarea',
-
-                                                        
-                                                    ],
-                                                    [
-                                                        'attribute'=>'wfechafin',
-                                                        
-                                                        
-                                                    ],
-                                                    [
-                                                        'attribute'=>'westado',
-                                                    ],
-                                                    //.........
-                                                    ['class' => 'yii\grid\ActionColumn'],
-                                                ],
-                                            ]); 
-                                            ?>
+                           
+                              
+                                        <div class="col-md-12">                                 
+                                        <table class="table table-striped carla">
+                                            <thead>
+                                             <tr>
+                                              <th>Actividad</th>
+                                               <th>Fecha de Vencimiento</th> 
+                                               <th>Estado</th> 
+                                               <th> </th>
+                                             </tr>
+                                             </thead>
+                                             <tbody>
+                                                 <?php foreach ($tarea as $t) {
+                                                    ?>      
+                                                    <tr>
+                                                        <td><?php echo $t["wnombreTarea"]; ?></td>
+                                                        <td><?php echo $t["wfechafin"]; ?></td>
+                                                        <td><?php echo $t["westado"]; ?></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <?php
+                                                } ?>
+                                             </tbody>
+                                            
+                                        </table>
+                                         
+                                          </div>   
                                         <br>
-                                    </div>
-                                </div>
-                            </div>
+                                    
 
                             <h2>Actividades en la Red</h2>
                             <div class="panel panel-default">

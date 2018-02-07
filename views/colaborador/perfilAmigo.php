@@ -954,9 +954,11 @@ a.navbar-brand {
                                     <div class="form-group">
                                       <!-- rows="2" means "display the textarea as 2 rows high". The user can
                                            enter more than 2 rows of text. -->
+                                            <div class="col-md-10 col-xs-7">
                                     <?= Yii::$app->session->getFlash('error'); ?>
                                                     <textarea onKeyDown="contarCaracteres(this.form.rdescripcionPost, this.form.remLen, 180);" placeholder="Que estas pensando hoy??? " maxlength="180"  name="rdescripcionPost" data-ls-module="charCounter" placeholder="Que estas pensando hoy??? " rows="5" maxlength="180" class="form-control input-lg p-text-area"></textarea>
                                                     <p>Contador: <font id="contador">180</font></p>
+                                                    </div>
 
                                     </div>
                                   </div>
