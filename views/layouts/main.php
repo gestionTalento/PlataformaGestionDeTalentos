@@ -44,7 +44,7 @@ AppAsset::register($this);
     <head>
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
         <!-- If you'd like to support IE8 -->
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
@@ -58,7 +58,7 @@ AppAsset::register($this);
 
         body {
             font-family: 'Roboto', sans-serif !important;
-            background: #cacaca;
+            background: #eaeaea;
             overflow-x: hidden;
             margin-bottom: 60px;
         }
@@ -67,7 +67,7 @@ AppAsset::register($this);
             background-color: #000;
             /* background-color: #9f9fa2; */
             border-color: rgba(202, 86, 67, 0.42);
-            /*box-shadow: 0 2px 2px -2p xrgba(0, 0, 0, .52);*/
+            box-shadow: 0 2px 2px -2p xrgba(0, 0, 0, .52);*/
         }
          .navbar-principal .navbar-nav .open a, .navbar-principal .navbar-nav .open a:hover, .navbar-principal .navbar-nav li a:hover, .navbar-principal .navbar-nav li a:focus, .navbar-principal .navbar-nav .active a, .navbar-principal .navbar-nav .active a:hover {
             color: #fff;
@@ -296,30 +296,30 @@ AppAsset::register($this);
 
                         <li>
 
-                            <?= Html::a('<i class="fa fa-book"></i>&nbsp;Procesos', ['colaborador/perfil']) ?>
+                            <?= Html::a('<i class="fas fa-caret-square-up"></i>&nbsp;Procesos', ['colaborador/perfil']) ?>
 
                         </li>
 
                         <li>
 
-                            <?= Html::a('<i class="fa fa-book"></i>&nbsp;Ranking', ['colaborador/perfil']) ?>
+                            <?= Html::a('<i class="fas fa-trophy"></i>&nbsp;Ranking', ['colaborador/perfil']) ?>
 
                         </li>
 
                         <li>
 
-                            <?= Html::a('<i class="fa fa-book"></i>&nbsp;Mis tareas', ['colaborador/tareas']) ?>
+                            <?= Html::a('<i class="fas fa-envelope"></i>&nbsp;Mis tareas', ['colaborador/tareas']) ?>
 
                         </li>
 
                         <li>
 
-                            <?= Html::a('<i class="fa fa-book"></i>&nbsp;Inbox', ['colaborador/perfil']) ?>
+                            <?= Html::a('<i class="fas fa-envelope"></i>&nbsp;Inbox', ['colaborador/perfil']) ?>
 
                         </li>
 
                         <li><?php
-                            echo Html::a('<i class="fa fa-sign-out"></i>&nbsp;Salir', ['/site/logout'], ['data-method' => 'post']);
+                            echo Html::a('<i class="fas fa-sign-out-alt"></i>&nbsp;Salir', ['/site/logout'], ['data-method' => 'post']);
                             ?></li>	
 
 

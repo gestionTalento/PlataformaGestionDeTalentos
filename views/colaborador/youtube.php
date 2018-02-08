@@ -103,7 +103,7 @@ use yii\helpers\Html;
             ?>
             <button  onclick="reveal(<?php echo $post["ridPost"]; ?>);" class="stat-item btn">
                <p class="hidden-xs"> Comentarios </p>
-                <i  class="fa fa-comments-o icon"></i><?php echo $modela[0]["cuenta"]; ?>
+                <i class="fas fa-comments"></i><?php echo $modela[0]["cuenta"]; ?>
 
             </button>
           <?php $session = Yii::$app->session;

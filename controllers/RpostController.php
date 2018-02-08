@@ -900,7 +900,7 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
         	$mystring = Yii::$app->request->post()["rdescripcionPost"];
         	$findme = "youtube";
         	$pos = strpos($mystring, $findme);
-        	$num = rad(5, 600);
+        	$num = rand(5, 600);
 
         	ini_set('memory_limit', '8192M'); 
 

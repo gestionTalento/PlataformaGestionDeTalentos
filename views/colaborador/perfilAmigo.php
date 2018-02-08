@@ -751,9 +751,9 @@ a.navbar-brand {
         $.get("index.php?r=rpost/like&rutPersona=" + rut + "&idPost=" + idPost + "",
                 function (dato) {
 
-                    $("#like-" + idPost).addClass('btn-success');
+                   
                     $("#like-" + idPost).attr('onclick', " ");
-                    $("#like-" + idPost).html('<p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i>' + dato);
+                    $("#like-" + idPost).html('<i class="fa fa-heart"></i>' + dato);
                     var ca = $('#d').text();
                     var c = document.getElementById('d');
 
@@ -934,6 +934,7 @@ a.navbar-brand {
                         </ul>
                         <div class="tab-content">
                             <?php if ($global == $model->rutColaborador) { ?> 
+                            <div class="panel panel-default publicador">
                           <div class="panel-body">
                         
                              <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['colaborador/post']]); ?>
@@ -988,7 +989,7 @@ a.navbar-brand {
                               </li>
                             
                             </ul>
-
+                          </div>
             <?php ActiveForm::end(); ?>
 
 

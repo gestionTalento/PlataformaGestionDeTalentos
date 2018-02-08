@@ -8,55 +8,79 @@ use yii\helpers\Html;
 
         <div class="media activity-item">
 
-            <?php if ($posteador2[0]["rutColaborador"]!=1) { ?>
-            <div class="media-body">
-            <div style="margin-bottom: 10px;" class="row">
-                <div class="col-md-12 col-xs-12">
-                     <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>" class="pull-left hidden-xs">
-                        <img src="../web/img/perfil/t/<?php echo $perfil2->rfoto; ?>" alt="Avatar" style="
+           <?php if ($posteador2[0]["rutColaborador"] != 1 ) { ?>
+
+                <div class="media-body">
+                    <div class="col-md-12 col-xs-12">
+                        <a href="#" class="pull-left hidden-xs">
+                            <img src="../web/img/perfil/t/<?php echo $perfil['rfoto']; ?>" alt="Avatar" style="
 
 
 
-                        -ms-transform: rotate(<?php echo $perfil2->rrotador; ?>deg);
-                        -webkit-transform: rotate(<?php echo $perfil2->rrotador; ?>deg);
-                        transform: rotate(<?php echo $perfil2->rrotador; ?>deg);
+                         -ms-transform: rotate(<?php echo $perfil['rrotador']; ?>deg);
+                         -webkit-transform: rotate(<?php echo $perfil['rrotador']; ?>deg);
+                         transform: rotate(<?php echo $perfil['rrotador']; ?>deg);
 
 
 
-                        " class="media-object avatar <?php echo $perfil2->rrotador; ?>">
-                    </a>
 
-                    
-                <p class="activity-title"><a id="tituloPublicador" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>"><?php echo $posteador2[0]['nombreColaborador'] . " " . $posteador2[0]['apellidosColaborador']; ?></a> </p>
-            <small class="text-muted">fecha: <?php echo $post["rfecha"]; ?></small>
-            </div>
-             </div>
-                <div class="activity-attachment">
-                    <a href="#" class="thumbnail">
-                    </a>
+                            " class="media-object avatar <?php echo $perfil["rrotador"]; ?>">
+                        </a>
+
+                        <p class="activity-title">
+                        <a id="tituloPublicador" href="
+                        <?php 
+                        Yii::$app->session; 
+
+                        if($posteador[0]["rutColaborador"] == 'rutColaborador'){
+                            echo "index.php?r=colaborador/compadre&rutAmigo=".'rutcolaborador';
+                        }else{
+                            echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"];
+                        }
+                        ?>">
+                            <?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?>
+                                
+                            </a>
+                             <i class="fa fa-caret-right" aria-hidden="true"></i>
+                        <a id="tituloPublicador" href="
+                        <?php  echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>
+                        ">
+                            <?php echo $posteador2[0]['nombreColaborador'] . " " . $posteador2[0]['apellidosColaborador']; ?>
+                                
+                        </a>
+                        </p>
+
+                        <small class="text-muted">fecha: <?php echo $post["rfecha"]; ?></small>
+                        <div class="activity-attachment">
+                            <a href="#" class="thumbnail">
+                            </a>
+                        </div>
+                    </div>
+
+
                 </div>
 
+   <?php } else { ?>
+
+
+                <div class="row">
+          <a href="#" class="pull-left">
+            <img src="../web/img/perfil/t/<?php echo $perfil['rfoto']; ?>" alt="Avatar" style="
+
+                         -ms-transform: rotate(<?php echo $perfil['rrotador']; ?>deg);
+                         -webkit-transform: rotate(<?php echo $perfil['rrotador']; ?>deg);
+                         transform: rotate(<?php echo $perfil['rrotador']; ?>deg);
+
+            " class="media-object avatar <?php if($post["rutColaborador1"]=='rutColaborador'){echo "perfill";} ?>">
+        </a>
+        <p class="activity-title"><a id="tituloPublicador" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
+            <small class="text-muted">fecha: <?php echo $post["rfecha"]; ?></small>
     </div>
 
-    <?php } else { ?>
-    <div class="row">
-       <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>" class="pull-left hidden-xs">
-        <img src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>" alt="Avatar" style="
+            <?php } ?>
 
-        -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
-        -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
-        transform: rotate(<?php echo $perfil->rrotador; ?>deg);
-
-        " class="media-object avatar <?php $session = Yii::$app->session;  if($post["rutColaborador1"]==$session['rut']){echo "perfill";} ?>">
-    </a>
-    <p class="activity-title"><a id="tituloPublicador" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
-    <small class="text-muted">fecha: <?php echo $post["rfecha"]; ?></small>
-</div>
-
-<?php } ?>
-
-</div> 
-</div>
+        </div> 
+    </div>
 <div class="post-description">
 
     <p style="margin-top: 35px;" id="estado"><?php
@@ -76,12 +100,12 @@ use yii\helpers\Html;
 
         <?php if($megusta["rlikes"]>0){
             ?>
-            <button class="stat-item btn btn-success"><p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i><?php echo $megusta[0]["rlikes"]; ?></button>
+            <button class="stat-item btn btn-success"><p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i><?php echo $modela[0]["cuenta"]; ?></button>
             <?php
         }else {?>
         <button id="like-<?php echo $post["ridPost"]; ?>" onclick="like(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);" class="stat-item btn visible-xs-*">
             <p class="hidden-xs">Me Gusta</p>
-            <i class="fa fa-thumbs-up icon"></i>
+            <i class="fa fa-thumbs-up icon"></i><?php echo $modela[0]["cuenta"]; ?>
 
         </button>
         <?php
@@ -95,7 +119,7 @@ use yii\helpers\Html;
     ?>
     <button  onclick="reveal(<?php echo $post["ridPost"]; ?>);" class="stat-item btn visible-xs-*">
         <p class="hidden-xs">Comentarios</p>
-        <i  class="fa fa-comments-o icon"></i><?php echo $modela[0]["cuenta"]; ?>
+        <i class="fas fa-comments"></i><?php echo $modela[0]["cuenta"]; ?>
     </button>
     <?php $session = Yii::$app->session;
     $rutColaborador1 = $session['rut'];
@@ -103,7 +127,7 @@ use yii\helpers\Html;
 
     <button id="like-<?php echo $post["ridPost"]; ?>" onclick="eliminar(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);" class="stat-item btn">
      <p class="hidden-xs"> Eliminar post</p>
-     <i class="fa fa-trash-o" aria-hidden="true"></i>
+     <i class="fas fa-trash-alt"></i>
  </button>
  <?php } ?>
 

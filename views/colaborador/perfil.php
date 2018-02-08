@@ -32,8 +32,56 @@ echo "<div id='modalContent'></div>";
 Modal::end();
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
 
 <style>
+
+p.misiontextestado {
+    margin-left:  10px;
+}
+.rota {
+    color: #fff;
+    background-color: #7ecb00!important;
+    border-color: #7ecb00!important;
+    font-family: DINPro-Light;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+button.button-mision.btn-lg.btn-raised.btn-success {max-height: 39px;font-size: 13px;text-align:  center;padding-right: 17px;padding-bottom: 8px;
+color: #fff;
+    background-color: #7ecb00;
+    border-color: #7ecb00;}
+
+p.misiontext {
+    font-size: 20px;
+    font-stretch: extra-expanded;
+    font-family: unset;
+}
+
+.panel-heading {
+    border-radius: 0px!important;
+}
+.panel.panel-default  {
+    border-radius: 0px!important;
+}
+h4.panel-title {
+    color:  white;
+}
+.panel-heading {
+    background-color: #7036e3!important;
+}
+.panel-collapse {
+    -webkit-box-shadow: 0px 0px 7px 1px rgba(169, 160, 160, 0.75);
+    -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 7px 1px rgba(162, 151, 151);
+}
+
+.panel.panel-default {
+    border-color: #7037e3;
+    border-radius: -10px!imporant;
+}
 table.table.table-striped.carla {
     -webkit-box-shadow: 0px 0px 7px 1px rgba(169, 160, 160, 0.75);
     -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.75);
@@ -73,6 +121,9 @@ tbody {
         background-size:cover; 
     }
 
+    img.imgmision {
+    max-width:  30%;
+}
     .media-body {padding-left: 14px;}
     body {
         background-repeat: repeat;
@@ -105,13 +156,13 @@ tbody {
     background-color: #206c7d;
 }
     .profile-info-left {
-    position: relative;
+        position: relative;
     top: -100px;
     box-shadow: 0 0 3px 1px #00000036;
     padding: 10px;
     background-color: white;
     }
-    .profile-info-left img.avatar {
+    .profile-info-left img.avatar  {
         border: 2px solid #fff;
     }
     .profile-info-left h2 {
@@ -442,16 +493,27 @@ tbody {
     video#video2 {
         width: 100%;
     }
+    .btn.btn-primary.btn-block.btn-file {
+     color: #fff;
+    background-color: #7ecb00;
+    border-color: #7ecb00;
+}
 
     a.btn.btn-primary.btn-block {
-        background-color: #d7072a!important;
-        border-color: #d7072a!important;
+        background-color: #7ecb00!important;
+    border-color: #7ecb00!important;
     }
+    button.btn.btn-primary {
+            margin-left: inherit;
+    color: #fff;
+    background-color: #7ecb00;
+    border-color: #7ecb00;
+}
 
     button#modalButton {
         color: #fff;
-        background-color: #193276!important;
-        border-color: #193276!important;
+    background-color: #7ecb00!important;
+    border-color: #7ecb00!important;
         font-family: DINPro-Light;
         text-transform: uppercase;
         font-size: 13px;
@@ -459,8 +521,8 @@ tbody {
 
     a.btn.btn-primary.btn-block {
         color: #fff;
-        background-color: #d7072a!important;
-        border-color: #d7072a!important;
+        background-color: #7ecb00!important;
+    border-color: #7ecb00!important;
         font-family: DINPro-Light;
         text-transform: uppercase;
         font-size: 13px;
@@ -468,8 +530,8 @@ tbody {
 
     a.btn.btn-primary.btn-block {
         color: #fff;
-        background-color: #d7072a!important;
-        border-color: #d7072a!important;
+        background-color: #7ecb00!important;
+    border-color: #7ecb00!important;
         font-family: DINPro-Light;
         text-transform: uppercase;
         font-size: 13px;
@@ -620,6 +682,13 @@ tbody {
     p#elComentario {
         font-family: DINPro-Regular;
     }
+    
+    .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 
     .video-container {
         position: relative;
@@ -764,9 +833,8 @@ tbody {
         $.get("index.php?r=rpost/like&rutPersona=" + rut + "&idPost=" + idPost + "",
                 function (dato) {
 
-                    $("#like-" + idPost).addClass('btn-success');
                     $("#like-" + idPost).attr('onclick', " ");
-                    $("#like-" + idPost).html('<p class="hidden-xs">Me Gusta</p><i class="fa fa-thumbs-up icon"></i>' + dato);
+                    $("#like-" + idPost).html('<i class="fa fa-heart"></i>' + dato);
                     var ca = $('#c').text();
                     var c = document.getElementById('c');
                     c.innerHTML = parseInt(ca) + 1;
@@ -839,14 +907,7 @@ tbody {
 </script>
 <style>
     p.card-text {text-align: justify;}
-    .rota {
-        color: #fff;
-        background-color: #193276!important;
-        border-color: #193276!important;
-        font-family: DINPro-Light;
-        text-transform: uppercase;
-        font-size: 13px;
-    }
+    
     .perfilll{
         -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
         -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
@@ -865,24 +926,24 @@ tbody {
 
 
 
-<div class="container" style="margin-top:150px;">
+<div class="container-fluid" style="margin-top:150px;">
     <div class="row-fluid">
-        <div class="col-md-12 col-xs-12 col-sm-12  animated fadeInLeft">
+        <div class="col-md-10 col-xs-12 col-sm-12  animated fadeInLeft">
 
-            <div class="row-fluid">
-                <div class="col-md-4 hidden-xs">
+            <div class="row">
+                <div class="col-md-3 hidden-xs">
                     <div class="profile-info-left">
                         <div class="text-center">
 
 
-                            <?= Html::img('@web/img/perfil/' . $perfil->rfoto, ['alt' => 'Avatar', 'width' => 200, 'class' => 'avatar perfilll', 'id' => 'colaborador-' . $model->rutColaborador]); ?>
+                            <?= Html::img('@web/img/perfil/' . $perfil->rfoto, ['alt' => 'Avatar', 'width' => 200, 'class' => 'avatar img-circle perfilll', 'id' => 'colaborador-' . $model->rutColaborador]); ?>
                             <h2><?php echo $model->nombreColaborador . " " . $model->apellidosColaborador; ?></h2>
                         </div>
                         <div style="text-align: center!important;" class="action-buttons">
                             <div class="row">
                                 <div class="col-xs-12">
 
-                                    <?= Html::button('Actualiza tus datos', ['value' => Url::to('index.php?r=colaborador/foto&rutColaborador=' . $model->rutColaborador . ''), 'class' => 'btn btn-lg btn-raised btn-success', 'id' => 'modalButton']) ?>
+                                    <?= Html::button('Actualiza tus datos', ['value' => Url::to('index.php?r=colaborador/foto&rutColaborador=' . $model->rutColaborador . ''), 'class' => 'act btn btn-lg btn-raised btn-success', 'id' => 'modalButton']) ?>
 
 
                                     <button  onclick="rotates(<?php echo $model->rutColaborador; ?>);" class="btn btn-lg btn-raised btn-success rota">
@@ -893,11 +954,8 @@ tbody {
 
                             </div>
                         </div>
-                        <div class="section">
-                            <h3>Sobre Mi</h3>
-                            <p><?php echo $perfil->rbio; ?></p>
-                        </div>
-                        <div class="section">
+                        
+                        <div class="section" align="center">
                             <h3>Mi Valoracion</h3>
                             <p><span id="a" class="badge"><?php echo $estadistica->rcomentarios; ?></span>Comentarios Realizados</p>
                             <p><span id="b" class="badge"><?php echo $estadistica->rcomentariosr; ?></span>Comentarios Recibidos</p>
@@ -906,7 +964,7 @@ tbody {
                         </div>
 
 
-                        <div class="section">
+                        <div class="section" align="center">
                             <h3>Mis Compañeros</h3>
                             <div class="widget panel-friends">
 
@@ -974,80 +1032,45 @@ tbody {
                                     padding-top: 5px;
                                 }
                             </style>
-                            <h2>Misiones de la Semana</h2>
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div>
-                                        <h3 align="center">Lista Misiones</h3>
-                                        <table class="table table-condensed">
-                            <thead>
-                                <tr>
-
-                                    <th>
-                                        Actividad
-                                    </th>
-                                    <th>
-                                        Fecha de Vencimiento
-                                    </th>
-                                   
-
-                                    <th>
-                                        Estado
-                                    </th>
-
-                                    <th>
-                                        
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <?php
-                                    $rutColaborador = $model['rutColaborador'];
-                                    $dependencia = BuscarController::findDependencia2($rutColaborador);
-                                    
-                                    $tar = BuscarController::findTareasRecibidas($dependencia["idDependencias"]);
-                                    
-                                    
-
-                                    foreach ($tar as $t) {
-                                    $tt = BuscarController::findtarea($t["widtarea"]);
-                                    //var_dump($tt);die();
-                                    
-                                    ?>
-                                    <tr>
-
-                                    <td>
-                                    <th>
-                                        <?php echo $tt['wnombreTarea']; ?> <br>
-                                    </th>
-                                        
-                                    </td>
-                                    <td>
-                                        
-                                    </td>
-                                    
-
-
-                                    <td>
-                                       
-                                    </td>
-                                     <td>
-                                       
-                                    </td>
-                                </tr>
-
-                        </tbody>
-                    </table>
-
-
-                                             <?php } ?>
-                                    
+                    <h2>Misiones de la Semana</h2>
+                        <div class="col-md-12">                                 
+                            <div class="bs-example">
                                 
-                                        <br>
+                                <div class="panel-group" id="accordion">
+                                <?php
+                                $i=0;
+                                 foreach ($mision as $m) {
+                                                        ?> 
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                            <?php echo $m["wiconografia"]; ?>
+
+
+
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $m["widMision"]; ?>"><?php echo $m["wnombre"]; ?></a>
+                                            
+                                            </h4>   
+                                        </div>
+                                        <div id="collapse<?php echo $m["widMision"]; ?>" class="panel-collapse collapse <?php if($i==0){echo "in"; $i++;}else{} ?>">
+                                            <div class="panel-body">
+                                                <img style="margin-right:10px" class="imgmision" src="../web/img/mision/<?php echo $m["wfoto"]; ?>" align="left"> 
+                                                <br><p class="misiontext"><?php echo $m["wdescripcion"] ?> <a href="https://www.tutorialrepublic.com/html-tutorial/" target="_blank">Leer Más</a><br>  </p>
+                                                <td><p class="misiontextestado" > <i class="fas fa-check-circle"></i> Completada <button class="button-mision btn-lg btn-raised btn-success ">
+                                        Publicar </button></p></td>
+                                                
+                                            </div>
+                                        </div>
                                     </div>
+
+                                      <?php
+                                                } ?>
+
                                 </div>
-                            </div>
+                            </div>        
+                              
+                                          </div>   
+                                        <br>
 
 
                             <h2>Mis Tareas</h2>
@@ -1081,10 +1104,10 @@ tbody {
                                           </div>   
                                         <br>
                                     
-
+                                    <div class="col-md-12">    
                             <h2>Actividades en la Red</h2>
-                            <div class="panel panel-default">
-                                <div class="panel-body">
+                            <div class="panel panel-default publicador">
+                                <div class="panel-body publicador" >
 
                                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['colaborador/post']]); ?>
 
@@ -1115,7 +1138,7 @@ tbody {
 
                                                 <div class="col-md-10 col-xs-7">
                                                     <?= Yii::$app->session->getFlash('error'); ?>
-                                                    <textarea onKeyDown="contarCaracteres(this.form.rdescripcionPost, this.form.remLen, 180);" placeholder="Que estas pensando hoy??? " maxlength="180"  name="rdescripcionPost" data-ls-module="charCounter" placeholder="Que estas pensando hoy??? " rows="5" maxlength="180" class="form-control input-lg p-text-area"></textarea>
+                                                    <textarea onKeyDown="contarCaracteress(this.form.rdescripcionPost, this.form.remLen, 180);" placeholder="Que estas pensando hoy??? " maxlength="180"  name="rdescripcionPost" data-ls-module="charCounter" placeholder="Que estas pensando hoy??? " rows="5" maxlength="180" class="form-control input-lg p-text-area"></textarea>
                                                     <p>Contador: <font id="contador">180</font></p>
                                                     <br>
                                                 </div>       
@@ -1142,7 +1165,7 @@ tbody {
                                                     'showUpload' => false,
                                                     'browseClass' => 'btn btn-primary btn-block',
                                                     'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
-                                                    'browseLabel' => 'Selecciona tu archivo a subir']
+                                                    'browseLabel' => 'Selecciona un archivo']
                                             ])->label(false);
                                             ?>
 
@@ -1242,4 +1265,25 @@ tbody {
             </div>
         </div>
     </div>
+    
+</div>
+
+<div class="col-md-2 hidden-xs">
+
+                       <div class="profile-info-left">
+                        <div class="text-center">
+
+                                         
+                                            
+                          
+                            
+                        </div>
+                        
+                        </div>
+                        </div>
+
+
+
+                  
+                </div>
 </div>

@@ -119,7 +119,7 @@ use yii\helpers\Html;
     ?>
     <button  onclick="reveal(<?php echo $post["ridPost"]; ?>);" class="stat-item btn visible-xs-*">
         <p class="hidden-xs">Comentarios</p>
-        <i  class="fa fa-comments-o icon"></i><?php echo $modela[0]["cuenta"]; ?>
+        <i class="fas fa-comments"></i><?php echo $modela[0]["cuenta"]; ?>
     </button>
     <?php $session = Yii::$app->session;
     $rutColaborador1 = $session['rut'];
@@ -127,7 +127,7 @@ use yii\helpers\Html;
 
     <button id="like-<?php echo $post["ridPost"]; ?>" onclick="eliminar(<?php echo $post["ridPost"]; ?>,<?php $session = Yii::$app->session; echo $session['rutColaborador']; ?>);" class="stat-item btn">
      <p class="hidden-xs"> Eliminar post</p>
-     <i class="fa fa-trash-o" aria-hidden="true"></i>
+     <i class="fas fa-trash-alt"></i>
  </button>
  <?php } ?>
 
@@ -172,6 +172,7 @@ use yii\helpers\Html;
 
 </div>
 <style type="text/css">
+
 
 
 p#estado {

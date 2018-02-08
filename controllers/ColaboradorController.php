@@ -27,9 +27,6 @@ class ColaboradorController extends Controller {
 
     public function actionPerfil() {
 
-        $searchModel = new TareasSearch();
-       
-
         $session = Yii::$app->session;
         $rutColaborador = $session['rut'];
 
@@ -47,11 +44,13 @@ class ColaboradorController extends Controller {
         $actividad = BuscarController::findMuro($rutColaborador);
         $estadistica = BuscarController::findEstadistica($model->idestadisticas);
 
-    
+        //tareas
         $dependencia = BuscarController::findDependencia2($rutColaborador);
         $tarea = BuscarController::findTareasRecibidas($dependencia->idDependencias);
         //var_dump($tarea);die();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        //Misiones
+        $mision = BuscarController::encuentraMisiones();
 
        
 
@@ -64,7 +63,7 @@ class ColaboradorController extends Controller {
 
       
         return $this->render('perfil', [
-                    'dataProvider' => $dataProvider,
+
                     'model' => $model,
                     'model3' => $model3,
                     'model4' => $model4,
@@ -73,6 +72,7 @@ class ColaboradorController extends Controller {
                     'estadistica' => $estadistica,
                     'dependencia' => $dependencia,
                     'tarea' => $tarea,
+                    'mision' => $mision,
         ]);
 
     }
@@ -371,8 +371,9 @@ class ColaboradorController extends Controller {
         $model = new Rpost();
         
         if (Yii::$app->request->post()) {
-            if (!preg_match("/^\S*$/", Yii::$app->request->post()["rdescripcionPost"])) {
 
+            if (!preg_match("/^\S*$/", Yii::$app->request->post()["rdescripcionPost"])) {
+               
                 \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
                         <div class="alert alert-danger">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -383,7 +384,8 @@ class ColaboradorController extends Controller {
                                 Debe ingresar algun contenido a postear.</p>
                         </div>
                     </div>');
-                return $this->redirect('../colaborador/perfil');
+                var_dump($model["rdescripcionPost"]);die();
+                return $this->redirect('index.php?r=colaborador/perfil');
             } else {
                 $model->file = UploadedFile::getInstances($model, 'file');
 
@@ -547,6 +549,7 @@ class ColaboradorController extends Controller {
 
 
             $model->rut1 = Yii::$app->request->post()["rutColaborador"];
+
             $model->rut2 = 1;
             
             $model->save(false);

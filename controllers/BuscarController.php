@@ -21,7 +21,7 @@ use app\models\Rcontenido;
 use app\models\RActividad;
 use app\models\Dependencia;
 use app\models\WTarea;
-
+use app\models\WMision;
 class BuscarController extends Controller {
 
     public function findColaborador($correo, $pass) {
@@ -51,6 +51,21 @@ class BuscarController extends Controller {
         }
         var_dump("no lo encontro");
         die();
+    }
+
+    
+    public function encuentraMisiones(){
+
+        $query = new \yii\db\Query;
+        $query->select([
+                    '*',
+        ])
+        ->from('wmision')
+        ->all();
+
+        $command = $query->createCommand();
+        $model = $command->queryAll();
+        return $model;
     }
 
     public function findPerfil($id) {
