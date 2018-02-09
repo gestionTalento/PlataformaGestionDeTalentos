@@ -52,7 +52,8 @@ class ColaboradorController extends Controller {
         //Misiones
         $mision = BuscarController::encuentraMisiones();
 
-       
+        //publicidad
+       $publicidad = BuscarController::findPublicidad();
 
 
         $session['foto'] = $perfil->rfoto;
@@ -73,6 +74,7 @@ class ColaboradorController extends Controller {
                     'dependencia' => $dependencia,
                     'tarea' => $tarea,
                     'mision' => $mision,
+                    'publicidad' => $publicidad,
         ]);
 
     }
@@ -136,6 +138,21 @@ class ColaboradorController extends Controller {
                               'model' => $model,
                               'dependencia' => $dependencia,
                               'tarea' => $tarea,
+
+                            ]);
+
+
+    }
+
+    public function actionPublicidad(){
+        $session = Yii::$app->session;
+        $rutColaborador = $session['rut'];
+
+        $publicidad = BuscarController::findPublicidad();
+
+
+        $modelo = $this->renderAjax('perfil', [
+                              'publicidad' => $publicidad,
 
                             ]);
 

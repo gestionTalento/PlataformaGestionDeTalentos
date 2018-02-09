@@ -42,6 +42,19 @@ Modal::end();
 
 <style>
 
+.btn.btn-primary.btn-block.btn-file {
+    color: #fff;
+    background-color: #7ecb00;
+    border-color: #7ecb00;
+}
+
+button.btn.btn-primary {
+    margin-left: inherit;
+    color: #fff;
+    background-color: #7ecb00;
+    border-color: #7ecb00;
+}
+
 a.navbar-brand {
     padding: 15px 8px!important;
 }
@@ -69,11 +82,24 @@ a.navbar-brand {
         width: 100%;
 
     }
+    button.btn.btn-lg.btn-raised.btn-success.procesos {
+    text-transform: uppercase;
+   background-color: #313131;
+    padding-top: 4px;
+    border-color: white;
+    width: 184px;
+    height: 35px;
+    font-size: 11px;
+}
     .comment{
         text-transform: lowercase;
     }
 
     .profile-info-left {
+            width: 290px;
+        box-shadow: 0 0 3px 1px #00000036;
+    padding: 10px;
+    background-color: white;
         position: relative;
         top: -92px;
     }
@@ -422,12 +448,19 @@ a.navbar-brand {
     }
 
     button#modalButton {
-        color: #fff;
-        background-color: #193276!important;
-        border-color: #193276!important;
-        font-family: DINPro-Light;
-        text-transform: uppercase;
-        font-size: 13px;
+        width: 132px;
+         margin-left: -6px;
+    color: #fff;
+    background-color: #7ecb00!important;
+    border-color: #7ecb00!important;
+    font-family: DINPro-Light;
+    text-transform: uppercase;
+    font-size: 11px;
+    height: 30px;
+    padding-bottom: 15px;
+        padding: 9px;
+    text-align: center;
+    align-self: center;
     }
 
     a.btn.btn-primary.btn-block {
@@ -594,6 +627,22 @@ a.navbar-brand {
 
 <style>
     p.card-text {text-align: justify;}
+
+    button.btn.btn-lg.btn-raised.btn-success.rota {
+    color: #fff;
+    background-color: #7ecb00!important;
+    border-color: #7ecb00!important;
+    font-family: DINPro-Light;
+    text-transform: uppercase;
+    font-size: 11px;
+    height: 30px;
+    padding-bottom: 15px;
+    padding: 9px;
+    text-align: center;
+    align-self: center;
+    width: 109px;
+
+}
     .rota {
         color: #fff;
     background-color: #193276!important;
@@ -862,19 +911,44 @@ a.navbar-brand {
 
                             </div>
                         </div>
-                        <div class="section">
+                        <div class="section" align="center">
                             <h3>Sobre Mi</h3>
                             <p><?php echo $perfil->rbio; ?></p>
                         </div>
-                        <div class="section">
+                        <div class="section" align="center">
                             <h3>Mi Valoracion</h3>
-                            <p><span id="a" class="badge"><?php echo $estadistica->rcomentarios; ?></span>Comentarios Realizados</p>
-                            <p><span id="b" class="badge"><?php echo $estadistica->rcomentariosr; ?></span>Comentarios Recibidos</p>
-                            <p><span id="c" class="badge"><?php echo $estadistica->rlikes; ?></span> Me gusta Realizados</p>
-                            <p><span id="d" class="badge"><?php echo $estadistica->rlikesr; ?></span> Me gusta Recibidos</p>
+                            <p> <span id="a" class="badge"><?php echo $estadistica->rcomentarios; ?></span><br>Comentarios Realizados</p>
+                            <p><span id="b" class="badge"><?php echo $estadistica->rcomentariosr; ?></span><br>Comentarios Recibidos</p>
+                            <p><span id="c" class="badge"><?php echo $estadistica->rlikes; ?></span> <br>Me gusta Realizados</p>
+                            <p><span id="d" class="badge"><?php echo $estadistica->rlikesr; ?></span> <br>Me gusta Recibidos</p>
                         </div>
 
-                        <div class="section">
+                        <div class="section" align="center">
+                            <h3>Mis Procesos </h3>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Clima
+                            </button>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Desempeño
+                            </button>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Inducción
+                            </button>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Performance
+                            </button>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Wellness
+                            </button>       
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Beneficios
+                            </button>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Aprendizaje
+                            </button>
+                        </div>
+
+                        <div class="section" align="center">
                             <h3>Mis Compañeros</h3>
                             <div class="widget panel-friends">
 
@@ -926,7 +1000,7 @@ a.navbar-brand {
 
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="profile-info-right">
                         <ul class="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom">
                             <li class="active"><a href="#activities" data-toggle="tab">Mi Muro</a></li>

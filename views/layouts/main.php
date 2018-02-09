@@ -51,9 +51,12 @@ AppAsset::register($this);
         <?php $this->head() ?>
     </head>
     <style>
+
+
         .navbar-principal .navbar-brand, .navbar-principal .navbar-brand li a:visited, .navbar-principal .navbar-nav li a {
         color: #ffffff;
         font-weight: 500;
+        padding-top: 30px;
         }
 
         body {
@@ -71,7 +74,8 @@ AppAsset::register($this);
         }
          .navbar-principal .navbar-nav .open a, .navbar-principal .navbar-nav .open a:hover, .navbar-principal .navbar-nav li a:hover, .navbar-principal .navbar-nav li a:focus, .navbar-principal .navbar-nav .active a, .navbar-principal .navbar-nav .active a:hover {
             color: #fff;
-            background: rgba(255, 255, 255, 0.2);
+                background: rgba(2, 2, 2, 0.2);
+                padding-top: 30px;
         }
        
         a.navbar-brand {

@@ -22,6 +22,7 @@ use app\models\RActividad;
 use app\models\Dependencia;
 use app\models\WTarea;
 use app\models\WMision;
+use app\models\rpublicidad;
 class BuscarController extends Controller {
 
     public function findColaborador($correo, $pass) {
@@ -602,5 +603,19 @@ public function encuentraComentarios($idPost) {
           return false;
         }
     }
+
+    public function findPublicidad() {
+        $query = new \yii\db\Query;
+        $query->select([
+                    '*',
+        ])
+        ->from('rpublicidad')
+        ->all();
+
+        $command = $query->createCommand();
+        $model = $command->queryAll();
+        return $model;
+    }
+
 
 }

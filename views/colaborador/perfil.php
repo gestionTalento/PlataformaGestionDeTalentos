@@ -37,8 +37,68 @@ Modal::end();
 
 <style>
 
+button.button-mision.btn-lg.btn-raised.misiones {
+    padding-top: 2px;
+    max-height: 39px;
+    font-size: 13px;
+    text-align: center;
+    padding-right: 15px;
+    padding-bottom: 3px;
+    top: 8px;
+    color: #fff;
+    background-color: #7ecb00;
+
+
+}
+
+p.misiones {
+    padding-left: 13px;
+    font-family: sans-serif;
+    font-size: 23px;
+}
+p.act {
+    padding-left: -2px;
+    font-family: sans-serif;
+    font-size: 23px;
+}
+
+
+p.tareas {
+    padding-left: 13px;
+    font-family: sans-serif;
+    font-size: 23px;
+}
+
+button.btn.btn-lg.btn-raised.btn-success.rota {
+    color: #fff;
+    background-color: #7ecb00!important;
+    border-color: #7ecb00!important;
+    font-family: DINPro-Light;
+    text-transform: uppercase;
+    font-size: 11px;
+    height: 30px;
+    padding-bottom: 15px;
+    padding: 9px;
+    text-align: center;
+    align-self: center;
+    width: 109px;
+
+}
+
+
+
+button.btn.btn-lg.btn-raised.btn-success.procesos {
+    text-transform: uppercase;
+   background-color: #313131;
+    padding-top: 4px;
+    border-color: white;
+    width: 184px;
+    height: 35px;
+    font-size: 11px;
+}
+
 p.misiontextestado {
-    margin-left:  10px;
+    margin-left:  308px;
 }
 .rota {
     color: #fff;
@@ -46,7 +106,7 @@ p.misiontextestado {
     border-color: #7ecb00!important;
     font-family: DINPro-Light;
     text-transform: uppercase;
-    font-size: 13px;
+
 }
 
 button.button-mision.btn-lg.btn-raised.btn-success {max-height: 39px;font-size: 13px;text-align:  center;padding-right: 17px;padding-bottom: 8px;
@@ -79,13 +139,14 @@ h4.panel-title {
 }
 
 .panel.panel-default {
-    border-color: #7037e3;
     border-radius: -10px!imporant;
 }
 table.table.table-striped.carla {
     -webkit-box-shadow: 0px 0px 7px 1px rgba(169, 160, 160, 0.75);
     -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 7px 1px rgba(162, 151, 151);
+    padding: 0px;
+    padding-bottom: 10px;
 }
 thead {
     background-color: #006463!important;
@@ -155,9 +216,15 @@ tbody {
     border-top: 0;
     background-color: #206c7d;
 }
+.profile-info-publicidad{
+    position: relative;
+    top: -122px;
+    width: 197px;
+    box-shadow: 0 0 3px 1px #00000036;
+}
     .profile-info-left {
         position: relative;
-    top: -100px;
+        top: -170px;
     box-shadow: 0 0 3px 1px #00000036;
     padding: 10px;
     background-color: white;
@@ -194,18 +261,25 @@ tbody {
         min-width: 16px;
         line-height: 1;
     }
+
+    .profile-info-right {
+    position: relative;
+    top: -146px;
+    padding: 0px 0;
+    }
     .profile-info-left ul.list-social > li a {
         color: #696565;
     }
 
     .profile-info-right .tab-content {
-        padding: 30px 0;
+        
         background-color: transparent;
     }
     @media screen and (max-width: 768px) {
         .profile-info-right {
             position: relative;
-            top: -70px;
+    top: -146px;
+     padding: 0px 0;
         }
     }
 
@@ -511,12 +585,19 @@ tbody {
 }
 
     button#modalButton {
-        color: #fff;
+        width: 132px;
+         margin-left: -6px;
+    color: #fff;
     background-color: #7ecb00!important;
     border-color: #7ecb00!important;
-        font-family: DINPro-Light;
-        text-transform: uppercase;
-        font-size: 13px;
+    font-family: DINPro-Light;
+    text-transform: uppercase;
+    font-size: 11px;
+    height: 30px;
+    padding-bottom: 15px;
+        padding: 9px;
+    text-align: center;
+    align-self: center;
     }
 
     a.btn.btn-primary.btn-block {
@@ -706,7 +787,7 @@ tbody {
         height: 100%;
     }
     .profile-info-right {
-        margin-top: -100px;
+            
     }
     .truncate {
         width: 50%;
@@ -931,7 +1012,7 @@ tbody {
         <div class="col-md-10 col-xs-12 col-sm-12  animated fadeInLeft">
 
             <div class="row">
-                <div class="col-md-3 hidden-xs">
+                <div class="col-md-4 hidden-xs">
                     <div class="profile-info-left">
                         <div class="text-center">
 
@@ -943,12 +1024,10 @@ tbody {
                             <div class="row">
                                 <div class="col-xs-12">
 
-                                    <?= Html::button('Actualiza tus datos', ['value' => Url::to('index.php?r=colaborador/foto&rutColaborador=' . $model->rutColaborador . ''), 'class' => 'act btn btn-lg btn-raised btn-success', 'id' => 'modalButton']) ?>
-
-
+                                    <?= Html::button('Actualiza tus datos', ['value' => Url::to('index.php?r=colaborador/foto&rutColaborador=' . $model->rutColaborador . ''), 'class' => 'act btn btn-lg btn-raised btn-success actualiza', 'id' => 'modalButton']) ?>
                                     <button  onclick="rotates(<?php echo $model->rutColaborador; ?>);" class="btn btn-lg btn-raised btn-success rota">
                                         Rotar foto
-                                        <i class="fa fa-undo" aria-hidden="true"></i>
+                 
                                     </button>
                                 </div>
 
@@ -957,10 +1036,35 @@ tbody {
                         
                         <div class="section" align="center">
                             <h3>Mi Valoracion</h3>
-                            <p><span id="a" class="badge"><?php echo $estadistica->rcomentarios; ?></span>Comentarios Realizados</p>
-                            <p><span id="b" class="badge"><?php echo $estadistica->rcomentariosr; ?></span>Comentarios Recibidos</p>
-                            <p><span id="c" class="badge"><?php echo $estadistica->rlikes; ?></span> Me gusta Realizados</p>
-                            <p><span id="d" class="badge"><?php echo $estadistica->rlikesr; ?></span> Me gusta Recibidos</p>
+                            <p> <span id="a" class="badge"><?php echo $estadistica->rcomentarios; ?></span><br>Comentarios Realizados</p>
+                            <p><span id="b" class="badge"><?php echo $estadistica->rcomentariosr; ?></span><br>Comentarios Recibidos</p>
+                            <p><span id="c" class="badge"><?php echo $estadistica->rlikes; ?></span> <br>Me gusta Realizados</p>
+                            <p><span id="d" class="badge"><?php echo $estadistica->rlikesr; ?></span> <br>Me gusta Recibidos</p>
+                        </div>
+
+                        <div class="section" align="center">
+                            <h3>Mis Procesos </h3>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Clima
+                            </button>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Desempeño
+                            </button>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Inducción
+                            </button>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Performance
+                            </button>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Wellness
+                            </button>       
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Beneficios
+                            </button>
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Aprendizaje
+                            </button>
                         </div>
 
 
@@ -1032,7 +1136,7 @@ tbody {
                                     padding-top: 5px;
                                 }
                             </style>
-                    <h2>Misiones de la Semana</h2>
+                    <h2><p class="misiones">Misiones de la Semana</p></h2>
                         <div class="col-md-12">                                 
                             <div class="bs-example">
                                 
@@ -1056,7 +1160,7 @@ tbody {
                                             <div class="panel-body">
                                                 <img style="margin-right:10px" class="imgmision" src="../web/img/mision/<?php echo $m["wfoto"]; ?>" align="left"> 
                                                 <br><p class="misiontext"><?php echo $m["wdescripcion"] ?> <a href="https://www.tutorialrepublic.com/html-tutorial/" target="_blank">Leer Más</a><br>  </p>
-                                                <td><p class="misiontextestado" > <i class="fas fa-check-circle"></i> Completada <button class="button-mision btn-lg btn-raised btn-success ">
+                                                <td><p class="misiontextestado" > <i class="fas fa-check-circle"></i> Completada <button class="button-mision btn-lg btn-raised misiones">
                                         Publicar </button></p></td>
                                                 
                                             </div>
@@ -1073,7 +1177,7 @@ tbody {
                                         <br>
 
 
-                            <h2>Mis Tareas</h2>
+                            <h2><p class="tareas">Mis Tareas</p></h2>
                            
                               
                                         <div class="col-md-12">                                 
@@ -1105,7 +1209,7 @@ tbody {
                                         <br>
                                     
                                     <div class="col-md-12">    
-                            <h2>Actividades en la Red</h2>
+                            <h2><p class="act">Actividades en la Red</p></h2>
                             <div class="panel panel-default publicador">
                                 <div class="panel-body publicador" >
 
@@ -1270,14 +1374,20 @@ tbody {
 
 <div class="col-md-2 hidden-xs">
 
-                       <div class="profile-info-left">
-                        <div class="text-center">
-
-                                         
-                                            
+                       <div class="profile-info-publicidad">
+                     
+                            <?php foreach ($publicidad as $p) {
+                  ?>   
+                                                       
+                               <a href="<?php echo $p["rlink"];?> " target="_blank"><img style="margin-right:10px" class="imgpublicidad" src="../web/img/publicidad/<?php echo $p["rfoto"]; ?>" ><br>    
+                            
+                                                    <?php
+                                                } ?>
+                                    
+                                                           
                           
                             
-                        </div>
+                        
                         
                         </div>
                         </div>
