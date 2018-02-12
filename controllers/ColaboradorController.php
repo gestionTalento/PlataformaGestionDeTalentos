@@ -378,20 +378,21 @@ class ColaboradorController extends Controller {
     }
     
         public function actionPost() {
-//        ini_set('post_max_size', '64M');
-//        ini_set('upload_max_filesize', '64M');
-//        ini_set('memory_limit', '256M');
-//        ini_set('memory_limit', '8192M');
+        //ini_set('post_max_size', '64M');
+        //ini_set('upload_max_filesize', '64M');
+        //ini_set('memory_limit', '256M');
+        //ini_set('memory_limit', '8192M');
         //var_dump(Yii::$app->request->post());die();
-        //date_default_timezone_set("America/Santiago");
+        date_default_timezone_set("America/Santiago");
 
         $model = new Rpost();
         
         if (Yii::$app->request->post()) {
 
-            if (!preg_match("/^\S*$/", Yii::$app->request->post()["rdescripcionPost"])) {
-               
-                \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
+            if(!preg_match("/^\S*$/", Yii::$app->request->post()["rdescripcionPost"]))
+                 {
+
+                     \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
                         <div class="alert alert-danger">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                                 ×</button>
@@ -401,9 +402,9 @@ class ColaboradorController extends Controller {
                                 Debe ingresar algun contenido a postear.</p>
                         </div>
                     </div>');
-                var_dump($model["rdescripcionPost"]);die();
-                return $this->redirect('index.php?r=colaborador/perfil');
-            } else {
+                    return $this->redirect('index.php?r=colaborador/perfil');
+                    
+                 }else{
                 $model->file = UploadedFile::getInstances($model, 'file');
 
                 if (empty($model->file) && empty(Yii::$app->request->post()["rdescripcionPost"])) {
@@ -520,7 +521,6 @@ class ColaboradorController extends Controller {
                     $model->rtipoPost = 6; // este post es con foto
                     foreach ($model->file as $file) {
 
-
                         $file->saveAs('img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
                         $ruta = 'img/archivos/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
                         $model->rfoto = "power.png";
@@ -553,10 +553,9 @@ class ColaboradorController extends Controller {
                 if ($model->file[0]->type == "video/quicktime" || $model->file[0]->type == "video/3gpp" || $model->file[0]->type == "video/mp4") {
                     $model->rtipoPost = 3; // este post es con foto
                     foreach ($model->file as $file) {
-
-
-                        $ruta = 'img/post/video/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
                         $file->saveAs('img/post/video/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
+                        $ruta = 'img/post/video/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                        
                         $model->rfoto = $model->rut1 . $file->baseName . $num . "." . $file->extension;
                     }
                 }

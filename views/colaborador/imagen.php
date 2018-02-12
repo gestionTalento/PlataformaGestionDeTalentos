@@ -14,14 +14,41 @@
             $('#m<?php echo $post["ridPost"]; ?>').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
         });
     </script>
-    <style type="text/css">
+    
+<style type="text/css">
     #blog-section {
     margin-top: -30px;
     margin-bottom: 30px;
 }
 
+a.pull-left {margin-left: -25px;margin-right: 25px;}
+
+h4.nombre {
+    font-size: 12px;
+}
+
+h5.fecha {
+    font-size: 12px;
+}
+
+.container-fluid.coment {
+    background-color: white;
+    -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+}
+
+img.fotocomentario {
+    height: 48px;
+}
+
+.nav-pills > li {
+        float: left;
+        margin-left: 40px;
+    }
+
 img.fotoavatar {
-    max-width: 169%;
+        max-width: 111%;
     padding-left: 0px;
     align-self:  left;
 }
@@ -278,7 +305,7 @@ img.fotoavatar {
             </div>
         </div>
 
-
+<div class="container-fluid coment">
     <div style="display:none;" id="post-<?php echo $post["ridPost"]; ?>" class="post-footer">
         <div class="input-group">
             <textarea maxlength="180" id="comentario-<?php echo $post["ridPost"]; ?>" name="comentario-<?php echo $post["ridPost"]; ?>" class="form-control" placeholder="Agrega un comentario" type="text" onkeydown = "if (event.keyCode == 13) {
@@ -301,23 +328,28 @@ img.fotoavatar {
     <?php
     foreach ($comentarios as $c) {
         ?>
-                <li class="comment">
-                    <a class="pull-left" href="#">
-                        <img class="avatar" style="-ms-transform: rotate(<?php echo $c['rrotador']; ?>deg);-webkit-transform: rotate(<?php echo $c['rrotador']; ?>deg);transform: rotate(<?php echo $c['rrotador']; ?>deg);" src="../web/img/perfil/t/<?php echo $c['rfoto']; ?>" alt="avatar">
-                    </a>
-                    <div class="comment-body">
+                 <li class="comment">
+                     <a class="pull-left" href="#">
+                     <div class="user-img img-circle"><p><img src="../web/img/perfil/t/<?php echo $c['rfoto']; ?>" alt="avatar" class="fotocomentario" style="-ms-transform: rotate(<?php echo $c['rrotador']; ?>deg);-webkit-transform: rotate(<?php echo $c['rrotador']; ?>deg);transform: rotate(<?php echo $c['rrotador']; ?>deg);"
+                      <?php echo $post["rutColaborador1"]; ?>
+                     ></p>
+                     </div>
+                     </a>
+                       <div class="comment-body">
                         <div class="comment-heading">
-                            <h4 class="user"><?php echo $c["nombreColaborador"] . " " . $c["apellidosColaborador"]; ?></h4>
-                            <h5 class="time"><?php echo $c["fecha"]; ?></h5>
+                            <p><h4 class="nombre"><?php echo $c["nombreColaborador"] . " " . $c["apellidosColaborador"]; ?></h4>
+                            <h5 class="fecha"><?php echo $c["fecha"]; ?></h5></p>
                         </div>
-                        <br>
+                        
                         <p style="text-transform: initial;" id="elComentario"><?php echo $c["rcontenido"]; ?></p>
+                        <br>
                     </div>
-
-                </li>
+                    
+                    </li>
 
     <?php } ?>
             <li id="<?php echo $post["ridPost"]; ?>" class="comment"></li>
         </ul>
+
     </div>
     </section>

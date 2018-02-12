@@ -1,0 +1,1 @@
+﻿positionForPages[8]={page:8,positions:[{word:"¡GRACIAS!",left:0.386322,top:0.485829,width:0.292713,height:0.105969}]};

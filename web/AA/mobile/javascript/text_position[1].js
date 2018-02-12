@@ -1,0 +1,1 @@
+﻿positionForPages[1]={page:1,positions:[{word:"1",left:0.930507,top:0.937626,width:0.009267,height:0.031822},{word:"“Personas que marcan la diferencia en minería”",left:0.042507,top:0.929454,width:0.332541,height:0.028004},{word:"VALORES ANGLO",left:0.057311,top:0.271704,width:0.477772,height:0.105968}]};

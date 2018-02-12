@@ -37,6 +37,9 @@ Modal::end();
 
 <style>
 
+.col-md-12.miss {
+    padding-bottom: 16px;
+}
 button.button-mision.btn-lg.btn-raised.misiones {
     padding-top: 2px;
     max-height: 39px;
@@ -50,8 +53,18 @@ button.button-mision.btn-lg.btn-raised.misiones {
 
 
 }
+.nav-pills > li {
+        float: left;
+        margin-left: 40px;
+    }
+
+
+.col-md-12.tare {
+    padding-bottom: 16px;
+}
 
 p.misiones {
+
     padding-left: 13px;
     font-family: sans-serif;
     font-size: 23px;
@@ -64,7 +77,7 @@ p.act {
 
 
 p.tareas {
-    padding-left: 13px;
+    padding-left: 0px;
     font-family: sans-serif;
     font-size: 23px;
 }
@@ -125,6 +138,9 @@ p.misiontext {
 }
 .panel.panel-default  {
     border-radius: 0px!important;
+    -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
 }
 h4.panel-title {
     color:  white;
@@ -133,18 +149,18 @@ h4.panel-title {
     background-color: #7036e3!important;
 }
 .panel-collapse {
-    -webkit-box-shadow: 0px 0px 7px 1px rgba(169, 160, 160, 0.75);
-    -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 7px 1px rgba(162, 151, 151);
-}
+   -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);}
+
 
 .panel.panel-default {
     border-radius: -10px!imporant;
 }
 table.table.table-striped.carla {
-    -webkit-box-shadow: 0px 0px 7px 1px rgba(169, 160, 160, 0.75);
-    -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 7px 1px rgba(162, 151, 151);
+    -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
     padding: 0px;
     padding-bottom: 10px;
 }
@@ -220,12 +236,19 @@ tbody {
     position: relative;
     top: -122px;
     width: 197px;
-    box-shadow: 0 0 3px 1px #00000036;
+   
+}
+img.imgpublicidad {
+    padding-bottom: 27px;
+    background-color: #eaeaea;
+   
 }
     .profile-info-left {
         position: relative;
         top: -170px;
-    box-shadow: 0 0 3px 1px #00000036;
+    -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
     padding: 10px;
     background-color: white;
     }
@@ -376,13 +399,21 @@ tbody {
     .activity-item .activity-attachment {
         padding-top: 20px;
     }
+
+    .panel.panel-default.publicador {
+        -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+    }
+
+
     .activity-item .well {
         -moz-border-radius: 0;
         -webkit-border-radius: 0;
         border-radius: 0;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
+        -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
         border: none;
         border-left: 2px solid #cfcfcf;
         background: #fff;
@@ -674,7 +705,9 @@ tbody {
         font-size: 13px;
     }
     .panel-shadow {
-        box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+       -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);}
     }
     .panel-white {
         border: 1px solid #dddddd;
@@ -1137,7 +1170,7 @@ tbody {
                                 }
                             </style>
                     <h2><p class="misiones">Misiones de la Semana</p></h2>
-                        <div class="col-md-12">                                 
+                        <div class="col-md-12 miss">                                 
                             <div class="bs-example">
                                 
                                 <div class="panel-group" id="accordion">
@@ -1168,19 +1201,15 @@ tbody {
                                     </div>
 
                                       <?php
-                                                } ?>
+                                        } ?>
 
-                                </div>
-                            </div>        
-                              
-                                          </div>   
-                                        <br>
+                                    </div>
+                                </div>          
+                            </div>   
+                                <br>
 
-
-                            <h2><p class="tareas">Mis Tareas</p></h2>
-                           
-                              
-                                        <div class="col-md-12">                                 
+                                        <div class="col-md-12 tare">   
+                                         <h2 tarea><p class="tareas">Mis Tareas</p></h2>
                                         <table class="table table-striped carla">
                                             <thead>
                                              <tr>
@@ -1242,7 +1271,7 @@ tbody {
 
                                                 <div class="col-md-10 col-xs-7">
                                                     <?= Yii::$app->session->getFlash('error'); ?>
-                                                    <textarea onKeyDown="contarCaracteress(this.form.rdescripcionPost, this.form.remLen, 180);" placeholder="Que estas pensando hoy??? " maxlength="180"  name="rdescripcionPost" data-ls-module="charCounter" placeholder="Que estas pensando hoy??? " rows="5" maxlength="180" class="form-control input-lg p-text-area"></textarea>
+                                                    <textarea onKeyDown="contarCaracteres(this.form.rdescripcionPost, this.form.remLen, 180);" placeholder="Que estas pensando hoy??? " maxlength="180"  name="rdescripcionPost" data-ls-module="charCounter" placeholder="Que estas pensando hoy??? " rows="5" maxlength="180" class="form-control input-lg p-text-area"></textarea>
                                                     <p>Contador: <font id="contador">180</font></p>
                                                     <br>
                                                 </div>       

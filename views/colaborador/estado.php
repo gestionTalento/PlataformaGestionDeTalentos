@@ -171,9 +171,9 @@ use yii\helpers\Html;
 <style type="text/css">
 
 img.fotoavatar {
-    max-width: 169%;
-    padding-left: 0px;
-    align-self:  left;
+      max-width: 111%;
+    padding-left: 25px;
+    align-self: left;
 }
 #blog-section {
     margin-top: -30px;
@@ -265,11 +265,7 @@ img.fotoavatar {
                 z-index: 1;
 
         }
-        img.fotoavatar {
-    max-width: 169%;
-    padding-left: 0px;
-    align-self:  left;
-}
+        
 
         @media (max-width:768px){
             .user-ditels {
