@@ -47,9 +47,9 @@ class Rperfilredsocial extends \yii\db\ActiveRecord
     {
         return [
             'idperfilRed' => 'Idperfil Red',
-            'rfoto' => 'Rfoto',
+            'rfoto' => 'Foto de Perfil',
             'rportada' => 'Rportada',
-            'rbio' => 'Rbio',
+            'rbio' => 'Biografía',
             'rrotador' => 'Rrotador',
             'restado' => 'Restado',
         ];

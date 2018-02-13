@@ -97,9 +97,13 @@ class SiteController extends Controller {
                 $session['nombreColaborador'] = $valid->nombreColaborador;
                 $session->open();
 
-
-
+                
+               
                 Yii::$app->response->redirect(array('colaborador/perfil', 'rutColaborador' => $model->rutColaborador));
+              
+
+           
+
             } else {
                 $model = new \app\models\Colaborador();
 

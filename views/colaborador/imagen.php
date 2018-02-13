@@ -47,11 +47,7 @@ img.fotocomentario {
         margin-left: 40px;
     }
 
-img.fotoavatar {
-        max-width: 111%;
-    padding-left: 0px;
-    align-self:  left;
-}
+
         .col-md-8.imagen {
             width: 557px;
             padding-left: 6px;
@@ -107,12 +103,21 @@ img.fotoavatar {
             text-decoration: none;
             transition: 0.5s;
         }
+
+.container-fluid.cc {
+    padding-right: 15px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
         .content-footer span a:hover{
             color:#F39C12;
         }
         aside{
             background-color:  white;
             margin-top: 30px;
+            width: 533px;
+    margin-left: -6px;
             -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);}
@@ -185,6 +190,9 @@ img.fotoavatar {
             margin-left: auto;
             width: 100%;
         }
+        .col-md-6.results {
+    width: 47%;
+}
         @media (min-width: 768px) {
             .fullscreen-modal .modal-dialog {
                 width: 750px;
@@ -199,19 +207,30 @@ img.fotoavatar {
             .fullscreen-modal .modal-dialog {
                 width: 1170px;
             }
-        }
+        section#blog-section {
+    max-width: 548px;
+    padding-right: 3px;
+}
+
     </style>
 
-    <section id="blog-section" >
-        <div class="container">
+    <section id="blog-section" class="col-md-12 col-sm-12" >
+        <div class="container-fluid cc">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6 ">
                     <div class="row">
 
-                        <div class="col-md-8 imagen">
+                        <div class="col-sm-12 col-md-8 imagen">
                             <aside>
-
-                                <img class="img-responsive fondo rotate-<?php echo $post["ridPost"]; ?>" style="
+                                <div class="modal fade fullscreen-modal " id="m<?php echo $post["ridPost"]; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-body">
+                          <button style="    margin-top: 45px;
+                                            float: right;
+                        margin-bottom: 60px;" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button><br>
+                    <br><br><br><br>
+                 <img class="img-responsive fondo rotate-<?php echo $post["ridPost"]; ?>" style="
                                      display: block;
                                      margin: 0 auto 0 auto;
 
@@ -222,6 +241,25 @@ img.fotoavatar {
                                      transform: rotate(<?php echo $post['rrotador']; ?>deg);
 
                                      " src="../web/img/post/<?php echo $post['rfoto']; ?>" alt="...">
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+    <a  id="pop<?php echo $post["ridPost"]; ?>" align="center">
+
+        <img class="img-responsive fondo rotate-<?php echo $post["ridPost"]; ?>" align="center" style="
+        height: : 800px!important;
+        -ms-transform: rotate(<?php echo $post['rrotador']; ?>deg);
+        -webkit-transform: rotate(<?php echo $post['rrotador']; ?>deg);
+        transform: rotate(<?php echo $post['rrotador']; ?>deg);
+
+        " src="../web/img/post/<?php echo $post['rfoto']; ?>" alt="...">
+    </a>
+                                
                                 <div class="content-title" id="m<?php echo $post["ridPost"]; ?>">
                         
                                     <div class="post-description text-left">
@@ -242,7 +280,7 @@ img.fotoavatar {
                                     </div>
                                 </div>
                                 <div class="content-footer">
-                                    <img class="user-small-img" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>">
+                                    <img class="user-small-img" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=" . $posteador[0]["rutColaborador"]; ?>" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>">
                                     <span style="font-size: 16px;color: #fff;"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></span>
                                     <span class="pull-right">
 

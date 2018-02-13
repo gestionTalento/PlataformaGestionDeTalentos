@@ -12,16 +12,10 @@ use yii\helpers\Html;
 a.pull-left {margin-left: -25px;margin-right: 25px;}
 
 h4.nombre {
-    font-family: DINPro-Medium;
-
-    text-transform: uppercase;
     font-size: 12px;
 }
 
 h5.fecha {
-    font-family: DINPro-Medium;
-
-    text-transform: uppercase;
     font-size: 12px;
 }
 
@@ -36,8 +30,13 @@ img.fotocomentario {
     height: 48px;
 }
 
+.nav-pills > li {
+        float: left;
+        margin-left: 40px;
+    }
+
 img.fotoavatar {
-        max-width: 129%;
+    max-width: 111%;
     padding-left: 24px;
     align-self: left;
 }
@@ -102,12 +101,21 @@ a {
             text-decoration: none;
             transition: 0.5s;
         }
+
+.container-fluid.cc {
+    padding-right: 15px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
         .content-footer span a:hover{
             color:#F39C12;
         }
         aside{
             background-color:  white;
             margin-top: 30px;
+              width: 533px;
+            margin-left: -6px;
             -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);}
@@ -132,6 +140,9 @@ a {
                 z-index: 1;
 
         }
+        .col-md-6.results {
+    width: 47%;
+}
 
         @media (max-width:768px){
             .user-ditels {
@@ -162,12 +173,17 @@ a {
             padding-right: 20px;
             padding-top: 5px;
             text-align: right;}
+            section#blog-section {
+    max-width: 548px;
+    padding-right: 3px;
+}
+
 </style>
 
- <section id="blog-section" >
-        <div class="container">
+ <section id="blog-section" class="col-md-12">
+        <div class="container-fluid cc">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="row">
 
                         <div class="col-md-8 imagen">

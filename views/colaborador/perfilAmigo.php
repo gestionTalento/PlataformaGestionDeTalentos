@@ -41,6 +41,18 @@ Modal::end();
 ?>
 
 <style>
+img.fotoavatar {
+    max-height: 90px;
+    max-width: 110px;
+    padding-left: 25px;
+}   
+
+.panel.am  {
+    max-width: 535px;
+    margin-left: 7px;  
+-webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);}
 
 .btn.btn-primary.btn-block.btn-file {
     color: #fff;
@@ -96,8 +108,11 @@ a.navbar-brand {
     }
 
     .profile-info-left {
+        
             width: 290px;
-        box-shadow: 0 0 3px 1px #00000036;
+       -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
     padding: 10px;
     background-color: white;
         position: relative;
@@ -528,8 +543,14 @@ a.navbar-brand {
         text-transform: uppercase;
         font-size: 13px;
     }
+    .container-fluid.coment {
+    margin-left: -14px;
+    margin-right: 12px;
+}
     .panel-shadow {
-        box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+        -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
     }
     .panel-white {
         border: 1px solid #dddddd;
@@ -1079,7 +1100,7 @@ a.navbar-brand {
 
                             if ($global != $model->rutColaborador) {
                                 ?>
-                                <div class="panel">
+                                <div class="panel am">
 
                                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['rpost/creates']]); ?>
 

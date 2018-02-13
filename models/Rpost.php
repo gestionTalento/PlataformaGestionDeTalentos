@@ -62,7 +62,7 @@ class Rpost extends \yii\db\ActiveRecord {
         return [
             'ridPost' => 'Rid Post',
             'rdecripcionPost' => 'Rdecripcion Post',
-            'rfoto' => 'Rfoto',
+            'rfoto' => 'Foto',
             'rfecha' => 'Rfecha',
             'rtipoPost' => 'Rtipo Post',
             'rut1' => 'Rut1',

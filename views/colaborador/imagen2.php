@@ -88,7 +88,7 @@ Full screen Modal
         </div>
     </div>
 </div>
-<div id="fotol" class="activity-attachment">
+<div id="fotol" class="activity-attachment" align="center">
     <a  id="pop<?php echo $post["ridPost"]; ?>">
 
         <img id="rotate-<?php echo $post["ridPost"]; ?>" style="

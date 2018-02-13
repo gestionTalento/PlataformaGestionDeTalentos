@@ -79,6 +79,7 @@ class ColaboradorController extends Controller {
 
     }
 
+    
      public function actionCine($video, $idContenido) {
      
         $session = Yii::$app->session;
@@ -388,8 +389,10 @@ class ColaboradorController extends Controller {
         $model = new Rpost();
         
         if (Yii::$app->request->post()) {
+          
+            
 
-            if(!preg_match("/^\S*$/", Yii::$app->request->post()["rdescripcionPost"]))
+            if(empty(Yii::$app->request->post()["rdescripcionPost"]))
                  {
 
                      \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
@@ -550,13 +553,14 @@ class ColaboradorController extends Controller {
                     }
                 }
 
-                if ($model->file[0]->type == "video/quicktime" || $model->file[0]->type == "video/3gpp" || $model->file[0]->type == "video/mp4") {
+                if ($model->file[0]->type == "video/quicktime" || $model->file[0]->type == "video/3gpp" || $model->file[0]->type == "video/mp4" ) {
                     $model->rtipoPost = 3; // este post es con foto
                     foreach ($model->file as $file) {
                         $file->saveAs('img/post/video/' . $model->rut1 . $file->baseName . $num . "." . $file->extension);
                         $ruta = 'img/post/video/' . $model->rut1 . $file->baseName . $num . "." . $file->extension;
                         
                         $model->rfoto = $model->rut1 . $file->baseName . $num . "." . $file->extension;
+                       var_dump($model->rdescripcionPost);die();
                     }
                 }
             }
@@ -574,10 +578,11 @@ class ColaboradorController extends Controller {
             } else {
                 $model->save(false);
                 $actividad = new Ractividad();
+                $actividad->ridtipo_post = $model->rtipoPost;
                 $actividad->rutColaborador1 = $model->rut1;
                 $actividad->rutColaborador2 = $model->rut2;
                 $actividad->ridpost = $model->ridPost;
-                $actividad->ridtipo_post = $model->rtipoPost;
+                
                 
                 $actividad->save(false);
             }

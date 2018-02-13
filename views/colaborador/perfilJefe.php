@@ -36,9 +36,7 @@ Modal::end();
 
 
 <style>
-::-webkit-scrollbar { 
-display:none;
-}
+
 .col-md-12.miss {
     padding-bottom: 16px;
 }
@@ -113,7 +111,7 @@ button.btn.btn-lg.btn-raised.btn-success.procesos {
 }
 
 p.misiontextestado {
-    margin-left:  158px;
+    margin-left:  308px;
 }
 .rota {
     color: #fff;
@@ -137,11 +135,6 @@ p.misiontext {
 
 .panel-heading {
     border-radius: 0px!important;
-}
-
-.container-fluid.coment {
-    margin-left: -15px;
-    margin-right: -1px;
 }
 .panel.panel-default  {
     border-radius: 0px!important;
@@ -240,12 +233,9 @@ tbody {
     background-color: #206c7d;
 }
 .profile-info-publicidad{
-    position: fixed;
-    overflow: scroll;
-    min-height: 100%;
-    top: 51px;
+    position: relative;
+    top: -122px;
     width: 197px;
-    height: 100%;
    
 }
 img.imgpublicidad {
@@ -254,13 +244,8 @@ img.imgpublicidad {
    
 }
     .profile-info-left {
-     position: fixed;
-     min-height: 100%;
-    top: 7%;
-    height: 100%;
-    overflow: scroll;
-    margin-right: 910px;
-     
+        position: relative;
+        top: -170px;
     -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
@@ -583,10 +568,6 @@ img.imgpublicidad {
         border-bottom-color: #ff766c;
     }
 
-    .text-center {
-    top: 100px;
-    padding-top: 30px;
-}
 
     .fileinput-button {
         position: relative;
@@ -1208,12 +1189,12 @@ img.imgpublicidad {
                                             
                                             </h4>   
                                         </div>
-                                        <div id="collapse<?php echo $m["widMision"]; ?>" class=" panel-collapse collapse <?php if($i==0){echo "in"; $i++;}else{} ?>">
+                                        <div id="collapse<?php echo $m["widMision"]; ?>" class="panel-collapse collapse <?php if($i==0){echo "in"; $i++;}else{} ?>">
                                             <div class="panel-body">
                                                 <img style="margin-right:10px" class="imgmision" src="../web/img/mision/<?php echo $m["wfoto"]; ?>" align="left"> 
-                                                <br><p class="misiontext"><?php echo $m["wdescripcion"] ?> <a href="https://www.tutorialrepublic.com/html-tutorial/" target="_blank">Leer Más</a><br>  </p><p class="misiontextestado" > <i class="fas fa-check-circle"></i> Completada <button class="button-mision btn-lg btn-raised misiones">
-                                        Publicar </button></p>
-                                                
+                                                <br><p class="misiontext"><?php echo $m["wdescripcion"] ?> <a href="https://www.tutorialrepublic.com/html-tutorial/" target="_blank">Leer Más</a><br>  </p>
+                                                <td><p class="misiontextestado" > <i class="fas fa-check-circle"></i> Completada <button class="button-mision btn-lg btn-raised misiones">
+                                        Publicar </button></p></td>
                                                 
                                             </div>
                                         </div>
@@ -1227,9 +1208,9 @@ img.imgpublicidad {
                             </div>   
                                 <br>
 
-                                        <div class="col-sm-10 col-md-12 tare">   
+                                        <div class="col-md-12 tare">   
                                          <h2 tarea><p class="tareas">Mis Tareas</p></h2>
-                                        <table class="table table-responsive table-striped carla">
+                                        <table class="table table-striped carla">
                                             <thead>
                                              <tr>
                                               <th>Actividad</th>
@@ -1256,7 +1237,7 @@ img.imgpublicidad {
                                           </div>   
                                         <br>
                                     
-                                    <div class="col-md-12 col-sm-12">    
+                                    <div class="col-md-12">    
                             <h2><p class="act">Actividades en la Red</p></h2>
                             <div class="panel panel-default publicador">
                                 <div class="panel-body publicador" >
