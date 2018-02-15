@@ -87,12 +87,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row">
                     <div class="col-md-12">
                         <?= $form->field($model, 'correo')->textInput() ?>
+                        <?= $form->field($model, 'pass')->passwordInput(['autofocus' => true]) ?>
+                <?= Yii::$app->session->getFlash('error'); ?>
                     </div>
                     
                 </div>
 
-                <?= $form->field($model, 'pass')->passwordInput(['autofocus' => true]) ?>
-                <?= Yii::$app->session->getFlash('error'); ?>
+                
 
          
                 <div class="form-group">

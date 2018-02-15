@@ -495,7 +495,7 @@ class ColaboradorController extends Controller {
                 }
             } else {
 
-                var_dump($model->file[0]);die();
+               //var_dump($model->file[0]);die();
 
                 if ($model->file[0]->type == "image/jpeg" || $model->file[0]->type == "image/png" || $model->file[0]->type == "image/gif") {
                     $model->rtipoPost = 2; // este post es con foto
@@ -565,20 +565,7 @@ class ColaboradorController extends Controller {
                       // var_dump($model->rdescripcionPost);die();
                     }
                 }
-                else
-                {
-                   \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                                ×</button>
-                           <span class="glyphicon glyphicon-no"></span> <strong>Mensaje de error</strong>
-                            <hr class="message-inner-separator">
-                            <p>
-                                Formato no permitido.</p>
-                        </div>
-                    </div>');
-                    return $this->redirect('index.php?r=colaborador/perfil');
-                }
+                
             }
 
 

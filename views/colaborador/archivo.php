@@ -62,7 +62,7 @@ use yii\helpers\Html;
                                         $modela = $dataReader->readAll();
                                         ?>
 
-                                        <a  onclick="reveal(<?php echo $post["ridPost"]; ?>);" data-toggle="tooltip" data-placement="left" title="Comments"><i class="fa fa-comments" ></i> <?php echo $modela[0]["cuenta"]; ?></a>
+                                        <a  onclick="reveal(<?php echo $post["ridPost"]; ?>);" data-toggle="tooltip" data-placement="left" title="Comentarios"><i class="fa fa-comments" ></i> <?php echo $modela[0]["cuenta"]; ?></a>
 
                                         <?php
                                         $connection = Yii::$app->db;
@@ -75,19 +75,19 @@ use yii\helpers\Html;
                                         <a id="like-<?php echo $post["ridPost"]; ?>" onclick="like(<?php echo $post["ridPost"]; ?>,<?php
                                         $session = Yii::$app->session;
                                         echo $session['rutColaborador'];
-                                        ?>);" data-toggle="tooltip" data-placement="right" title="Loved"><i class="fa fa-heart"></i> <?php echo $modela[0]["cuenta"]; ?></a>
+                                        ?>);" data-toggle="tooltip" data-placement="right" title="Me gusta"><i class="fa fa-heart"></i> <?php echo $modela[0]["cuenta"]; ?></a>
 
     <?php if ($post["rutColaborador1"] == $rutColaborador) { ?>
 
                                             <a id="like-<?php echo $post["ridPost"]; ?>" onclick="rotate(<?php echo $post["ridPost"]; ?>,<?php
                                                $session = Yii::$app->session;
                                                echo $session['rutColaborador'];
-                                               ?>);"  data-toggle="tooltip" data-placement="right" title="Loved"><i class="fa fa-undo"></i> </a>
+                                               ?>);"  data-toggle="tooltip" data-placement="right" title="Me gusta"><i class="fa fa-undo"></i> </a>
 
                                             <a id="like-<?php echo $post["ridPost"]; ?>" onclick="eliminar(<?php echo $post["ridPost"]; ?>,<?php
                                            $session = Yii::$app->session;
                                            echo $session['rutColaborador'];
-                                               ?>);"  data-toggle="tooltip" data-placement="right" title="Loved"><i class="fas fa-trash-alt"></i> </a>
+                                               ?>);"  data-toggle="tooltip" data-placement="right" title="Eliminar"><i class="fas fa-trash-alt"></i> </a>
 
 
     <?php } ?>

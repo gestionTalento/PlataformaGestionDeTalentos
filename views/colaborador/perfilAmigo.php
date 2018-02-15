@@ -42,9 +42,7 @@ Modal::end();
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 <script type="text/javascript">
-
                     function contarCaracteres(campo, campo_conteo, limite_maximo) {
-
                             if(campo.value.length > limite_maximo)
                          { // Si es muy largo, lo cortamos!
                          campo.value = campo.value.substring(0, limite_maximo); // Substring toma del principio, osea 0, hasta el limite máximo de caracteres.  
@@ -57,8 +55,6 @@ Modal::end();
                         console.log(limite);
                         }
                     }
-
-
 
     function rotate(idPost) {
 
@@ -74,7 +70,6 @@ Modal::end();
 
 
     }
-
      function rotates(rutColaborador) {
 
         $.get("index.php?r=colaborador/rotate&rutColaborador=" + rutColaborador + "",
@@ -90,10 +85,9 @@ Modal::end();
             alert("No existe conexion a internet");
             // Handle error here
         });
-
-
     }
 </script>
+
 <script>
       function contarCaracteress(campo, limite_maximo, id) {
                             if(campo.value.length > limite_maximo)
@@ -109,10 +103,7 @@ Modal::end();
                         }
                     }
 
-
-    
     function enviar(post, rut) {
-
 
         var comentario = $("#comentario-" + post + "").val();
 
@@ -132,16 +123,12 @@ Modal::end();
 
         if (dato == true && valid == 2) {
 
-
-
             $.get("index.php?r=rpost/comentario&rutPersona=" + rut + "&idPost=" + post + "&comentario=" + comentario + "",
                 function (dato) {
                  
                     var data = JSON.parse(dato);
                     $('#' + post).html('<a class="pull-left" href="#"><img style="-ms-transform: rotate('+ data.rotate + 'deg);-webkit-transform: rotate('+ data.rotate + 'deg);transform: rotate('+ data.rotate + 'deg);"class="avatar" alt="Avatar" src="../web/img/perfil/' + data.foto + '"></a><div class="comment-body"><div class="comment-heading"><h4 class="comment-user-name"><a href="#">' + data.nombre + ' ' + data.apellidos + '</a></h4><h5 class="time">Ahora</h5></div><p style="text-transform: capitalize;">' + comentario + '</p></div>');
                     $("#comentario-" + post + "").val('');
-
-                    
 
 
                 }).fail(function () {

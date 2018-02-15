@@ -51,8 +51,8 @@ AppAsset::register($this);
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <style>
 
+    <style>
 
         .navbar-principal .navbar-brand, .navbar-principal .navbar-brand li a:visited, .navbar-principal .navbar-nav li a {
         color: #ffffff;
@@ -73,6 +73,7 @@ AppAsset::register($this);
             border-color: rgba(202, 86, 67, 0.42);
             box-shadow: 0 2px 2px -2p xrgba(0, 0, 0, .52);*/
         }
+
          .navbar-principal .navbar-nav .open a, .navbar-principal .navbar-nav .open a:hover, .navbar-principal .navbar-nav li a:hover, .navbar-principal .navbar-nav li a:focus, .navbar-principal .navbar-nav .active a, .navbar-principal .navbar-nav .active a:hover {
             color: #fff;
                  background-color: #343434 !important;
@@ -82,23 +83,28 @@ AppAsset::register($this);
         a.navbar-brand {
             padding: 14px 8px!important;
         }
+
         div#fotol {
             max-height: 390px;
         }
+
         img#logo {
-            width: 114px;
-            margin-top: -5px;
+            width: 51%!important;
+            margin-left: 13%!important;
+            margin-top: -10%!important;
         }
+        
         ul.nav.navbar-nav.navbar-right {
             color: #fff;
             background-color: #343434;
-        margin-top: -40px!important;
-            
+            margin-top: -40px!important;
         }
+
         video#video2 {
             width: 100%;
             height: 480px;
         }
+
         .post .post-footer .comments-list .comment .avatar {
             width: 45px!important;
             height: 45px!important;
@@ -115,21 +121,21 @@ AppAsset::register($this);
             font-weight: bold;
         }
 
-
-
         video::-internal-media-controls-download-button {
             display:none;
         }
+
         .file-actions {
             display: none;
         }
+
         textarea.form-control.input-lg.p-text-area {
             color: #000000!important;
         }
+
         video::-webkit-media-controls-enclosure {
             overflow:hidden;
         }
-
 
         video::-webkit-media-controls-panel {
             width: calc(100% + 30px); /* Adjust as needed */
@@ -170,8 +176,8 @@ AppAsset::register($this);
             }
             aside {
                 width: 290px !important; 
-    max-width: 290px;
-}}
+                max-width: 290px;
+}           }
 
 
 

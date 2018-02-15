@@ -313,7 +313,7 @@ img.imgpublicidad {
     @media screen and (max-width: 768px) {
         .profile-info-right {
         position: relative;
-        top: -134px;
+        top: -89px;
         padding: 0px 0;
     }
 
@@ -921,7 +921,7 @@ img.imgpublicidad {
     margin-right: -26%;
 }
            a#letra {
-            padding: 3px;
+            padding: 0px;
             font-size: 12px;
 
             }
@@ -1120,13 +1120,13 @@ a {
     margin-left: 4%;
             }
            a#letra {
-            padding: 3px;
+            padding: 0px;
             font-size: 12px;
 
             }
             .container-fluid.coment {
     margin-left: -1%;
-    margin-right: -26%;
+    margin-right: -26%!important;
 }
             .content-footer span a {
                 color: #fff;
@@ -1324,7 +1324,7 @@ img.fotocomentario {
     margin-right: -26%;
 }
            a#letra {
-            padding: 3px;
+            padding: 0px;
             font-size: 12px;
 
             }
@@ -1438,7 +1438,8 @@ a.navbar-brand {
     }
     button.btn.btn-lg.btn-raised.btn-success.procesos {
     text-transform: uppercase;
-   background-color: #313131;
+     font-family: 'Roboto', sans-serif;
+   background-color: 343434;
     padding-top: 4px;
     border-color: white;
     width: 184px;

@@ -209,27 +209,24 @@ Modal::end();
                 <div class="col-md-4 hidden-xs">
                     <div class="profile-info-left">
                         <div class="text-center">
-
-
                             <?= Html::img('@web/img/perfil/' . $perfil->rfoto, ['alt' => 'Avatar', 'width' => 200, 'class' => 'avatar img-circle perfilll', 'id' => 'colaborador-' . $model->rutColaborador]); ?>
                             <h2><?php echo $model->nombreColaborador . " " . $model->apellidosColaborador; ?></h2>
                         </div>
+
                         <div style="text-align: center!important;" class="action-buttons">
                             <div class="row">
                                 <div class="col-xs-12">
-
                                     <?= Html::button('Actualiza tus datos', ['value' => Url::to('index.php?r=colaborador/foto&rutColaborador=' . $model->rutColaborador . ''), 'class' => 'act btn btn-lg btn-raised btn-success actualiza', 'id' => 'modalButton']) ?>
                                     <button  onclick="rotates(<?php echo $model->rutColaborador; ?>);" class="btn btn-lg btn-raised btn-success rota">
                                         Rotar foto
-                 
+                                    <i class="fa fa-undo" aria-hidden="true"></i>
                                     </button>
                                 </div>
-
                             </div>
                         </div>
                         
                         <div class="section" align="center">
-                            <h3>Mi Valoracion</h3>
+                            <h3>Mi Valoración</h3>
                             <p> <span id="a" class="badge"><?php echo $estadistica->rcomentarios; ?></span><br>Comentarios Realizados</p>
                             <p><span id="b" class="badge"><?php echo $estadistica->rcomentariosr; ?></span><br>Comentarios Recibidos</p>
                             <p><span id="c" class="badge"><?php echo $estadistica->rlikes; ?></span> <br>Me gusta Realizados</p>
@@ -238,10 +235,10 @@ Modal::end();
 
                         <div class="section" align="center">
                             <h3>Mis Procesos </h3>
-                            <button class="btn btn-lg btn-raised btn-success procesos">
+                            <button  onclick="location.href='http://www.flesan.cl'" target="_blank" class="btn btn-lg btn-raised btn-success procesos" title="Clima Flesan">
                                 <i class="fab fa-telegram-plane" aria-hidden="true"></i> Clima
                             </button>
-                            <button class="btn btn-lg btn-raised btn-success procesos">
+                            <button class="btn btn-lg btn-raised btn-success procesos ">
                                 <i class="fab fa-telegram-plane" aria-hidden="true"></i> Desempeño
                             </button>
                             <button class="btn btn-lg btn-raised btn-success procesos">
@@ -265,12 +262,8 @@ Modal::end();
                         <div class="section" align="center">
                             <h3>Mis Compañeros</h3>
                             <div class="widget panel-friends">
-
                                 <div class="widget-body bordered-top bordered-red text-center">
- 
                                     <ul class="friends">
-
-
                                         <?php
                                         $rutColaborador = $model['rutColaborador'];
                                         $model2 = BuscarController::encuentraAmigos($model['rutColaborador']);
@@ -279,40 +272,27 @@ Modal::end();
                                             $modell3 = BuscarController::findColaboradorRut($amigo["rut2"]);
                                             
                                             $perfilamigo = BuscarController::findPerfiles($modell3["idperfilRed"]);
-                                            
-
                                             ?>
-
+                                            
                                             <li>
-
-                                               <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$modell3["rutColaborador"]; ?>">
-                                               
+                                                <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$modell3["rutColaborador"]; ?>">
                                                     <img style="-ms-transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
                                                          -webkit-transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
                                                          transform: rotate(<?php echo $perfilamigo[0]['rrotador']; ?>deg);
-
-                                                         " src="../web/img/perfil/t/<?php echo $perfilamigo[0]["rfoto"]; ?>" title="<?php echo $modell3["nombreColaborador"] . " " . $modell3['apellidosColaborador']; ?>" class="img-responsive tip">
-
+                                                        " src="../web/img/perfil/t/<?php echo $perfilamigo[0]["rfoto"]; ?>" title="<?php echo $modell3["nombreColaborador"] . " " . $modell3['apellidosColaborador']; ?>" class="img-responsive tip">
                                                 </a>
-
                                             </li>
-
                                         <?php } ?>
-
                                     </ul>
-
                                 </div>
-
                             </div>
                         </div>
-
-
-
                     </div>
                 </div>
+                
+
                 <div class="col-md-8 col-lg-8 col-xs-12">
                     <div class="profile-info-right">
-
                         <div class="tab-content">
                             <style>
                                 .fb-status-update-entry textarea {
@@ -330,18 +310,13 @@ Modal::end();
                                     padding-top: 5px;
                                 }
                             </style>
-                            
-
-                                    <div class="col-md-12 col-sm-12">    
+                        <div class="col-md-12 col-sm-12">    
                             <h2><p class="act">Actividades en la Red</p></h2>
-                            <div class="panel panel-default publicador">
-                                <div class="panel-body publicador" >
-
-                                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['colaborador/post']]); ?>
-
+                                <div class="panel panel-default publicador">
+                                     <div class="panel-body publicador" >
+                                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['colaborador/post']]); ?>
+                                    
                                     <div class="row">
-
-
                                         <input type="hidden" name="rutColaborador" value="<?php echo $rutColaborador; ?>">
                                         <input type="hidden" name="rut2" value="<?php echo $rut2; ?>">
                                         <input type="hidden" name="lugar" value="<?php echo $lugar; ?>">
@@ -349,41 +324,30 @@ Modal::end();
 
                                     <div class="media">
                                         <div class="media-left media-top">
-
-                                        </div>
+                                            </div>
                                         <div class="media-body">
                                             <div class="form-group">
                                                 <!-- rows="2" means "display the textarea as 2 rows high". The user can
                                                      enter more than 2 rows of text. -->
-                                                <div class="col-md-2 col-xs-4">
-
-
-                                                    <img alt="Avatar" style="-ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+                                            <div class="col-md-2 col-xs-4">
+                                                <img alt="Avatar" style="-ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
                                                          -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
                                                          transform: rotate(<?php echo $perfil->rrotador; ?>deg);" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>" title="<?php echo $model->nombreColaborador . " " . $model->apellidosColaborador; ?>" class="media-object avatar">
                                                     <br>
-                                                </div>
-
+                                            </div>
                                                 <div class="col-md-10 col-xs-7">
                                                     <?= Yii::$app->session->getFlash('error'); ?>
                                                     <textarea onKeyDown="contarCaracteres(this.form.rdescripcionPost, this.form.remLen, 180);" placeholder="Que estas pensando hoy??? " maxlength="180"  name="rdescripcionPost" data-ls-module="charCounter" placeholder="Que estas pensando hoy??? " rows="5" maxlength="180" class="form-control input-lg p-text-area"></textarea>
                                                     <p>Contador: <font id="contador">180</font></p>
                                                     <br>
                                                 </div>       
-
                                             </div>
                                         </div>
                                     </div>
 
-
                                     <ul class="nav nav-pills">
                                         <li role="presentation" class="active">
-
-
                                             <?= $form->errorSummary($model); ?>
-
-
-
                                             <?=
                                             $form->field($model3, 'file')->widget(FileInput::classname(), [
                                                 'pluginOptions' => [
@@ -398,7 +362,6 @@ Modal::end();
                                             ?>
 
                                         </li>
-
                                         <li role="presentation" class="active">
                                             <button class="btn btn-primary"  type="submit" data-toggle="collapse" data-target="#demo1" ><span class=" glyphicon glyphicon-pencil">
                                                 </span> <strong>Publicar</strong></button>
@@ -407,20 +370,13 @@ Modal::end();
                                     </ul>
                                 </div>
 
-
                                 <?php ActiveForm::end(); ?>
-
-
-
 
                             </div>
 
 
-
                             <!-- activities -->
                             <div class="tab-pane fade in active" id="activities">
-
-
                                 <div class="conatiner" style="margin:35px auto;">
                                     <div class="row">
                                         <div class="col-md-12 results"></div>
@@ -431,6 +387,7 @@ Modal::end();
                                     <button class="btn btn-block btn-primary hidden-lg hidden-md" onclick="myContent2();">Cargar mas!</button>
 
                                 </div>
+
                                 <script>
                                     var mypage = 1;
                                     mycontent(mypage);
@@ -461,14 +418,11 @@ Modal::end();
                                         })
                                     }
 
-
                                     function myContent2() {
                                         mypage++;
                                         mycontent(mypage);
                                     }
                                 </script>
-
-
 
                             </div>
                             <!-- end activities -->
@@ -483,41 +437,24 @@ Modal::end();
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 hidden-xs">
-
-                       <div class="profile-info-derecho">
-                   <div class="text-center">
+                    <div class="profile-info-derecho">
+                        <div class="text-center">
                             <?php foreach ($publicidad as $p) {
-                  ?>   
-                                                       
-                               <a href="<?php echo $p["rlink"];?> " target="_blank"><img style="margin-right:10px" class="imgpublicidad" src="../web/img/publicidad/<?php echo $p["rfoto"]; ?>" ><br>    
+                                ?>                         
+                               <a href="<?php echo $p["rlink"];?> " target="_blank"><img style="margin-right:10px" class="imgpublicidad" title="¡Click Aquí!" src="../web/img/publicidad/<?php echo $p["rfoto"]; ?>" ><br>    
                             </a>
-                                                    <?php
-                                                } ?>
-                                    
-                                                           
-                          
-                            
-                        
+                                <?php
+                                } ?>
                         </div>
-                        </div>
-                        </div>
-
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
-
 </div>
-
-
-
-
-                  
-                </div>
+</div>
 </div>
