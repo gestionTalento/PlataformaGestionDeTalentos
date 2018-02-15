@@ -20,12 +20,12 @@
  
     <section id="blog-section" class="col-md-12 col-sm-12" >
 
-        <div class="container-fluid cc">
+        <div class="container-fluid ">
             <div class="row">
-                <div class="col-md-6 ">
+                <div class="col-md-12">
                     <div class="row">
 
-                        <div class="col-sm-12 col-md-8 imagen">
+                        <div class="col-sm-12 col-md-12 imagen">
                             <aside>
                                 <div class="modal fade fullscreen-modal " id="m<?php echo $post["ridPost"]; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                           <div class="modal-dialog">

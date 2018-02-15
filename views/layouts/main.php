@@ -243,7 +243,7 @@ AppAsset::register($this);
 
         <nav class="navbar navbar-default navbar-fixed-top navbar-principal"  >
 
-            <div class="container">
+            <div class="container-fluid">
 
                 <div class="navbar-header">
 
@@ -349,7 +349,7 @@ AppAsset::register($this);
 
         <?php $this->beginBody() ?>
 
-        <div class="container">
+        <div class="container-fluid">
 
 
 

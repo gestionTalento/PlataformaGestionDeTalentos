@@ -199,6 +199,8 @@ Modal::end();
 </script>
    
 
+
+
 <div class="container-fluid" style="margin-top:150px;">
     <div class="row-fluid">
         <div class="col-md-10 col-xs-12 col-sm-12  animated fadeInLeft">
@@ -308,7 +310,7 @@ Modal::end();
 
                     </div>
                 </div>
-                <div class="col-md-8 col-xs-12">
+                <div class="col-md-8 col-lg-8 col-xs-12">
                     <div class="profile-info-right">
 
                         <div class="tab-content">
@@ -328,77 +330,8 @@ Modal::end();
                                     padding-top: 5px;
                                 }
                             </style>
-                            <!--- misiones
+                            
 
-                    <h2><p class="misiones">Misiones de la Semana</p></h2>
-                        <div class="col-md-12 miss">                                 
-                            <div class="bs-example">
-                                
-                                <div class="panel-group" id="accordion">
-                                <?php
-                                $i=0;
-                                 foreach ($mision as $m) {
-                                                        ?> 
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                            <?php echo $m["wiconografia"]; ?>
-
-
-
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $m["widMision"]; ?>"><?php echo $m["wnombre"]; ?></a>
-                                            
-                                            </h4>   
-                                        </div>
-                                        <div id="collapse<?php echo $m["widMision"]; ?>" class=" panel-collapse collapse <?php if($i==0){echo "in"; $i++;}else{} ?>">
-                                            <div class="panel-body">
-                                                <img style="margin-right:10px" class="imgmision" src="../web/img/mision/<?php echo $m["wfoto"]; ?>" align="left"> 
-                                                <br><p class="misiontext"><?php echo $m["wdescripcion"] ?> <a href="https://www.tutorialrepublic.com/html-tutorial/" target="_blank">Leer Más</a><br>  </p><p class="misiontextestado" > <i class="fas fa-check-circle"></i> Completada <button class="button-mision btn-lg btn-raised misiones">
-                                        Publicar </button></p>
-                                                
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                      <?php
-                                        } ?>
-
-                                    </div>
-                                </div>          
-                            </div>   
-                                <br>
--->
-<!---
-                                        <div class="col-sm-10 col-md-12 tare">   
-                                         <h2 tarea><p class="tareas">Mis Tareas</p></h2>
-                                        <table class="table table-responsive table-striped carla">
-                                            <thead>
-                                             <tr>
-                                              <th>Actividad</th>
-                                               <th>Fecha de Vencimiento</th> 
-                                               <th>Estado</th> 
-                                               <th> </th>
-                                             </tr>
-                                             </thead>
-                                             <tbody>
-                                                 <?php foreach ($tarea as $t) {
-                                                    ?>      
-                                                    <tr>
-                                                        <td><?php echo $t["wnombreTarea"]; ?></td>
-                                                        <td><?php echo $t["wfechafin"]; ?></td>
-                                                        <td><?php echo $t["westado"]; ?></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <?php
-                                                } ?>
-                                             </tbody>
-                                            
-                                        </table>
-                                         
-                                          </div>   
-                                        <br>
-                                    -->
                                     <div class="col-md-12 col-sm-12">    
                             <h2><p class="act">Actividades en la Red</p></h2>
                             <div class="panel panel-default publicador">
@@ -555,17 +488,9 @@ Modal::end();
                         </div>
                     </div>
                 </div>
+                <div class="col-md-2 hidden-xs">
 
-
-            </div>
-        </div>
-    </div>
-    
-</div>
-
-<div class="col-md-2 hidden-xs">
-
-                       <div class="profile-info-publicidad ">
+                       <div class="profile-info-derecho">
                    <div class="text-center">
                             <?php foreach ($publicidad as $p) {
                   ?>   
@@ -582,6 +507,15 @@ Modal::end();
                         </div>
                         </div>
                         </div>
+
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
 
 
                   

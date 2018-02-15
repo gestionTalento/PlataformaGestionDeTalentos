@@ -11,12 +11,12 @@ use yii\helpers\Html;
 
     <section id="blog-section" class="col-md-12 col-sm-12" >
 
-        <div class="container-fluid cc">
+        <div class="container-fluid ">
             <div class="row">
-                <div class="col-md-6 ">
+                <div class="col-md-12 ">
                     <div class="row">
 
-                        <div class="col-sm-12 col-md-8 imagen">
+                        <div class="col-sm-12 col-md-12 imagen">
                             <aside>
                                 
    <p style="text-align: center;">

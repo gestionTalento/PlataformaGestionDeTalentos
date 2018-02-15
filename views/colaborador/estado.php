@@ -5,15 +5,15 @@ use yii\helpers\Html;
 
 
 
- <section id="blog-section" class="col-md-12" >
-        <div class="container-fluid cc">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="row">
+ <section id="blog-section" class="col-md-12 col-sm-12" >
+        <div class="container-fluid">
+            <div class="row estado">
+                <div class="col-md-12">
+                    <div class="row estado">
 
-                        <div class="col-md-8 imagen">
+                        <div class="col-sm-12 col-md-12 imagen">
                             <aside>
-                            <div class="content-title" id="m<?php echo $post["ridPost"]; ?>">
+                            <div class="content-title" style="height: 120px" id="m<?php echo $post["ridPost"]; ?>">
                             <div class="post-description text-left">
 
                                 <h3><p style="margin-top: 24px;" id="estado"><?php

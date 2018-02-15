@@ -29,6 +29,12 @@ button.button-mision.btn-lg.btn-raised.misiones {
 
 
 }
+.panel.panel-default.publicador {
+    max-width: 97%;
+    margin-right: 1%;
+    padding-left: 1%;
+    margin-left: 3%;
+}
 .navbar {
             position: fixed!important;
             max-height: 50px;
@@ -119,8 +125,8 @@ p.misiontext {
 }
 
 .container-fluid.coment {
-    margin-left: -15px;
-    margin-right: -1px;
+        margin-left: 2%;
+    margin-right: -20%;
 }
 .panel.panel-default  {
     border-radius: 0px!important;
@@ -203,7 +209,10 @@ tbody {
         margin: -30px -30px 0 -30px;
     }
     .profile-header-background img {
-        width: 100%;
+    width: 100%;
+    margin-top: -5%;
+ 
+}
 
     }
     .comment{
@@ -218,14 +227,18 @@ tbody {
     border-top: 0;
     background-color: #206c7d;
 }
-.profile-info-publicidad{
+.profile-info-derecho{
+
     position: fixed;
     overflow: scroll;
     min-height: 100%;
-    top: 17px;
+    top: 3%;
+    max-width: 14%;
     width: 200px;
-    z-index: -2;
+    z-index: 0;
     height: 100%;
+   margin-left: 52%;
+ 
    
 }
 img.imgpublicidad {
@@ -233,13 +246,15 @@ img.imgpublicidad {
     background-color: #e4e4e4;
    
 }
+ 
+
     .profile-info-left {
      position: fixed;
      min-height: 100%;
     top: 7%;
     height: 100%;
     overflow: scroll;
-    margin-right: 950px;
+    margin-right: 75%;
      
     -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
@@ -281,6 +296,7 @@ img.imgpublicidad {
     }
 
     .profile-info-right {
+        margin-left: -5%;
     position: relative;
     top: -83px;
     padding: 0px 0;
@@ -300,10 +316,13 @@ img.imgpublicidad {
         top: -134px;
         padding: 0px 0;
     }
+
         .panel.panel-default.publicador {
     width: 365px;
     margin-left: -30px;
 }
+
+         
     }
 
     .user-follower,
@@ -831,9 +850,7 @@ img.imgpublicidad {
         width: 100%;
         height: 100%;
     }
-    .profile-info-right {
-            
-    }
+    
     .truncate {
         width: 50%;
         white-space: nowrap;
@@ -895,9 +912,14 @@ img.imgpublicidad {
                 left: 5px;
             }
             aside {
-                max-width: 365px;
-                width: 365px;
+                max-width: 150%;
+    width: 115%;
+    margin-left: 4%;
             }
+            .container-fluid.coment {
+    margin-left: -1%;
+    margin-right: -26%;
+}
            a#letra {
             padding: 3px;
             font-size: 12px;
@@ -910,7 +932,12 @@ img.imgpublicidad {
                 padding-top: 7px;
                 text-decoration: none;
                 transition: 0.5s;
-        }}
+        }
+        .panel.panel-default.publicador {
+    max-width: 116%;
+    margin-left: -6%;
+}
+    }
 
         @media (min-width: 768px) {
             .fullscreen-modal .modal-dialog {
@@ -1037,10 +1064,12 @@ a {
             color:#F39C12;
         }
         aside{
+            position: relative;
             background-color:  white;
-            margin-top: 30px;
-              width: 533px;
-            margin-left: -6px;
+            width: 147%;
+                max-width: 125%;
+    margin-top: 10%;
+    margin-left: -1%;
             -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);}
@@ -1073,15 +1102,32 @@ a {
             .user-ditels {
                 left: 5px;
             }
+
+            .profile-info-left.amigo {
+            width: 97%;
+            padding-top: 18%!important;
+            margin-left: 11%;
+          
+        }
+        .panel.panel-default.publicador.amigo {
+    margin-left: 5%!important;
+    margin-right: 2%!important;
+}
+
             aside {
-                max-width: 365px;
-                width: 365px;
+                max-width: 150%;
+    width: 115%;
+    margin-left: 4%;
             }
            a#letra {
             padding: 3px;
             font-size: 12px;
 
             }
+            .container-fluid.coment {
+    margin-left: -1%;
+    margin-right: -26%;
+}
             .content-footer span a {
                 color: #fff;
                 display: inline-block;
@@ -1113,10 +1159,7 @@ a {
             padding-right: 20px;
             padding-top: 5px;
             text-align: right;}
-            section#blog-section {
-    max-width: 548px;
-    padding-right: 3px;
-}
+            
 
 p#estado {
     margin-top: 18px;
@@ -1141,8 +1184,8 @@ a#letra {
 }
 
 section#blog-section {
-    max-width: 548px;
-    padding-right: 3px;
+    max-width: 82%;
+    padding-right: 0%;
 }
 
 h4.nombre {
@@ -1247,21 +1290,7 @@ img.fotocomentario {
         .content-footer span a:hover{
             color:#F39C12;
         }
-        aside{
-            background-color:  white;
-             width: 533px;
-            margin-left: -6px;
-            margin-top: 30px;
-            -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
-            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
-            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);}
-        aside .content-footer>img {
-            width: 33px;
-            height: 33px;
-            border-radius: 100%;
-            margin-right: 10px;
-            border: 2px solid #fff;
-        }
+        
 
         .user-ditels {
                 width: 338px;
@@ -1286,9 +1315,14 @@ img.fotocomentario {
                 left: 5px;
             }
             aside {
-                max-width: 365px;
-                width: 365px;
+                max-width: 150%;
+    width: 115%;
+    margin-left: 4%;
             }
+            .container-fluid.coment {
+    margin-left: -1%;
+    margin-right: -26%;
+}
            a#letra {
             padding: 3px;
             font-size: 12px;
@@ -1344,9 +1378,19 @@ i.fa.fa-caret-right {
 
 /* PERFIL AMIGO */
 
+.panel.panel-default.publicador.amigo {
+    max-width:  100%;
+    margin-left: 3%;
+    margin-right: 2%;
+}
+
+ul.nav.nav-pills.nav-pills-custom-minimal.custom-minimal-bottom {
+    padding-top: 96px;
+}
+
 .panel.am  {
-    max-width: 535px;
-    margin-left: 7px;  
+   max-width: 93%;
+    margin-left: 4%;
 -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);}
@@ -1407,7 +1451,7 @@ a.navbar-brand {
 
     .profile-info-left.amigo {
         
-            width: 290px;
+        width: 82%;
        -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
@@ -1452,7 +1496,7 @@ a.navbar-brand {
         color: #696565;
     }
 
-    .profile-info-right .tab-content {
+    .profile-info-right.amigo .tab-content {
         padding: 30px 0;
         background-color: transparent;
     }
@@ -1464,9 +1508,9 @@ a.navbar-brand {
         margin: -34px -30px 0 -30px
     }
 
-        .profile-info-right {
+        .profile-info-right.amigo {
             position: relative;
-            top: -70px;
+            top: 10px!important;
         }
     }
 
@@ -1842,8 +1886,8 @@ a.navbar-brand {
         font-size: 13px;
     }
     .container-fluid.coment {
-    margin-left: -14px;
-    margin-right: 12px;
+        margin-left: 2%;
+    margin-right: -20%;
 }
     .panel-shadow {
         -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);

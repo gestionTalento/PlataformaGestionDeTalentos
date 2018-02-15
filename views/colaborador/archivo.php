@@ -5,17 +5,14 @@ use yii\helpers\Html;
 <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-<style type="text/css">
 
-</style>
-
- <section id="blog-section" class="col-md-12">
-        <div class="container-fluid cc">
+ <section id="blog-section" class="col-md-12 col-sm-12" >
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="row">
 
-                        <div class="col-md-8 imagen">
+                        <div class="col-sm-12 col-md-12 imagen">
                             <aside>
 
         <div class="activity-attachment" >

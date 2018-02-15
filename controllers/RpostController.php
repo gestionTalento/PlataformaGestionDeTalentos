@@ -721,11 +721,11 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
     public function actionEliminar($idPost){
 
         $actividad = BuscarController::findActividad($idPost)->delete();
-    	//$model = BuscarController::findPost($idPost)->delete();
-        if($actividad->delete()){
-        Yii::app()->db->createCommand("Delete from Rpost where ridPost={$actividad->ridpost}")->execute();
-        }
-    	return true;
+    	$model = BuscarController::findPost($idPost)->delete();
+        
+            return true;
+        
+
     }
 
     public function actionView($idPost, $idAmigos){

@@ -233,7 +233,7 @@ Modal::end();
 
 
 
-                                <?= Html::img('@web/img/perfil/' . $perfil->rfoto, ['alt' => 'Avatar', 'width' => 200, 'class' => 'avatar perfilll', 'id' => 'colaborador-' . $model->rutColaborador]); ?>
+                                <?= Html::img('@web/img/perfil/' . $perfil->rfoto, ['alt' => 'Avatar', 'width' => 200, 'class' => 'avatar img-circle perfilll', 'id' => 'colaborador-' . $model->rutColaborador]); ?>
 
                             <h2><?php echo $model->nombreColaborador . " " . $model->apellidosColaborador; ?></h2></h2>
                         </div>
@@ -348,15 +348,15 @@ Modal::end();
 
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="profile-info-right">
+                <div class="col-md-8">
+                    <div class="profile-info-right amigo">
                         <ul class="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom">
                             <li class="active"><a href="#activities" data-toggle="tab">Mi Muro</a></li>
                           
                         </ul>
                         <div class="tab-content">
                             <?php if ($global == $model->rutColaborador) { ?> 
-                            <div class="panel panel-default publicador">
+                            <div class="panel panel-default publicador amigo">
                           <div class="panel-body">
                         
                              <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['colaborador/post']]); ?>

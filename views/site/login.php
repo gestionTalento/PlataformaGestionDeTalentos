@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
     }
     
     html {
-        background: url(bg.jpg) no-repeat bottom right;
+        background: url(flesan.jpg) no-repeat bottom right;
         background-size: cover;
     }
     .col-sm-4.col-md-4 {
@@ -59,11 +59,12 @@ $this->params['breadcrumbs'][] = $this->title;
         line-height: 0.35em;
     }
     img {
-    max-width: 60%;
-    margin-left: 20%;
+    max-width: 76%;
+    margin-left: 15%;
+    
 }
      label.control-label {
-    color: #193276;
+    color: #000000;
 }
 </style>
 
@@ -76,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
 
             <?=
-            Html::img('web/armas.png', $options = [
+            Html::img('logo.png', $options = [
                 'class' => 'jp',
             ]);
             ?></div>
