@@ -86,6 +86,7 @@ AppAsset::register($this);
             max-height: 390px;
         }
         img#logo {
+            width: 114px;
             margin-top: -5px;
         }
         ul.nav.navbar-nav.navbar-right {

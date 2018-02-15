@@ -16,6 +16,7 @@ class LoginAsset extends AssetBundle
         'css/animate.min.css',
         'css/font-awesome.min.css',
         'css/timeline.css',
+        'css/perfil.css',
     ];
     public $js = [
         'js/bootstrap.min.js',
