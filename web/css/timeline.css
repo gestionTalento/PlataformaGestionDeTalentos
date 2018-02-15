@@ -553,7 +553,7 @@ button#modalButton {
   margin-right: 15px;
   font-size: 13px;
   letter-spacing: 1px;
-  font-family: DINPro-Light;
+  font-family: 'Roboto', sans-serif !important;
 }
 .post .post-description .stats .stat-item .icon {
   margin-right: 1px;
@@ -1164,7 +1164,7 @@ div.about-tab div.about-tab-content:not(.active){
 }
 
 .chat-sidebar > h4 {
-    font-family: 'Anton', sans-serif;
+    font-family: 'Roboto', sans-serif !important;
 }
 
 .chat-sidebar > ul {
@@ -2212,7 +2212,7 @@ h4, .h4 {
 }
 
 .profile .user-info-left h2 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 1.3em;
   margin-bottom: 20px;
 }
@@ -2232,7 +2232,7 @@ h4, .h4 {
 }
 
 .profile h3, .activity h3, .settings h3 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 1.2em;
   margin-top: 0;
   margin-bottom: 20px;
@@ -2334,7 +2334,7 @@ hr {
 }
 .table thead > tr > th > a span:after {
   content: "\f0dc";
-  font-family: FontAwesome;
+  font-family: 'Roboto', sans-serif !important;
   font-style: normal;
   font-weight: normal;
   text-decoration: inherit;

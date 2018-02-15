@@ -1,8 +1,6 @@
-html,
 
-::-webkit-scrollbar { 
-display:none;
-}
+
+
 .wrap {
     min-height: 100%;
     height: auto;

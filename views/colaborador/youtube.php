@@ -16,7 +16,7 @@ use yii\helpers\Html;
                             <aside>
                             <div class="content-title" id="m<?php echo $post["ridPost"]; ?>">
                             <div class="post-description text-left">
-                             <p id="estado">
+                             <p id="est" align="center">
                                 <?php
                                 $mystring = $post['rdescripcionPost'];
                                 $findme = "youtube";
@@ -28,13 +28,15 @@ use yii\helpers\Html;
                                     echo $post['rdescripcionPost'];
                                 }
                                 ?>
+
                         </p>
+                        
                          </div>
                             </div>
 
                             <div class="content-footer">
                                     <img class="user-small-img" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=" . $posteador[0]["rutColaborador"]; ?>" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>">
-                                    <span style="font-size: 16px;color: #fff;"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></span>
+                                   <a id="letra" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a>
                                     <span class="pull-right">
 
                                         <?php
@@ -262,7 +264,7 @@ img.fotocomentario {
         .content-title{padding:5px;background-color:#fff;}
         .content-title h3 a{color:#34495E;text-decoration:none; transition: 0.5s;}
         .content-title h3 a:hover{color:#F39C12; }
-        .content-footer{background-color:#16A085;padding:10px;position: relative;}
+        .content-footer{background-color:#343434;padding:10px;position: relative;}
         .content-footer span a {
             color: #fff;
             display: inline-block;
@@ -294,7 +296,7 @@ img.fotocomentario {
                 padding-bottom: 85px;
                 position: absolute;
                 border: solid 2px #fff;
-                background-color: #16a085;
+                background-color: #343434;
                 right: 29px;
                 display: none;
                 z-index: 1;
@@ -306,8 +308,23 @@ img.fotocomentario {
             .user-ditels {
                 left: 5px;
             }
+            aside {
+                max-width: 365px;
+                width: 365px;
+            }
+           a#letra {
+            padding: 3px;
+            font-size: 12px;
 
-        }
+            }
+            .content-footer span a {
+                color: #fff;
+                display: inline-block;
+                padding: 1px;
+                padding-top: 7px;
+                text-decoration: none;
+                transition: 0.5s;
+        }}
         .user-small-img{cursor: pointer;}
 
         .content-footer:hover .user-ditels  {
@@ -333,11 +350,10 @@ img.fotocomentario {
             text-align: right;}
 
 p#estado {
-    font-size: 19px;
-    margin-left: 25px;
-    margin-bottom: 70px;
-    padding-top: 0px;
-    font-weight: 300;
+    margin-top: 18px;
+}
+p#est {
+    margin-left: 22px;
 }
 i.fa.fa-caret-right {
     font-size: 21px;

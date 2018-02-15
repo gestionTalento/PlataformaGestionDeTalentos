@@ -30,6 +30,12 @@ h4.nombre {
 h5.fecha {
     font-size: 12px;
 }
+a#letra {
+    color: white;
+    text-transform:  capitalize;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
 
 .container-fluid.coment {
     background-color: white;
@@ -59,7 +65,7 @@ img.fotocomentario {
         }
 
         .navbar {
-            position: relative;
+            position: fixed;
             min-height: 50px;
             margin-bottom: 20px;
             border: 0px solid transparent;
@@ -95,7 +101,7 @@ img.fotocomentario {
         .content-title{padding:5px;background-color:#fff;}
         .content-title h3 a{color:#34495E;text-decoration:none; transition: 0.5s;}
         .content-title h3 a:hover{color:#F39C12; }
-        .content-footer{background-color:#16A085;padding:10px;position: relative;}
+        .content-footer{background-color:#343434;padding:10px;position: relative;}
         .content-footer span a {
             color: #fff;
             display: inline-block;
@@ -116,8 +122,8 @@ img.fotocomentario {
         aside{
             background-color:  white;
             margin-top: 30px;
-            width: 533px;
-    margin-left: -6px;
+            
+            margin-left: -6px;
             -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);}
@@ -127,6 +133,7 @@ img.fotocomentario {
             border-radius: 100%;
             margin-right: 10px;
             border: 2px solid #fff;
+
         }
 
         .user-ditels {
@@ -136,17 +143,35 @@ img.fotocomentario {
                 padding-bottom: 85px;
                 position: absolute;
                 border: solid 2px #fff;
-                background-color: #16a085;
+                background-color: #343434;
                 right: 29px;
                 display: none;
                 z-index: 1;
 
         }
 
-        @media (max-width:768px){
+       @media (max-width:768px){
             .user-ditels {
                 left: 5px;
             }
+            aside {
+                max-width: 365px;
+                width: 365px;
+            }
+           a#letra {
+            padding: 3px;
+            font-size: 12px;
+
+            }
+            .content-footer span a {
+                color: #fff;
+                display: inline-block;
+                padding: 1px;
+                padding-top: 7px;
+                text-decoration: none;
+                transition: 0.5s;
+        }}
+
 
         }
         .user-small-img{cursor: pointer;}
@@ -193,28 +218,59 @@ img.fotocomentario {
         .col-md-6.results {
     width: 47%;
 }
+
+ @media (max-width:768px){
+            .user-ditels {
+                left: 5px;
+            }
+            aside {
+                max-width: 365px;
+                width: 365px;
+            }
+           a#letra {
+            padding: 3px;
+            font-size: 12px;
+
+            }
+            .content-footer span a {
+                color: #fff;
+                display: inline-block;
+                padding: 1px;
+                padding-top: 7px;
+                text-decoration: none;
+                transition: 0.5s;
+        }}
+
         @media (min-width: 768px) {
             .fullscreen-modal .modal-dialog {
                 width: 750px;
             }
+            
         }
+           
+        
         @media (min-width: 992px) {
             .fullscreen-modal .modal-dialog {
                 width: 970px;
             }
+          
+            
         }
         @media (min-width: 1200px) {
             .fullscreen-modal .modal-dialog {
                 width: 1170px;
-            }
+            }}
+                   
         section#blog-section {
-    max-width: 548px;
+    max-width: 350px;
     padding-right: 3px;
 }
 
     </style>
 
+ 
     <section id="blog-section" class="col-md-12 col-sm-12" >
+
         <div class="container-fluid cc">
             <div class="row">
                 <div class="col-md-6 ">
@@ -249,15 +305,16 @@ img.fotocomentario {
     </div>
 </div>
 
-    <a  id="pop<?php echo $post["ridPost"]; ?>" align="center">
+    <a  id="pop<?php echo $post["ridPost"]; ?>" align="center" style="cursor: pointer">
 
-        <img class="img-responsive fondo rotate-<?php echo $post["ridPost"]; ?>" align="center" style="
+        <center><img class="img-responsive fondo rotate-<?php echo $post["ridPost"]; ?>" align="center" style="
         height: : 800px!important;
         -ms-transform: rotate(<?php echo $post['rrotador']; ?>deg);
         -webkit-transform: rotate(<?php echo $post['rrotador']; ?>deg);
         transform: rotate(<?php echo $post['rrotador']; ?>deg);
 
         " src="../web/img/post/<?php echo $post['rfoto']; ?>" alt="...">
+        </center>
     </a>
                                 
                                 <div class="content-title" id="m<?php echo $post["ridPost"]; ?>">
@@ -280,8 +337,8 @@ img.fotocomentario {
                                     </div>
                                 </div>
                                 <div class="content-footer">
-                                    <img class="user-small-img" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=" . $posteador[0]["rutColaborador"]; ?>" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>">
-                                    <span style="font-size: 16px;color: #fff;"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></span>
+                                    <img class="user-small-img"  src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>">
+                                    <a id="letra" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a>
                                     <span class="pull-right">
 
                                         <?php
@@ -362,7 +419,7 @@ img.fotocomentario {
         </div>
         <br>
         <p>Contador: <font id="contadorc-comentario-<?php echo $post["ridPost"]; ?>" >180</font></p>
-        <ul class="comments-list">
+        <ul class="comments-list" style=" list-style-type: none;">
     <?php
     foreach ($comentarios as $c) {
         ?>
@@ -390,4 +447,7 @@ img.fotocomentario {
         </ul>
 
     </div>
+
+   
     </section>
+   

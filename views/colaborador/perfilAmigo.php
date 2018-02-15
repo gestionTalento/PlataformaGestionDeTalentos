@@ -39,13 +39,9 @@ echo "<div id='modalContent'>
 </div>";
 Modal::end();
 ?>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 <style>
-img.fotoavatar {
-    max-height: 90px;
-    max-width: 110px;
-    padding-left: 25px;
-}   
 
 .panel.am  {
     max-width: 535px;
@@ -53,6 +49,7 @@ img.fotoavatar {
 -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);}
+            
 
 .btn.btn-primary.btn-block.btn-file {
     color: #fff;
@@ -63,8 +60,8 @@ img.fotoavatar {
 button.btn.btn-primary {
     margin-left: inherit;
     color: #fff;
-    background-color: #7ecb00;
-    border-color: #7ecb00;
+    background-color: #e8000a;
+    border-color: #e8000a;
 }
 
 a.navbar-brand {
@@ -122,7 +119,7 @@ a.navbar-brand {
         border: 2px solid #fff;
     }
     .profile-info-left h2 {
-        font-family: "DINPro-Medium";
+        font-family: 'Roboto', sans-serif;
         letter-spacing: -1px;
         margin-bottom: 30px;
     }
@@ -466,9 +463,9 @@ a.navbar-brand {
         width: 132px;
          margin-left: -6px;
     color: #fff;
-    background-color: #7ecb00!important;
-    border-color: #7ecb00!important;
-    font-family: DINPro-Light;
+    background-color: #e8000a!important;
+    border-color: #e8000a!important;
+    font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     font-size: 11px;
     height: 30px;
@@ -482,7 +479,7 @@ a.navbar-brand {
         color: #fff;
         background-color: #d7072a!important;
         border-color: #d7072a!important;
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
         font-size: 13px;
     }
@@ -491,7 +488,7 @@ a.navbar-brand {
         color: #fff;
         background-color: #d7072a!important;
         border-color: #d7072a!important;
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
         font-size: 13px;
     }
@@ -502,11 +499,11 @@ a.navbar-brand {
     }
 
     h3 {
-        font-family: DINPro-Medium;
+        font-family: 'Roboto', sans-serif;
     }
 
     p {
-        font-family: arial;
+        font-family: 'Roboto', sans-serif;
     }
 
     a {
@@ -515,13 +512,13 @@ a.navbar-brand {
     }
 
     li {
-        font-family: DINPro-Medium;
+        font-family: 'Roboto', sans-serif;
         font-size: 13px;
         text-transform: uppercase;
     }
 
     a#tituloPublicador {
-        font-family: DINPro-Medium!important;
+        font-family: 'Roboto', sans-serif!important;
         color: #0078B3!important;
         font-size: 16px;
         /* margin-top: 28px; */
@@ -530,7 +527,7 @@ a.navbar-brand {
     img.media-object.avatar {width: 60px;}
 
     small.text-muted {
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         /* text-transform: uppercase; */
         font-size: 12px;
     }
@@ -539,7 +536,7 @@ a.navbar-brand {
         color: #fff;
         background-color: #d7072a!important;
         border-color: #d7072a!important;
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
         font-size: 13px;
     }
@@ -623,7 +620,7 @@ a.navbar-brand {
         color: #193276;
     }
     p#elComentario {
-        font-family: DINPro-Regular;
+        font-family: 'Roboto', sans-serif;
     }
 
     .video-container {
@@ -651,9 +648,9 @@ a.navbar-brand {
 
     button.btn.btn-lg.btn-raised.btn-success.rota {
     color: #fff;
-    background-color: #7ecb00!important;
-    border-color: #7ecb00!important;
-    font-family: DINPro-Light;
+    background-color: #e8000a!important;
+    border-color: #e8000a!important;
+    font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     font-size: 11px;
     height: 30px;
@@ -668,7 +665,7 @@ a.navbar-brand {
         color: #fff;
     background-color: #193276!important;
     border-color: #193276!important;
-    font-family: DINPro-Light;
+   font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     font-size: 13px;
     }
@@ -870,7 +867,7 @@ a.navbar-brand {
         color: #fff;
         background-color: #193276!important;
         border-color: #193276!important;
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
         font-size: 13px;
     }
@@ -1070,7 +1067,7 @@ a.navbar-brand {
                                                     'showRemove' => false,
                                                     'ShowLabel' => false,
                                                     'showUpload' => false,
-                                                    'browseClass' => 'btn btn-primary btn-block',
+                                                    'browseClass' => 'btn btn-primary',
                                                     'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
                                                     'browseLabel' => 'Selecciona tu archivo a subir']
                                             ])->label(false);

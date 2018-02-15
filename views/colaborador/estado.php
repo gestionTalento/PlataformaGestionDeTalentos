@@ -16,7 +16,7 @@ use yii\helpers\Html;
                             <div class="content-title" id="m<?php echo $post["ridPost"]; ?>">
                             <div class="post-description text-left">
 
-                                <h3><p style="margin-top: 35px;" id="estado"><?php
+                                <h3><p style="margin-top: 24px;" id="estado"><?php
                                 $cadena_resultante = preg_replace("/((http|https|www)[^\s]+)/", '<a target="_blank" href="$1">$0</a>', $post['rdescripcionPost']);
                                 echo $cadena_resultante;
                                 ?></p>
@@ -25,8 +25,31 @@ use yii\helpers\Html;
                                 </div>
 
                                 <div class="content-footer">
+
+                                 <?php if ($posteador2[0]["rutColaborador"] != 1 ) { ?>
                                     <img class="user-small-img" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=" . $posteador[0]["rutColaborador"]; ?>" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>">
-                                    <span style="font-size: 16px;color: #fff;"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></span>
+                                    <span>
+                                   <a id="letra" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> <i class="fa fa-caret-right" aria-hidden="true" style="color: white"></i> <a id="letra" href="<?php  echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>"><?php echo $posteador2[0]['nombreColaborador'] . " " . $posteador2[0]['apellidosColaborador']; ?>
+                                
+                        </a>
+                                      <a href="
+                                            <?php 
+                                            Yii::$app->session; 
+
+                                            if($posteador[0]["rutColaborador"] == 'rutColaborador'){
+                                                echo "index.php?r=colaborador/compadre&rutAmigo=".'rutcolaborador';
+                                            }else{
+                                                echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"];
+                                            }
+                                            ?>">
+                                              
+                                                </a>
+                                                 
+                         <?php } else { ?>
+                                        <img class="user-small-img" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>">
+                                        <a id="letra" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a>
+                                         <?php } ?>
+                                    </span>
                                     <span class="pull-right">
 
                                         <?php
@@ -69,48 +92,20 @@ use yii\helpers\Html;
 
 
                                     </span>
-                                     <?php if ($posteador2[0]["rutColaborador"] != 1 ) { ?>
+                                 
 
                                     <div class="user-ditels">
                                         <div class="user-img"> <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=" . $posteador[0]["rutColaborador"]; ?>" class="pull-left"><img src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>" alt="Avatar" class="fotoavatar" style="                                               -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);-webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);transform: rotate(<?php echo $perfil->rrotador; ?>deg);
                                     " class="media-object avatar fotoavatar <?php echo $post["rutColaborador1"]; ?>"> </a>     
                                         </div>
                                         <span class="user-full-ditels">
-                                            <p href="
-                                            <?php 
-                                            Yii::$app->session; 
-
-                                            if($posteador[0]["rutColaborador"] == 'rutColaborador'){
-                                                echo "index.php?r=colaborador/compadre&rutAmigo=".'rutcolaborador';
-                                            }else{
-                                                echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"];
-                                            }
-                                            ?>">
-                                                <?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?>
-                                                </p>
-                                                 <i class="fa fa-caret-right" aria-hidden="true"></i>
-                                                <p href="<?php  echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador2[0]["rutColaborador"]; ?>
-                        ">
-                            <?php echo $posteador2[0]['nombreColaborador'] . " " . $posteador2[0]['apellidosColaborador']; ?>
-                                
-                        </p>
-                                    
-                             <i class="fa fa-caret-right" aria-hidden="true"></i> </p>
+                                             <p href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=" . $posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
                                             <p> Fecha: <?php echo $post["rfecha"]; ?></p>
                                         </span>
 
                                     </div>
-                                    <?php } else { ?>
+                                    
 
-                                    <div class="user-ditels">
-                                        <div class="user-img"> <a href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=" . $posteador[0]["rutColaborador"]; ?>" class="pull-left"><img src="../web/img/perfil/t/<?php echo $perfil['rfoto'] ?>" alt="Avatar" class="fotoavatar" style="                                               -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);-webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);transform: rotate(<?php echo $perfil->rrotador; ?>deg);
-                                    " class="media-object avatar fotoavatar<?php if($post["rutColaborador1"]=='rutColaborador'){echo "perfill";} ?>"> </a>  
-                                    </div>   
-                                     <span class="user-full-ditels">
-                                            <p href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=" . $posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a> </p>
-                                            <p> Fecha: <?php echo $post["rfecha"]; ?></p>
-                                        </span> 
-                            <?php } ?>
                                 </div>
                                 </div>
                                 </div>
@@ -143,11 +138,11 @@ use yii\helpers\Html;
         </div>
         <br>
         <p>Contador: <font id="contadorc-comentario-<?php echo $post["ridPost"]; ?>" >180</font></p>
-        <ul class="comments-list">
+        <ul class="comments-list" style="  list-style-type: none;">
     <?php
     foreach ($comentarios as $c) {
         ?>
-                 <li class="comment">
+                 <li  class="comment">
                      <a class="pull-left" href="#">
                      <div class="user-img img-circle"><p><img src="../web/img/perfil/t/<?php echo $c['rfoto']; ?>" alt="avatar" class="fotocomentario" style="-ms-transform: rotate(<?php echo $c['rrotador']; ?>deg);-webkit-transform: rotate(<?php echo $c['rrotador']; ?>deg);transform: rotate(<?php echo $c['rrotador']; ?>deg);"
                       <?php echo $post["rutColaborador1"]; ?>
@@ -172,10 +167,18 @@ use yii\helpers\Html;
 
     </div>
     </section>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <style type="text/css">
 
-a.pull-left {margin-left: -25px;margin-right: 25px;}
 
+
+a.pull-left {margin-left: -25px;margin-right: 25px;}
+a#letra {
+    color: white;
+    text-transform:  capitalize;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
 
 section#blog-section {
     max-width: 548px;
@@ -184,6 +187,13 @@ section#blog-section {
 
 h4.nombre {
     font-size: 12px;
+}
+img.fotoavatar {
+    margin-left: 46px;
+    margin-top: 2px;
+    max-height: 80px;
+    max-width: 111%;
+    align-self: left;
 }
 
 h5.fecha {
@@ -266,7 +276,7 @@ img.fotocomentario {
         .content-title{padding:5px;background-color:#fff;}
         .content-title h3 a{color:#34495E;text-decoration:none; transition: 0.5s;}
         .content-title h3 a:hover{color:#F39C12; }
-        .content-footer{background-color:#16A085;padding:10px;position: relative;}
+        .content-footer{background-color:#343434;padding:10px;position: relative;}
         .content-footer span a {
             color: #fff;
             display: inline-block;
@@ -280,7 +290,7 @@ img.fotocomentario {
         aside{
             background-color:  white;
              width: 533px;
-    margin-left: -6px;
+            margin-left: -6px;
             margin-top: 30px;
             -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
@@ -300,7 +310,7 @@ img.fotocomentario {
                 padding-bottom: 85px;
                 position: absolute;
                 border: solid 2px #fff;
-                background-color: #16a085;
+                background-color: #343434;
                 right: 29px;
                 display: none;
                 z-index: 1;
@@ -310,12 +320,30 @@ img.fotocomentario {
     width: 47%;
 }
 
-        @media (max-width:768px){
+        
+            @media (max-width:768px){
             .user-ditels {
                 left: 5px;
             }
+            aside {
+                max-width: 365px;
+                width: 365px;
+            }
+           a#letra {
+            padding: 3px;
+            font-size: 12px;
 
-        }
+            }
+            .content-footer span a {
+                color: #fff;
+                display: inline-block;
+                padding: 1px;
+                padding-top: 7px;
+                text-decoration: none;
+                transition: 0.5s;
+        }}
+
+        
         .user-small-img{cursor: pointer;}
 
         .content-footer:hover .user-ditels  {
@@ -341,11 +369,9 @@ img.fotocomentario {
             text-align: right;}
 
 p#estado {
-    font-size: 19px;
-    margin-left: 25px;
-    margin-bottom: 70px;
-    padding-top: 0px;
-    font-weight: 300;
+
+    margin-top: 18px;
+
 }
 i.fa.fa-caret-right {
     font-size: 21px;

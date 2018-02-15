@@ -19,7 +19,7 @@ echo "<div id='modalContent'></div>";
 Modal::end();
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <style>
 	.sobre {
 		position:absolute;
@@ -76,7 +76,7 @@ Modal::end();
         border: 2px solid #fff;
     }
     .profile-info-left h2 {
-        font-family: "DINPro-Medium";
+        font-family: 'Roboto', sans-serif;
         letter-spacing: -1px;
         margin-bottom: 30px;
     }
@@ -413,7 +413,7 @@ Modal::end();
         color: #fff;
         background-color: #193276!important;
         border-color: #193276!important;
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
         font-size: 13px;
     }
@@ -422,7 +422,7 @@ Modal::end();
         color: #fff;
         background-color: #d7072a!important;
         border-color: #d7072a!important;
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
         font-size: 13px;
     }
@@ -431,7 +431,7 @@ Modal::end();
         color: #fff;
         background-color: #d7072a!important;
         border-color: #d7072a!important;
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
         font-size: 13px;
     }
@@ -442,11 +442,11 @@ Modal::end();
     }
 
     h3 {
-        font-family: DINPro-Medium;
+        font-family: 'Roboto', sans-serif;
     }
 
     p {
-        font-family: arial;
+        font-family: 'Roboto', sans-serif;
     }
 
     a {
@@ -455,13 +455,13 @@ Modal::end();
     }
 
     li {
-        font-family: DINPro-Medium;
+        font-family: 'Roboto', sans-serif;
         font-size: 13px;
         text-transform: uppercase;
     }
 
     a#tituloPublicador {
-        font-family: DINPro-Medium!important;
+        font-family: 'Roboto', sans-serif!important;
         color: #0078B3!important;
         font-size: 16px;
         /* margin-top: 28px; */
@@ -470,16 +470,16 @@ Modal::end();
     img.media-object.avatar {width: 60px;}
 
     small.text-muted {
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         /* text-transform: uppercase; */
         font-size: 12px;
     }
     h1 {
-    font-family: "DINPro-Medium";
+    font-family: 'Roboto', sans-serif;
     letter-spacing: -1px;
 }
     a {
-        font-family: DINPro-Medium;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
     }
 
@@ -487,7 +487,7 @@ Modal::end();
         color: #fff;
         background-color: #d7072a!important;
         border-color: #d7072a!important;
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
         font-size: 13px;
     }
@@ -566,7 +566,7 @@ Modal::end();
         color: #193276;
     }
     p#elComentario {
-        font-family: DINPro-Regular;
+        font-family: 'Roboto', sans-serif;
     }
 
     .video-container {
@@ -754,7 +754,7 @@ Modal::end();
         color: #fff;
     background-color: #193276!important;
     border-color: #193276!important;
-    font-family: DINPro-Light;
+    font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     font-size: 13px;
     }

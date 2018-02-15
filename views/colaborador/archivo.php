@@ -4,6 +4,7 @@ use yii\helpers\Html;
 ?>
 <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <style type="text/css">
     #blog-section {
     margin-top: -30px;
@@ -35,11 +36,7 @@ img.fotocomentario {
         margin-left: 40px;
     }
 
-img.fotoavatar {
-    max-width: 111%;
-    padding-left: 24px;
-    align-self: left;
-}
+
 img.img-responsive.archivo{
     max-width: 103%;
 }
@@ -148,8 +145,23 @@ a {
             .user-ditels {
                 left: 5px;
             }
+            aside {
+                max-width: 365px;
+                width: 365px;
+            }
+           a#letra {
+            padding: 3px;
+            font-size: 12px;
 
-        }
+            }
+            .content-footer span a {
+                color: #fff;
+                display: inline-block;
+                padding: 1px;
+                padding-top: 7px;
+                text-decoration: none;
+                transition: 0.5s;
+        }}
         .user-small-img{cursor: pointer;}
 
         .content-footer:hover .user-ditels  {
@@ -225,7 +237,7 @@ a {
 
             <div class="content-footer">
                                     <img class="user-small-img" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>">
-                                    <span style="font-size: 16px;color: #fff;"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></span>
+                                    <a id="letra" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a>
                                     <span class="pull-right">
 
                                         <?php
@@ -305,7 +317,7 @@ a {
         </div>
         <br>
         <p>Contador: <font id="contadorc-comentario-<?php echo $post["ridPost"]; ?>" >180</font></p>
-        <ul class="comments-list">
+        <ul class="comments-list" style=" list-style-type: none;">
     <?php
     foreach ($comentarios as $c) {
         ?>

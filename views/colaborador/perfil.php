@@ -33,7 +33,7 @@ Modal::end();
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 <style>
 ::-webkit-scrollbar { 
@@ -41,6 +41,12 @@ display:none;
 }
 .col-md-12.miss {
     padding-bottom: 16px;
+}
+a#letra {
+    color: white;
+    text-transform:  capitalize;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
 }
 button.button-mision.btn-lg.btn-raised.misiones {
     padding-top: 2px;
@@ -55,6 +61,11 @@ button.button-mision.btn-lg.btn-raised.misiones {
 
 
 }
+.navbar {
+            position: fixed!important;
+            max-height: 50px;
+            }
+
 .nav-pills > li {
         float: left;
         margin-left: 40px;
@@ -68,27 +79,27 @@ button.button-mision.btn-lg.btn-raised.misiones {
 p.misiones {
 
     padding-left: 13px;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 23px;
 }
 p.act {
     padding-left: -2px;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 23px;
 }
 
 
 p.tareas {
     padding-left: 0px;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 23px;
 }
 
 button.btn.btn-lg.btn-raised.btn-success.rota {
     color: #fff;
-    background-color: #7ecb00!important;
-    border-color: #7ecb00!important;
-    font-family: DINPro-Light;
+    background-color: #e8000a!important;
+    border-color: #e8000a!important;
+   font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     font-size: 11px;
     height: 30px;
@@ -119,7 +130,7 @@ p.misiontextestado {
     color: #fff;
     background-color: #7ecb00!important;
     border-color: #7ecb00!important;
-    font-family: DINPro-Light;
+    font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
 
 }
@@ -132,7 +143,7 @@ color: #fff;
 p.misiontext {
     font-size: 20px;
     font-stretch: extra-expanded;
-    font-family: unset;
+    font-family: 'Roboto', sans-serif;
 }
 
 .panel-heading {
@@ -180,7 +191,7 @@ th {
     color: white;
     font-weight: 500;
     text-transform: uppercase;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 tbody {
@@ -243,14 +254,15 @@ tbody {
     position: fixed;
     overflow: scroll;
     min-height: 100%;
-    top: 51px;
-    width: 197px;
+    top: 50px;
+    width: 200px;
+    z-index: -2;
     height: 100%;
    
 }
 img.imgpublicidad {
     padding-bottom: 27px;
-    background-color: #eaeaea;
+    background-color: #e4e4e4;
    
 }
     .profile-info-left {
@@ -259,7 +271,7 @@ img.imgpublicidad {
     top: 7%;
     height: 100%;
     overflow: scroll;
-    margin-right: 910px;
+    margin-right: 950px;
      
     -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
@@ -271,7 +283,7 @@ img.imgpublicidad {
         border: 2px solid #fff;
     }
     .profile-info-left h2 {
-        font-family: "DINPro-Medium";
+        font-family: 'Roboto', sans-serif;
         letter-spacing: -1px;
         margin-bottom: 30px;
     }
@@ -302,7 +314,7 @@ img.imgpublicidad {
 
     .profile-info-right {
     position: relative;
-    top: -146px;
+    top: -83px;
     padding: 0px 0;
     }
     .profile-info-left ul.list-social > li a {
@@ -313,12 +325,17 @@ img.imgpublicidad {
         
         background-color: transparent;
     }
+
     @media screen and (max-width: 768px) {
         .profile-info-right {
-            position: relative;
-    top: -146px;
-     padding: 0px 0;
-        }
+        position: relative;
+        top: -134px;
+        padding: 0px 0;
+    }
+        .panel.panel-default.publicador {
+    width: 365px;
+    margin-left: -30px;
+}
     }
 
     .user-follower,
@@ -619,28 +636,28 @@ img.imgpublicidad {
     }
     .btn.btn-primary.btn-block.btn-file {
      color: #fff;
-    background-color: #7ecb00;
-    border-color: #7ecb00;
+    background-color: #e8000a;
+    border-color: #e8000a;
 }
 
     a.btn.btn-primary.btn-block {
-        background-color: #7ecb00!important;
-    border-color: #7ecb00!important;
+        background-color: #e8000a!important;
+    border-color: #e8000a!important;
     }
     button.btn.btn-primary {
             margin-left: inherit;
     color: #fff;
-    background-color: #7ecb00;
-    border-color: #7ecb00;
+    background-color: #e8000a;
+    border-color: #e8000a;
 }
 
     button#modalButton {
         width: 132px;
          margin-left: -6px;
     color: #fff;
-    background-color: #7ecb00!important;
-    border-color: #7ecb00!important;
-    font-family: DINPro-Light;
+    background-color: #e8000a!important;
+    border-color: #e8000a!important;
+    font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     font-size: 11px;
     height: 30px;
@@ -654,7 +671,7 @@ img.imgpublicidad {
         color: #fff;
         background-color: #7ecb00!important;
     border-color: #7ecb00!important;
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
         font-size: 13px;
     }
@@ -663,7 +680,7 @@ img.imgpublicidad {
         color: #fff;
         background-color: #7ecb00!important;
     border-color: #7ecb00!important;
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
         font-size: 13px;
     }
@@ -671,14 +688,15 @@ img.imgpublicidad {
     iframe {
         width: 100%!important;
         height: 560px!important;
+            margin-left: -23px;
     }
 
     h3 {
-        font-family: DINPro-Medium;
+        font-family: 'Roboto', sans-serif;
     }
 
     p {
-        font-family: arial;
+        font-family: 'Roboto', sans-serif;
     }
 
     a {
@@ -687,13 +705,13 @@ img.imgpublicidad {
     }
 
     li {
-        font-family: DINPro-Medium;
+        font-family: 'Roboto', sans-serif;
         font-size: 13px;
         text-transform: uppercase;
     }
 
     a#tituloPublicador {
-        font-family: DINPro-Medium!important;
+        font-family: 'Roboto', sans-serif!important;
         color: #0078B3!important;
         font-size: 16px;
         /* margin-top: 28px; */
@@ -702,16 +720,16 @@ img.imgpublicidad {
     img.media-object.avatar {width: 60px;}
 
     small.text-muted {
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         /* text-transform: uppercase; */
         font-size: 12px;
     }
     h1 {
-        font-family: "DINPro-Medium";
+        font-family: 'Roboto', sans-serif;
         letter-spacing: -1px;
     }
     a {
-        font-family: DINPro-Medium;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
     }
 
@@ -719,7 +737,7 @@ img.imgpublicidad {
         color: #fff;
         background-color: #d7072a!important;
         border-color: #d7072a!important;
-        font-family: DINPro-Light;
+        font-family: 'Roboto', sans-serif;
         text-transform: uppercase;
         font-size: 13px;
     }
@@ -780,6 +798,13 @@ img.imgpublicidad {
         margin-top: 0;
         display: inline;
     }
+    img.fotoavatar {
+    margin-left: 46px;
+    margin-top: 2px;
+    max-height: 80px;
+    max-width: 111%;
+    align-self: left;
+}
     .post .post-footer .comments-list .comment .comment-body {
         margin-left: 74px;
     }
@@ -813,7 +838,7 @@ img.imgpublicidad {
         color: #193276;
     }
     p#elComentario {
-        font-family: DINPro-Regular;
+        font-family: 'Roboto', sans-serif;
     }
     
     .container-fluid {
@@ -1188,6 +1213,8 @@ img.imgpublicidad {
                                     padding-top: 5px;
                                 }
                             </style>
+                            <!--- misiones
+
                     <h2><p class="misiones">Misiones de la Semana</p></h2>
                         <div class="col-md-12 miss">                                 
                             <div class="bs-example">
@@ -1226,7 +1253,8 @@ img.imgpublicidad {
                                 </div>          
                             </div>   
                                 <br>
-
+-->
+<!---
                                         <div class="col-sm-10 col-md-12 tare">   
                                          <h2 tarea><p class="tareas">Mis Tareas</p></h2>
                                         <table class="table table-responsive table-striped carla">
@@ -1255,7 +1283,7 @@ img.imgpublicidad {
                                          
                                           </div>   
                                         <br>
-                                    
+                                    -->
                                     <div class="col-md-12 col-sm-12">    
                             <h2><p class="act">Actividades en la Red</p></h2>
                             <div class="panel panel-default publicador">
@@ -1315,7 +1343,7 @@ img.imgpublicidad {
                                                     'showRemove' => false,
                                                     'ShowLabel' => false,
                                                     'showUpload' => false,
-                                                    'browseClass' => 'btn btn-primary btn-block',
+                                                    'browseClass' => 'btn btn-primary',
                                                     'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
                                                     'browseLabel' => 'Selecciona un archivo']
                                             ])->label(false);
@@ -1422,13 +1450,13 @@ img.imgpublicidad {
 
 <div class="col-md-2 hidden-xs">
 
-                       <div class="profile-info-publicidad">
-                     
+                       <div class="profile-info-publicidad ">
+                   <div class="text-center">
                             <?php foreach ($publicidad as $p) {
                   ?>   
                                                        
                                <a href="<?php echo $p["rlink"];?> " target="_blank"><img style="margin-right:10px" class="imgpublicidad" src="../web/img/publicidad/<?php echo $p["rfoto"]; ?>" ><br>    
-                            
+                            </a>
                                                     <?php
                                                 } ?>
                                     
@@ -1436,10 +1464,9 @@ img.imgpublicidad {
                           
                             
                         
-                        
                         </div>
                         </div>
-
+                        </div>
 
 
                   

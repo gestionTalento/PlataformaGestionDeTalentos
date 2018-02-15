@@ -45,6 +45,7 @@ AppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <!-- If you'd like to support IE8 -->
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
@@ -56,30 +57,30 @@ AppAsset::register($this);
         .navbar-principal .navbar-brand, .navbar-principal .navbar-brand li a:visited, .navbar-principal .navbar-nav li a {
         color: #ffffff;
         font-weight: 500;
-        padding-top: 30px;
+        padding-top: 35px;
         }
 
         body {
             font-family: 'Roboto', sans-serif !important;
-            background: #eaeaea;
+            background: #e4e4e4;
             overflow-x: hidden;
             margin-bottom: 60px;
         }
 
         .navbar-principal {
-            background-color: #000;
+            background-color: #343434!important;
             /* background-color: #9f9fa2; */
             border-color: rgba(202, 86, 67, 0.42);
             box-shadow: 0 2px 2px -2p xrgba(0, 0, 0, .52);*/
         }
          .navbar-principal .navbar-nav .open a, .navbar-principal .navbar-nav .open a:hover, .navbar-principal .navbar-nav li a:hover, .navbar-principal .navbar-nav li a:focus, .navbar-principal .navbar-nav .active a, .navbar-principal .navbar-nav .active a:hover {
             color: #fff;
-                background: rgba(2, 2, 2, 0.2);
-                padding-top: 30px;
+                 background-color: #343434 !important;
+                padding-top: 35px;
         }
        
         a.navbar-brand {
-            padding: 15px 8px!important;
+            padding: 14px 8px!important;
         }
         div#fotol {
             max-height: 390px;
@@ -89,7 +90,9 @@ AppAsset::register($this);
         }
         ul.nav.navbar-nav.navbar-right {
             color: #fff;
-            margin-top: -17px!important;
+            background-color: #343434;
+        margin-top: -40px!important;
+            
         }
         video#video2 {
             width: 100%;
@@ -106,7 +109,7 @@ AppAsset::register($this);
 
 
         p#elComentario {
-            font-family: DINPro-Regular;
+            font-family: 'Roboto', sans-serif !important;
             font-size: 16px;
             font-weight: bold;
         }
@@ -133,7 +136,7 @@ AppAsset::register($this);
 
         @media only screen and (max-width : 768px) {
             button.navbar-toggle.collapsed {
-                background-color: #02398b;
+                    background-color: #404040!important;
             }
 
             span.icon-bar {
@@ -141,7 +144,7 @@ AppAsset::register($this);
             }
 
             .navbar-header {
-                background-color: #404040;
+                 background-color: #2e2e2e !important;
             }
             button.navbar-toggle.collapsed {
                 background-color: #02398b;
@@ -154,7 +157,7 @@ AppAsset::register($this);
 
         @media only screen and (max-width : 320px) {
             button.navbar-toggle.collapsed {
-                background-color: #02398b;
+                background-color: #404040!important;
             }
 
             span.icon-bar {
@@ -164,7 +167,11 @@ AppAsset::register($this);
             .navbar-header {
                 background-color: #14377d;
             }
-        }
+            aside {
+                width: 290px !important; 
+    max-width: 290px;
+}}
+
 
 
         .container {
@@ -253,12 +260,12 @@ AppAsset::register($this);
 
                     <a class="navbar-brand hidden-xs hidden-md" >
 
-                        <b><img id="logo" src=""></b>
+                        <b><img style="width: 100px; margin-left: 5px; margin-top: -18px;" id="logo" src="../web/flesan.png"></b>
 
                     </a>
                     <a class="navbar-brand hidden-lg hidden-md" >
 
-                        <b><img style="width: 132px; margin-left: 5px;" id="logo" src="../web/armas1.png"></b>
+                        <b><img style="width: 80px; margin-left: 5px; margin-top: -12px;" id="logo" src="../web/flesan.png"></b>
 
                     </a>
 
@@ -266,7 +273,7 @@ AppAsset::register($this);
 
                 <div id="navbar" class="collapse navbar-collapse">
 
-                    <div class="col-md-5 col-sm-4">         
+                          
 
                         <form class="navbar-form">
 
@@ -274,18 +281,13 @@ AppAsset::register($this);
 
                                 <div class="input-group" style="display:table;">
 
-
-
-
-
                                 </div>
 
                             </div>
 
                         </form>
 
-                    </div>        
-
+                  
                     <ul class="nav navbar-nav navbar-right">
 
                         <li class="active">
@@ -293,34 +295,41 @@ AppAsset::register($this);
 
                         </li>
 
-
                         <li>
 
-                            <?= Html::a('<i class="fa fa-home"></i>&nbsp;Inicio', ['colaborador/perfil', 'rutColaborador' => $rutColaborador]) ?>
+                          <?= Html::a('<i class="fa fa-home"></i>&nbsp;Inicio', ['colaborador/perfil', 'rutColaborador' => $rutColaborador]) ?>
 
+                        <!-- Procesos    
                         <li>
 
                             <?= Html::a('<i class="fas fa-caret-square-up"></i>&nbsp;Procesos', ['colaborador/perfil']) ?>
 
                         </li>
+                        -->
 
+                        <!-- Ranking
                         <li>
 
                             <?= Html::a('<i class="fas fa-trophy"></i>&nbsp;Ranking', ['colaborador/perfil']) ?>
 
                         </li>
+                        -->
 
+                        <!-- Mis tareas
                         <li>
 
                             <?= Html::a('<i class="fas fa-envelope"></i>&nbsp;Mis tareas', ['colaborador/tareas']) ?>
 
                         </li>
+                        -->
 
+                        <!-- Inbox
                         <li>
 
                             <?= Html::a('<i class="fas fa-envelope"></i>&nbsp;Inbox', ['colaborador/perfil']) ?>
 
                         </li>
+                        -->
 
                         <li><?php
                             echo Html::a('<i class="fas fa-sign-out-alt"></i>&nbsp;Salir', ['/site/logout'], ['data-method' => 'post']);
