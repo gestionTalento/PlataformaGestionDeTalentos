@@ -184,6 +184,80 @@ class SiteController extends Controller {
         return $this->render('about');
     }
 
+
+     public function actionRecuperar(){
+         $session = Yii::$app->session;
+
+         if ($session['rut'] != null) {
+            $session->remove('rut');
+          }
+         
+        $model = new \app\models\Colaborador();
+        if ($model->load(Yii::$app->request->post())) {
+        // Yii::$app->session->inicia($model->rutColaborador);
+            
+            $valid = BuscarController::findColaboradors($model->correo);
+               
+              
+            if($valid != false){
+
+         
+            Yii::$app->mailer->compose()
+            ->setFrom('contacto@induccion.org')
+            ->setTo($valid->correo)
+            ->setSubject('Solicitud de recuperacion de contraseña:')
+            ->setHtmlBody('<b>su contraseña es:</b>'." ".$valid->pass)
+            ->send();
+
+             $model = new \app\models\Colaborador();
+            Yii::$app->response->redirect(array('site/login', 'model' => $model));
+
+
+            }else{
+                $model = new \app\models\Colaborador();
+
+                if(Yii::$app->request->post()["Colaborador"]["correo"]=="")
+                    {
+                        \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                ×</button>
+                           <span class="glyphicon glyphicon-no"></span> <strong>Mensaje de error</strong>
+                            <hr class="message-inner-separator">
+                            <p>
+                           Ingrese sus credenciales</p>
+                        </div>
+                    </div>');
+                    }else{
+                        \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                ×</button>
+                           <span class="glyphicon glyphicon-no"></span> <strong>Mensaje de error</strong>
+                            <hr class="message-inner-separator">
+                            <p>
+                            Error en el ingreso de datos</p>
+                        </div>
+                    </div>');
+                    }
+
+                 $this->layout = 'loginLayout';
+                 return $this->render('recuperar', [
+                        'model' => $model,
+            ]);
+
+            }
+           
+        } else {
+            $this->layout = 'loginLayout';
+            return $this->render('recuperar', [
+                        'model' => $model,
+            ]);
+        }
+
+    }
+
+
     public function actionCompadre($rutColaborador){
         $model= BuscarController::findColaboradorRut($rutColaborador);
         $perfil = BuscarController::findPerfil($model->idperfilRed);

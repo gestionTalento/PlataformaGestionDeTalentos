@@ -235,27 +235,41 @@ Modal::end();
 
                         <div class="section" align="center">
                             <h3>Mis Procesos </h3>
-                            <button  onclick="location.href='http://www.flesan.cl'" target="_blank" class="btn btn-lg btn-raised btn-success procesos" title="Clima Flesan">
-                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Clima
+                           <button onclick="window.open('http://www.flesan.cl','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Clima">
+                                <i class="fas fa-sun" aria-hidden="true"></i> Clima
                             </button>
-                            <button class="btn btn-lg btn-raised btn-success procesos ">
-                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Desempeño
+
+                            <button class="btn btn-lg btn-raised btn-success procesos" title="Desempeño">
+                                <i class="fas fa-chart-line" aria-hidden="true"></i> Desempeño
+                            </button>
+                            <button onclick="window.open('http://www.gointegro.com/es/inicio/','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Convenios">
+                                <i class="fas fa-thumbs-up" aria-hidden="true"></i> Convenios
+                            </button>
+  
+                            <button onclick="window.open('https://www.payroll.cl/webpay/loginap.aspx?ReturnUrl=%2fwebpay%2fmenuap.aspx','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Payroll">
+                                <i class="far fa-file-alt" aria-hidden="true"></i> Payroll
+                            </button>
+
+                             <!-- Futuros Procesos
+                            <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="fas fa-rocket" aria-hidden="true"></i> Inducción
                             </button>
                             <button class="btn btn-lg btn-raised btn-success procesos">
-                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Inducción
+                                <i class="fas fa-tachometer-alt" aria-hidden="true"></i> Wellness Org
                             </button>
                             <button class="btn btn-lg btn-raised btn-success procesos">
-                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Performance
+                                <i class="fas fa-star" aria-hidden="true"></i> Beneficios
                             </button>
                             <button class="btn btn-lg btn-raised btn-success procesos">
-                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Wellness
-                            </button>       
-                            <button class="btn btn-lg btn-raised btn-success procesos">
-                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Beneficios
+                                <i class="fas fa-graduation-cap" aria-hidden="true"></i> Aprendizaje
                             </button>
                             <button class="btn btn-lg btn-raised btn-success procesos">
-                                <i class="fab fa-telegram-plane" aria-hidden="true"></i> Aprendizaje
+                                <i class="fas fa-universal-access" aria-hidden="true"></i> Bienestar
                             </button>
+                             <button class="btn btn-lg btn-raised btn-success procesos">
+                                <i class="far fa-money-bill-alt" aria-hidden="true"></i> Payroll 
+                            </button>
+                            -->
                         </div>
 
 

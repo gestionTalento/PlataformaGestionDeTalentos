@@ -25,6 +25,21 @@ use app\models\WMision;
 use app\models\rpublicidad;
 class BuscarController extends Controller {
 
+    public function findColaboradors($correo) {
+        
+        $model3 = Colaborador::find()
+                ->where(['correo' => $correo])
+                ->one();
+                
+        if($model3 != null){
+            return $model3;
+        }
+        else{
+            return false;
+        }
+
+    }
+
     public function findColaborador($correo, $pass) {
 
         $model = Colaborador::find()

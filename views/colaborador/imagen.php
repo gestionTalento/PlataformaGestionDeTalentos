@@ -7,24 +7,17 @@
 
     <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
 
-
-
     <script type="text/javascript">
         $("#pop<?php echo $post["ridPost"]; ?>").on("click", function () {
             $('#m<?php echo $post["ridPost"]; ?>').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
         });
     </script>
-    
 
-
- 
     <section id="blog-section" class="col-md-12 col-sm-12" >
-
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-
                         <div class="col-sm-12 col-md-12 imagen">
                             <aside>
                                 <div class="modal fade fullscreen-modal " id="m<?php echo $post["ridPost"]; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

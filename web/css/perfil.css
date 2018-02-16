@@ -30,10 +30,10 @@ button.button-mision.btn-lg.btn-raised.misiones {
 
 }
 .panel.panel-default.publicador {
-    max-width: 97%;
-    margin-right: 1%;
+    max-width: 95%;
+    margin-right: 2%;
     padding-left: 1%;
-    margin-left: 3%;
+    margin-left: 3.5%;
 }
 .navbar {
             position: fixed!important;
@@ -992,8 +992,8 @@ img.fotocomentario {
     }
 
 
-img.img-responsive.archivo{
-    max-width: 103%;
+img.img-responsive.archivo {
+    max-width: 102.5%;
 }
 a {
     color: #777777;
@@ -1378,10 +1378,10 @@ i.fa.fa-caret-right {
 
 /* PERFIL AMIGO */
 
-.panel.panel-default.publicador.amigo {
-    max-width:  100%;
-    margin-left: 3%;
-    margin-right: 2%;
+ .panel.panel-default.publicador.amigo {
+    max-width: 94%;
+    margin-left: 4.5%;
+    margin-right: 3.75%;
 }
 
 ul.nav.nav-pills.nav-pills-custom-minimal.custom-minimal-bottom {
@@ -1436,10 +1436,14 @@ a.navbar-brand {
         width: 100%;
 
     }
+
+    button.btn.btn-lg.btn-raised.btn-success.procesos:hover {
+    background-color: #e8000a!important;
+    }
     button.btn.btn-lg.btn-raised.btn-success.procesos {
     text-transform: uppercase;
      font-family: 'Roboto', sans-serif;
-   background-color: 343434;
+   background-color: #343434;
     padding-top: 4px;
     border-color: white;
     width: 184px;
