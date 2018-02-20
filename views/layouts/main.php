@@ -145,6 +145,9 @@ AppAsset::register($this);
             button.navbar-toggle.collapsed {
                     background-color: #404040!important;
             }
+            a.navbar-brand {
+    padding: 0px 3px!important;
+}
 
             span.icon-bar {
                 background-color: #fff;
@@ -253,7 +256,7 @@ AppAsset::register($this);
 
                 <div class="navbar-header">
 
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style=" margin-top: 20px;">
 
                         <span class="sr-only">Toggle navigation</span>
 
@@ -272,15 +275,13 @@ AppAsset::register($this);
                     </a>
                     <a class="navbar-brand hidden-lg hidden-md" >
 
-                        <b><img style="width: 80px; margin-left: 5px; margin-top: -12px;" id="logo" src="../web/flesan.png"></b>
+                        <b><img style="width: 35%!important; margin-left: 5px;  margin-top: -104px!important; margin-bottom: -12%!important;" id="logo" src="../web/flesan.png"></b>
 
                     </a>
 
                 </div>
 
                 <div id="navbar" class="collapse navbar-collapse">
-
-                          
 
                         <form class="navbar-form">
 

@@ -10,12 +10,15 @@ use Yii;
  * @property int $bId_Beneficio
  * @property string $bNombre
  * @property string $bDescripcion
- * @property int $bIdPuntaje
  * @property string $bTipoBeneficio
  * @property string $bValorBeneficio
- * @property int $rutColaborador
+ * @property string $bvalorhora
+ * @property string $bvezporanio
+ * @property string $bvezpormes
+ * @property string $bimagen
  *
- * @property Colaborador $rutColaborador0
+ * @property Bcolaboradorbeneficio[] $bcolaboradorbeneficios
+ * @property Bdetallebeneficio[] $bdetallebeneficios
  */
 class Bbeneficios extends \yii\db\ActiveRecord
 {
@@ -33,12 +36,10 @@ class Bbeneficios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bIdPuntaje', 'rutColaborador'], 'integer'],
-            [['rutColaborador'], 'required'],
+            [['bValorBeneficio', 'bvalorhora', 'bvezporanio', 'bvezpormes'], 'number'],
             [['bNombre'], 'string', 'max' => 100],
-            [['bDescripcion'], 'string', 'max' => 200],
-            [['bTipoBeneficio', 'bValorBeneficio'], 'string', 'max' => 45],
-            [['rutColaborador'], 'exist', 'skipOnError' => true, 'targetClass' => Colaborador::className(), 'targetAttribute' => ['rutColaborador' => 'rutColaborador']],
+            [['bDescripcion', 'bimagen'], 'string', 'max' => 200],
+            [['bTipoBeneficio'], 'string', 'max' => 45],
         ];
     }
 
@@ -51,18 +52,28 @@ class Bbeneficios extends \yii\db\ActiveRecord
             'bId_Beneficio' => 'B Id  Beneficio',
             'bNombre' => 'B Nombre',
             'bDescripcion' => 'B Descripcion',
-            'bIdPuntaje' => 'B Id Puntaje',
             'bTipoBeneficio' => 'B Tipo Beneficio',
             'bValorBeneficio' => 'B Valor Beneficio',
-            'rutColaborador' => 'Rut Colaborador',
+            'bvalorhora' => 'Bvalorhora',
+            'bvezporanio' => 'Bvezporanio',
+            'bvezpormes' => 'Bvezpormes',
+            'bimagen' => 'Bimagen',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getRutColaborador0()
+    public function getBcolaboradorbeneficios()
     {
-        return $this->hasOne(Colaborador::className(), ['rutColaborador' => 'rutColaborador']);
+        return $this->hasMany(Bcolaboradorbeneficio::className(), ['bId_Beneficio' => 'bId_Beneficio']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBdetallebeneficios()
+    {
+        return $this->hasMany(Bdetallebeneficio::className(), ['bId_Beneficio' => 'bId_Beneficio']);
     }
 }

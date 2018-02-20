@@ -69,10 +69,20 @@ use yii\helpers\Html;
                                         $modela = $dataReader->readAll();
                                         ?>
 
-                                        <a id="like-<?php echo $post["ridPost"]; ?>" onclick="like(<?php echo $post["ridPost"]; ?>,<?php
+                                          <?php if($megusta==true){
+
+
+                ?>
+               <a class="btn-loved" data-toggle="tooltip" data-placement="right" title="Me gusta"><i class="fa fa-heart"></i><?php echo $modela[0]["cuenta"]; ?></a>
+                 <?php
+                }else {?>
+
+                  <a id="like-<?php echo $post["ridPost"]; ?>" onclick="like(<?php echo $post["ridPost"]; ?>,<?php
                                         $session = Yii::$app->session;
                                         echo $session['rutColaborador'];
-                                        ?>);" data-toggle="tooltip" data-placement="right" title="Me Gusta"><i class="fa fa-heart"></i> <?php echo $modela[0]["cuenta"]; ?></a>
+                                        ?>);" data-toggle="tooltip" data-placement="right" title="Me gusta"><i class="fa fa-heart"></i> <?php echo $modela[0]["cuenta"]; ?></a>
+                <?php
+                }?>
 
     <?php if ($post["rutColaborador1"] == $rutColaborador) { ?>
 

@@ -20,9 +20,11 @@ use app\models\RcomentarioContenidos;
 use app\models\Rcontenido;
 use app\models\RActividad;
 use app\models\Dependencia;
+use app\models\bbeneficios;
 use app\models\WTarea;
 use app\models\WMision;
 use app\models\rpublicidad;
+use app\models\Rlikepost;
 class BuscarController extends Controller {
 
     public function findColaboradors($correo) {
@@ -61,6 +63,17 @@ class BuscarController extends Controller {
         die();
     }
 
+     protected function findColaborador1($rutColaborador) {
+        
+        if (($model = \app\models\Colaborador::findOne(['rutColaborador' => $rutColaborador])) !== null) {
+            return $model;
+        } else {
+            //return $model;
+        }
+    }
+
+
+
     public function findDependencias($rut) {
         if (($model = Dependencia::findOne($rut)) !== null) {
             return $model;
@@ -68,6 +81,21 @@ class BuscarController extends Controller {
         var_dump("no lo encontro");
         die();
     }
+
+    public function findBeneficios(){
+
+        $query = new \yii\db\Query;
+        $query->select([
+                    '*',
+        ])
+        ->from('bbeneficios')
+        ->all();
+
+        $command = $query->createCommand();
+        $model = $command->queryAll();
+        return $model;
+    }
+
 
     
     public function encuentraMisiones(){
@@ -404,136 +432,7 @@ public function encuentraComentarios($idPost) {
     return $model;
 }
 
-    public function actionReload($page, $rutColaborador){
-        $numpage =$page;
-        $perpage = 3;
-        $posisi = (($numpage-1) * $perpage);
-        $actividad = $this->findMuror($rutColaborador, $posisi, $perpage);
-        $model = $this->encuentraColaborador($rutColaborador);
-        $total = "";
-
-        foreach($actividad as $rpost){
-
-            
-             if ($rpost["rtipoPost"] == 1) {
-
-
-               $posteador = $this->encuentraColaboradorEstado($rpost["rut"]);
-               $posteador2 = $this->encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = $this->findComentarios($rpost["ridPost"]);                                      
-               $modelo = $this->renderAjax('estado', [
-                              'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
-                              'posteador' => $posteador,
-                              'posteador2' => $posteador2,
-                              'rutColaborador' => $rutColaborador,
-                                        ]);
-               $total =$total.$modelo;
-            }
-
-            if ($rpost["rtipoPost"] == 2) {
-
-
-               $posteador = $this->encuentraColaboradorEstado($rpost["rut1"]);
-               $posteador2 = $this->encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = $this->findComentarios($rpost["ridPost"]);                                      
-               $modelo = $this->renderAjax('imagen', [
-                              'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
-                              'posteador' => $posteador,
-                              'posteador2' => $posteador2,
-                              'rutColaborador' => $rutColaborador,
-
-                                        ]);
-               $total =$total.$modelo;
-            }
-
-
-            if ($rpost["rtipoPost"] == 3) {
-
-
-               $posteador = $this->encuentraColaboradorEstado($rpost["rut1"]);
-               $posteador2 = $this->encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = $this->findComentarios($rpost["ridPost"]);
-               $modelo = $this->renderAjax('video', [
-                              'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
-                              'posteador' => $posteador,
-                              'posteador2' => $posteador2,
-                              'rutColaborador' => $rutColaborador,
-
-                                        ]);
-               $total =$total.$modelo;
-            }
-           
-            if ($rpost["rtipoPost"] == 5) {
-
-
-               $posteador = $this->encuentraColaboradorEstado($rpost["rut1"]);
-               $posteador2 = $this->encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = $this->findComentarios($rpost["idPost"]);                                      
-               $modelo = $this->renderAjax('youtube', [
-                              'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
-                              'posteador' => $posteador,
-                              'posteador2' => $posteador2,
-                              'rutColaborador' => $rutColaborador,
-
-                                        ]);
-               $total =$total.$modelo;
-            }
-
-              if ($rpost["rtipoPost"] == 6) {
-
-
-               $posteador = $this->encuentraColaboradorEstado($rpost["rut1"]);
-               $posteador2 = $this->encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = $this->findComentarios($rpost["ridPost"]);                                      
-               $megusta = $this->megusta($rutColaborador,$rpost["ridPost"]);
-               $modelo = $this->renderAjax('archivo', [
-                              'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
-                              'posteador' => $posteador,
-                              'posteador2' => $posteador2,
-                              'rutColaborador' => $rutColaborador,
-
-                                        ]);
-               $total =$total.$modelo;
-            }
-
-             if ($rpost["rtipoPost"] == 12321) {
-
-
-               $posteador = $this->encuentraColaboradorEstado($rpost["rut1"]);
-               $posteador2 = $this->encuentraColaboradorEstado($rpost["rut2"]);
-               $comentarios = $this->findComentarios($rpost["ridPost"]);                                      
-               $modelo = $this->renderAjax('facebook', [
-                              'model' => $model,
-                              'rpost' => $rpost,
-                              'rcomentarios' => $comentarios,
-                              'posteador' => $posteador,
-                              'posteador2' => $posteador2,
-                              'rutColaborador' => $rutColaborador,
-
-                                        ]);
-               $total =$total.$modelo;
-            }
-
-
-
-        }
-
-        
-         return $total;
-
-
-
-    }
+   
 
     public function findMurora($rutColaborador, $posisi, $perpage) {
 
@@ -610,7 +509,7 @@ public function encuentraComentarios($idPost) {
        
     }
     public function megusta($rutColaborador, $idPost) {
-        if (($model = Rpost::find()->where(['rut1' => $rutColaborador, 'ridPost' => $idPost])->one()) !== null) {
+        if (($model = Rlikepost::find()->where(['rut' => $rutColaborador, 'ridPost' => $idPost])->one()) !== null) {
 
             return true;
         }

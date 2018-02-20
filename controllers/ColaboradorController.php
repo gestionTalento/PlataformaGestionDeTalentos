@@ -54,6 +54,7 @@ class ColaboradorController extends Controller {
         $mision = BuscarController::encuentraMisiones();
 
         //publicidad
+
        $publicidad = BuscarController::findPublicidad();
 
 
@@ -146,23 +147,51 @@ class ColaboradorController extends Controller {
 
     }
 
-    public function actionPublicidad(){
-        $session = Yii::$app->session;
-        $rutColaborador = $session['rut'];
-
-        $publicidad = BuscarController::findPublicidad();
-
-
-        $modelo = $this->renderAjax('perfil', [
-                              'publicidad' => $publicidad,
-
-                            ]);
+/*
+    public function actionCrearPublicidad($idperfil){
+     try {
+            $num = rand(5, 600);
 
 
+            ini_set('memory_limit', '128M');
+
+            
+
+            $model = new Rpublicidad();
+
+        if ($model->load(Yii::$app->request->post()) ) {
+            $model->file = UploadedFile::getInstances($model, 'rfoto');
+            ini_set('memory_limit', '512M');
+            $num = rand(5, 600);
+            foreach ($model->file as $file) {
+                        ini_set('memory_limit', '512M');
+                        $file->saveAs('img/publicidad/' . $model->ridPublicidad . $file->baseName . $num . "." . $file->extension);
+                        Image::thumbnail('img/publicidad/' . $model->ridPublicidad . $file->baseName . $num . "." . $file->extension, 200, 187)
+                                ->save('img/publicidad/' . $model->ridPublicidad . $file->baseName . $num . "." . $file->extension, ['quality' => 100]);
+
+                        ini_set('memory_limit', '512M');
+
+                        $ruta = 'img/publicidad/' . $model->ridPublicidad . $file->baseName . $num . "." . $file->extension;
+                        Image::thumbnail($ruta, 120, 120)
+                                ->save('img/publicidad/t/' . $model->ridPublicidad . $file->baseName . $num . "." . $file->extension, ['quality' => 50]);
+                        $model->rfoto = $model->ridPublicidad . $file->baseName . $num . "." . $file->extension;
+                       
+                    }
+            $model->save(false);
+          
+        }
+
+                return $this->redirect(['perfil', 'rutColaborador' => $model->rutColaborador]);
+            } else {
+                return $this->renderAjax('createpublicidad', [
+                            'model' => $model,
+                ]);
+            }
+        } catch (ErrorException $e) {
+            throw new NotFoundHttpException('Intenta subir una foto mas liviana!!!');
+        }
     }
-
-
-
+    */
 
     public function actionFoto($rutColaborador) {
         try {
@@ -244,16 +273,10 @@ class ColaboradorController extends Controller {
 
             }
 
-            
-
-
-
         }
 
         
          return $total;
-
-
 
     }
 
@@ -265,10 +288,11 @@ class ColaboradorController extends Controller {
     public function actionIndex() {
         $searchModel = new ColaboradorSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
+        $model = new Colaborador();
+        return $this->render('login', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
+                    
         ]);
     }
 
@@ -698,7 +722,16 @@ class ColaboradorController extends Controller {
             ]);
             }
     }
-    
+
+    public function actionBeneficios(){
+      $beneficio = BuscarController::findBeneficios();
+      
+      return $this->render('beneficios', [
+                    'beneficio' => $beneficio, ]);
+      
+
+    }
+
 
     public function actionReload($page, $rutColaborador){
         $numpage =$page;

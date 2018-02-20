@@ -95,7 +95,7 @@ Modal::end();
             $.get("index.php?r=rpost/comentario&rutPersona=" + rut + "&idPost=" + post + "&comentario=" + comentario + "",
                     function (dato) {
                         var data = JSON.parse(dato);
-                        $('#' + post).html('<a class="pull-left" href="#"><img style="-ms-transform: rotate(' + data.rotate + 'deg);-webkit-transform: rotate(' + data.rotate + 'deg);transform: rotate(' + data.rotate + 'deg);" class="avatar perfill" alt="Avatar" src="../web/img/perfil/t/' + data.foto + '"></a><div class="comment-body"><div class="comment-heading"><h4 class="comment-user-name"><a href="#">' + data.nombre + ' ' + data.apellidos + '</a></h4><h5 class="time">Ahora</h5></div><p style="text-transform: initial;">' + comentario + '</p></div>');
+                        $('#' + post).html('<a class="pull-left" href="#"><img style="-ms-transform: rotate(' + data.rotate + 'deg);-webkit-transform: rotate(' + data.rotate + 'deg);transform: rotate(' + data.rotate + 'deg);     width: 49px; margin-left: 36%;" class="user-img"  src="../web/img/perfil/t/' + data.foto + '"></a><div style="margin-left: 17%;" class="comment-body"><div class="comment-heading"><h4 class="nombre">' + data.nombre + ' ' + data.apellidos + '</a></h4><h5 class="fecha">Ahora</h5></div><p style="text-transform: initial; font-size: 16px; font-weight: bold;margin-left: 17%;">' + comentario + '</p></div>');
                         $("#comentario-" + post + "").val('');
 
                     }).fail(function () {
@@ -120,18 +120,22 @@ Modal::end();
 
     }
 
+    function beneficio(){
+        $("#beneficio-").css("display", "block");
+    }
+
     function like(idPost, rut) {
 
         $.get("index.php?r=rpost/like&rutPersona=" + rut + "&idPost=" + idPost + "",
                 function (dato) {
-
+                    $("#like-" + idPost).addClass('btn-loved');
                     $("#like-" + idPost).attr('onclick', " ");
                     $("#like-" + idPost).html('<i class="fa fa-heart"></i>' + dato);
                     var ca = $('#c').text();
                     var c = document.getElementById('c');
                     c.innerHTML = parseInt(ca) + 1;
 
-
+                        
                 }).fail(function () {
             alert("No existe conexion a internet");
             // Handle error here
@@ -235,6 +239,14 @@ Modal::end();
 
                         <div class="section" align="center">
                             <h3>Mis Procesos </h3>
+                           <button onclick="window.open('','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Beneficios">
+                                <i class="fas fa-star" aria-hidden="true"></i> Beneficios
+                            </button>
+
+                        </div>
+
+                        <div class="section" align="center">
+                            <h3>Mis Plataformas </h3>
                            <button onclick="window.open('http://www.flesan.cl','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Clima">
                                 <i class="fas fa-sun" aria-hidden="true"></i> Clima
                             </button>
@@ -249,6 +261,22 @@ Modal::end();
                             <button onclick="window.open('https://www.payroll.cl/webpay/loginap.aspx?ReturnUrl=%2fwebpay%2fmenuap.aspx','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Payroll">
                                 <i class="far fa-file-alt" aria-hidden="true"></i> Payroll
                             </button>
+
+                            <button onclick="window.open('https://www.biwiser.com/que-es-biwiser/','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Biwiser">
+                                <i class="far fa-clipboard" aria-hidden="true"></i> Biwiser
+                            </button>
+
+                            <button onclick="window.open(' https://qa.iconstruye.cl/portales/index.html?ReturnUrl=%2f','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="IConstruye">
+                                <i class="fas fa-shopping-cart" aria-hidden="true"></i> IConstruye
+                            </button>   
+
+                            <button onclick="window.open(' https://http://www.flesan.cl/','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Canal de Denuncias">
+                                <i class="fas fa-ban" aria-hidden="true"></i> Canal de Denuncias
+                            </button>   
+
+                            <button onclick="window.open(' https://http://www.flesan.cl/','_blank')" class="btn btn-lg btn-raised btn-success procesos" title=" Control IT">
+                                <i class="fas fa-shield-alt" aria-hidden="true"></i> Control IT
+                            </button>   
 
                              <!-- Futuros Procesos
                             <button class="btn btn-lg btn-raised btn-success procesos">
@@ -411,6 +439,8 @@ Modal::end();
                                             mycontent(mypage);
                                         }
                                     })
+
+
                                     function mycontent(mypage) {
 
                                         $('#ani_img').show();
@@ -457,6 +487,7 @@ Modal::end();
                 <div class="col-md-2 hidden-xs">
                     <div class="profile-info-derecho">
                         <div class="text-center">
+                   
                             <?php foreach ($publicidad as $p) {
                                 ?>                         
                                <a href="<?php echo $p["rlink"];?> " target="_blank"><img style="margin-right:10px" class="imgpublicidad" title="¡Click Aquí!" src="../web/img/publicidad/<?php echo $p["rfoto"]; ?>" ><br>    

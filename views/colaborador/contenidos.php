@@ -677,10 +677,9 @@ Modal::end();
         $.get("../rpost/like?rutPersona=" + rut + "&ridPost=" + idPost + "",
                 function (dato) {
 
-                    $("#like-" + idPost).addClass('btn-success');
-                    $("#like-" + idPost).attr('onclick', " ");
-                    $("#like-" + idPost).html('Me Gusta&nbsp;<i class="fa fa-thumbs-up icon"></i>' + dato);
-
+                    $("#like-" + idPost).addClass('btn-loved');
+                     $("#like-" + idPost).attr('onclick', " ");
+                    $("#like-" + idPost).html('<i class="fa fa-heart"></i>' + dato);
 
 
 

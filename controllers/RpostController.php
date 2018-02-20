@@ -16,7 +16,7 @@ use app\models\RComentarios;
 use app\models\Rcomentariocontenidos;
 use app\models\Rcontenido;
 use app\models\PostSearch;
-
+use app\models\Rlikepost;
 class RpostController extends \yii\web\Controller {
 
  /**
@@ -1238,9 +1238,13 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
 
         $likePost = BuscarController::findPost($idPost);
         $likePost->ridPost = $idPost;
-        $likePost->rlikes = $likePost->rlikes +1;
         $likePost->rut1 = $rutPersona;
         $likePost->save(false);
+
+        $megustapost = new Rlikepost();
+         $megustapost->ridpost = $idPost;
+         $megustapost->rut = $rutPersona;
+         $megustapost->save(false);
 
     	$persona = BuscarController::findColaboradorRut($rutPersona);
     	$estadistica = BuscarController::findEstadistica($persona->idestadisticas);

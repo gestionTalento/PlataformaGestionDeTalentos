@@ -80,10 +80,9 @@ Modal::end();
         $.get("index.php?r=rpost/like?rutPersona=" + rut + "&idPost=" + idPost + "",
                 function (dato) {
 
-                    $("#like-" + idPost).addClass('btn-success');
+                    $("#like-" + idPost).addClass('btn-loved');
                     $("#like-" + idPost).attr('onclick', " ");
-                    $("#like-" + idPost).html('Me Gusta&nbsp;<i class="fa fa-thumbs-up icon"></i>' + dato);
-
+                    $("#like-" + idPost).html('<i class="fa fa-heart"></i>' + dato);
 
 
 

@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Colaborador;
 use app\controllers\BuscarController;
 
 class SiteController extends Controller {
@@ -64,8 +65,17 @@ class SiteController extends Controller {
      * @return string
      */
     public function actionIndex() {
-        return $this->render('index');
+        $session = Yii::$app->session;
+        $rutColaborador = $session['rut'];
+
+        if ($rutColaborador == null) {
+            $model = new Colaborador();
+            return $this->redirect(['site/login', 'model' => $model]);
+        }else{
+            return $this->redirect(['colaborador/perfil']);
+        }
     }
+
 
     /**
      * Login action.
