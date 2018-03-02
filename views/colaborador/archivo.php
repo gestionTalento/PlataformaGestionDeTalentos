@@ -50,7 +50,8 @@ use yii\helpers\Html;
 
 
             <div class="content-footer">
-                                    <img class="user-small-img" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>">
+                                    <img class="user-small-img" src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>" style="                                               -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);-webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+                                    ">
                                     <a id="letra" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a>
                                     <span class="pull-right">
 

@@ -10,13 +10,15 @@ use yii\web\UploadedFile;
 use yii\web\Response;
 use yii\imagine\Image;
 use app\models\Rnotificacion;
-use app\models\RActividad;
 use app\models\Colaborador;
-use app\models\RComentarios;
+use app\models\Rcomentarios;
 use app\models\Rcomentariocontenidos;
 use app\models\Rcontenido;
+use app\models\Ractividad;
 use app\models\PostSearch;
 use app\models\Rlikepost;
+
+
 class RpostController extends \yii\web\Controller {
 
  /**
@@ -718,12 +720,26 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
     	return $valor;
     }
 
-    public function actionEliminar($idPost){
 
-        $actividad = BuscarController::findActividad($idPost)->delete();
-    	$model = BuscarController::findPost($idPost)->delete();
+public function actionEliminar($idPost){
+
+
+        $likes1 = BuscarController::findLikePost2($idPost);
+        if ($likes1 == true ){
+            $likes = BuscarController::findLikePost($idPost)->delete();
+        }
+        
+        $actividad = BuscarController::findActividad($idPost);
+        $persona = BuscarController::findColaboradorRut($actividad->rutColaborador1);
+        $estadistica = BuscarController::findEstadistica($persona->idestadisticas);
+        $estadistica->rcontadorP = $estadistica->rcontadorP - 1;
+        $persona->save(false);
+        $estadistica->save(false);
+        $actividad->delete();
+        $model = BuscarController::findPost($idPost)->delete();
         
             return true;
+        
         
 
     }
@@ -851,7 +867,7 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
 
         	$model = new Rpost();
         	if (Yii::$app->request->post()){
-        		if(!preg_match("/^\S*$/", Yii::$app->request->post()["rdescripcionPost"]))
+        		if(empty(Yii::$app->request->post()["rdescripcionPost"]))
    					{
         				\Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
                         <div class="alert alert-danger">
@@ -1059,6 +1075,22 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
         $model = new Rpost();
 
         if (Yii::$app->request->post()) {
+          if(!preg_match("/^\s*$/", Yii::$app->request->post()["descripcionPost"]))
+                 {
+
+                     \Yii::$app->getSession()->setFlash('error', ' <div class="col-sm-12 col-md-12">
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                ×</button>
+                           <span class="glyphicon glyphicon-no"></span> <strong>Mensaje de error</strong>
+                            <hr class="message-inner-separator">
+                            <p>
+                                Debe ingresar algún contenido a postear.</p>
+                        </div>
+                    </div>');
+                    return $this->redirect('index.php?r=colaborador/perfil');
+                }
+
 
             $model->file = UploadedFile::getInstances($model, 'rfoto');
 
@@ -1122,12 +1154,18 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
             }
            
             $model->save(false);
-            $actividad = new RActividad();
+            $actividad = new Ractividad();
             $actividad->rutColaborador1 = $model->rut1;
             $actividad->rutColaborador2 = $model->rut2;
             $actividad->ridpost = $model->ridPost;
             $actividad->ridtipo_post = $model->rtipoPost;
             $actividad->save(false);
+
+            $persona = BuscarController::findColaboradorRut($actividad->rutColaborador1);
+            $estadistica = BuscarController::findEstadistica($persona->idestadisticas);
+            $estadistica->rcontadorP = $estadistica->rcontadorP + 1;
+            $persona->save(false);
+            $estadistica->save(false);
 
             $session = Yii::$app->session;
             $rutColaborador = $session['rut'];
@@ -1136,6 +1174,7 @@ Hay una nueva publicación en la <strong>Red Social de Inducción</strong> que t
             $perfil = BuscarController::findPerfil($model[0]['idperfilRed']);
             $model2 = BuscarController::encuentraAmigos($rutColaborador);
             $model3 = new Rpost();
+        
             
             return $this->redirect(['colaborador/perfil',
                         'model' => $model,

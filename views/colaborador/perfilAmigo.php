@@ -41,7 +41,72 @@ Modal::end();
 ?>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<style type="text/css">
+    .perfilll{
+        -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg)!important;
+        -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg)!important;
+        transform: rotate(<?php echo $perfil->rrotador; ?>deg)!important;
 
+
+    }
+    .perfill{
+        -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+        -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+        transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+
+
+    }
+
+    @media (max-width: 768px){
+        aside {
+            max-width: 149%!important;
+            width: 107%!important;
+            margin-left: 9%!important;
+        }
+
+        .panel.panel-default.publicador.amigo {
+            margin-left: 6%!important;
+            width: 92.4%!important;
+        }
+
+        button.btn.btn-primary.btn.btn-primary {
+            margin-right: 1%!important;
+        }
+
+        button.btn.btn-block.btn-primary.hidden-lg.hidden-md {
+            margin-right: -2%!important;
+        }
+        button#modalButton {
+            padding: 7px!important;
+        }
+        button.btn.btn-lg.btn-raised.btn-success.rota {
+            padding: 7px!important;
+        }
+        .container-fluid.coment {
+            margin-left: 5%!important;
+            margin-right: -13%!important;
+            width: 125%!important;
+            max-width: 117%!important;
+        }
+        ul.nav.nav-pills.nav-pills-custom-minimal.custom-minimal-bottom {
+            padding-top: 26px;
+        }
+    }
+
+    @media only screen and (max-width : 320px) {
+    aside{
+        width: 106% !important;
+        max-width: 110%;
+        margin-left: 9%;
+    }
+    .container-fluid.coment {
+    margin-left: 4%;
+    margin-right: -22%!important;
+    margin-right: ;
+    }
+
+}
+</style>
 <script type="text/javascript">
                     function contarCaracteres(campo, campo_conteo, limite_maximo) {
                             if(campo.value.length > limite_maximo)
@@ -61,11 +126,10 @@ Modal::end();
 
         $.get("index.php?r=rpost/rotate&idPost=" + idPost + "",
                 function (dato) {
-                     //alert(dato);
                     $('#rotate-' + idPost).css('transform', 'rotate(' + dato + 'deg)');
                      $('.rotate-' + idPost).css('transform', 'rotate(' + dato + 'deg)');
                 }).fail(function () {
-            alert("No existe conexion a internet");
+             swal("No existe conexion a internet");
             // Handle error here
         });
 
@@ -83,7 +147,7 @@ Modal::end();
 
 
                 }).fail(function () {
-            alert("No existe conexion a internet");
+             swal("No existe conexion a internet");
             // Handle error here
         });
     }
@@ -133,14 +197,14 @@ Modal::end();
 
 
                 }).fail(function () {
-                    alert("No existe conexion a internet");
+             swal("No existe conexion a internet");
                 // Handle error here
             });
 
 
             } else {
 
-                alert("Debe añadir un comentario");
+             swal("Debe añadir un comentario");
             }
 
 
@@ -153,6 +217,27 @@ Modal::end();
 
 
     }
+
+    function checkform()
+{
+    var regex = "^\\s+$";
+    cuca = document.cuca.rdescripcionPost.value;
+    archivo = document.getElementById('rpost-file').value;
+    
+
+    if (cuca.match(/^\s*$/g) && archivo.length == "")
+    {
+        // something is wrong
+        swal("Debes ingresar algún contenido");
+        return false;
+    }
+   
+  
+    // If the script gets this far through all of your fields
+    // without problems, it's ok and you can submit the form
+
+    return true;
+}
 
 
     function like(idPost, rut) {
@@ -171,7 +256,7 @@ Modal::end();
 
 
                 }).fail(function () {
-            alert("No existe conexion a internet");
+             swal("No existe conexion a internet");
             // Handle error here
         });
 
@@ -186,16 +271,23 @@ Modal::end();
         $.get("index.php?r=rpost/eliminar&idPost=" + idPost + "",
                 function (dato) {
                   if(dato==true){
-                      alert("Su post ha sido eliminado");
-                      location.reload();
+
+                          swal("Su post ha sido eliminado")
+                          .then((value) => {
+                                location.reload();
+                          });
+
+
+                      
+                      
 
                   }
                   else{
-                      alert("No ha sido eliminado");
+             swal("No ha sido eliminado");
                   }
 
                 }).fail(function () {
-            alert("No existe conexion a internet");
+             swal("No existe conexion a internet");
             // Handle error here
         });
 
@@ -252,36 +344,34 @@ Modal::end();
                             <p><?php echo $perfil->rbio; ?></p>
                         </div>
                         <div class="section" align="center">
-                            <h3>Mi Valoracion</h3>
+                            <h3>Mi Valoración</h3>
+                            <p><span id="e" class="badge"><?php echo $estadistica->rcontadorP; ?></span> <br>Post Realizados</p>
                             <p> <span id="a" class="badge"><?php echo $estadistica->rcomentarios; ?></span><br>Comentarios Realizados</p>
                             <p><span id="b" class="badge"><?php echo $estadistica->rcomentariosr; ?></span><br>Comentarios Recibidos</p>
                             <p><span id="c" class="badge"><?php echo $estadistica->rlikes; ?></span> <br>Me gusta Realizados</p>
                             <p><span id="d" class="badge"><?php echo $estadistica->rlikesr; ?></span> <br>Me gusta Recibidos</p>
                         </div>
 
-                        <div class="section" align="center">
+                       <div class="section" align="center">
                             <h3>Mis Procesos </h3>
-                           <button onclick="window.open('','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Beneficios">
-                                <i class="fas fa-star" aria-hidden="true"></i> Beneficios
-                            </button>
-
+                            <?= Html::a('<i class="fas fa-star"></i>&nbsp;Beneficios', ['colaborador/beneficios', 'rutAmigo' => $model->rutColaborador], ['class'=>'btn btn-lg btn-raised btn-success procesos' ]) ?>
+                            
+                           
+                            
+                          
                         </div>
-
 
                         <div class="section" align="center">
                             <h3>Mis Plataformas </h3>
-                           <button onclick="window.open('http://www.flesan.cl','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Clima">
+                          <button onclick="window.open('http://www.flesan.cl','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Clima">
                                 <i class="fas fa-sun" aria-hidden="true"></i> Clima
                             </button>
 
-                            <button class="btn btn-lg btn-raised btn-success procesos" title="Desempeño">
-                                <i class="fas fa-chart-line" aria-hidden="true"></i> Desempeño
-                            </button>
-                            <button onclick="window.open('http://www.gointegro.com/es/inicio/','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Convenios">
-                                <i class="fas fa-thumbs-up" aria-hidden="true"></i> Convenios
+                            <button onclick="window.open('https://flesan.gointegro.com/gosocial/company/stream','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Convenios">
+                                <i class="fas fa-thumbs-up" aria-hidden="true"></i> GO Integro
                             </button>
   
-                            <button onclick="window.open('https://www.payroll.cl/webpay/loginap.aspx?ReturnUrl=%2fwebpay%2fmenuap.aspx','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Payroll">
+                            <button onclick="window.open('https://www.grupopayroll.com/webpay/loginap.aspx','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Payroll">
                                 <i class="far fa-file-alt" aria-hidden="true"></i> Payroll
                             </button>
 
@@ -289,38 +379,22 @@ Modal::end();
                                 <i class="far fa-clipboard" aria-hidden="true"></i> Biwiser
                             </button>
 
-                            <button onclick="window.open(' https://qa.iconstruye.cl/portales/index.html?ReturnUrl=%2f','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="IConstruye">
+                            <button onclick="window.open('https://www.dec.cl/login.php','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="DEC">
+                                <i class="far fa-check-square" aria-hidden="true"></i> DEC
+                            </button> 
+
+                            <button onclick="window.open('https://www.iconstruye.com/includes/default.aspx','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="IConstruye">
                                 <i class="fas fa-shopping-cart" aria-hidden="true"></i> IConstruye
                             </button>   
 
-                            <button onclick="window.open(' https://http://www.flesan.cl/','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Canal de Denuncias">
+                            <button onclick="window.open('https://www.flesanteescucha.com/','_blank')" class="btn btn-lg btn-raised btn-success procesos" title="Canal de Denuncias">
                                 <i class="fas fa-ban" aria-hidden="true"></i> Canal de Denuncias
                             </button>   
 
-                            <button onclick="window.open(' https://http://www.flesan.cl/','_blank')" class="btn btn-lg btn-raised btn-success procesos" title=" Control IT">
+                            <button onclick="window.open('https://www.flesan.cl/','_blank')" class="btn btn-lg btn-raised btn-success procesos" title=" Control IT">
                                 <i class="fas fa-shield-alt" aria-hidden="true"></i> Control IT
                             </button>   
 
-                             <!-- Futuros Procesos
-                            <button class="btn btn-lg btn-raised btn-success procesos">
-                                <i class="fas fa-rocket" aria-hidden="true"></i> Inducción
-                            </button>
-                            <button class="btn btn-lg btn-raised btn-success procesos">
-                                <i class="fas fa-tachometer-alt" aria-hidden="true"></i> Wellness Org
-                            </button>
-                            <button class="btn btn-lg btn-raised btn-success procesos">
-                                <i class="fas fa-star" aria-hidden="true"></i> Beneficios
-                            </button>
-                            <button class="btn btn-lg btn-raised btn-success procesos">
-                                <i class="fas fa-graduation-cap" aria-hidden="true"></i> Aprendizaje
-                            </button>
-                            <button class="btn btn-lg btn-raised btn-success procesos">
-                                <i class="fas fa-universal-access" aria-hidden="true"></i> Bienestar
-                            </button>
-                             <button class="btn btn-lg btn-raised btn-success procesos">
-                                <i class="far fa-money-bill-alt" aria-hidden="true"></i> Payroll 
-                            </button>
-                            -->
                         </div>
 
                         <div class="section" align="center">
@@ -386,7 +460,7 @@ Modal::end();
                             <div class="panel panel-default publicador amigo">
                           <div class="panel-body">
                         
-                             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => ['colaborador/post']]); ?>
+                             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'name' => 'cuca', 'onSubmit' => 'return checkform()'], 'action' => ['colaborador/post']]); ?>
 
                             <div class="row">
                                 
@@ -406,7 +480,7 @@ Modal::end();
                                            enter more than 2 rows of text. -->
                                             <div class="col-md-10 col-xs-7">
                                     <?= Yii::$app->session->getFlash('error'); ?>
-                                                    <textarea onKeyDown="contarCaracteres(this.form.rdescripcionPost, this.form.remLen, 180);" placeholder="Que estas pensando hoy??? " maxlength="180"  name="rdescripcionPost" data-ls-module="charCounter" placeholder="Que estas pensando hoy??? " rows="5" maxlength="180" class="form-control input-lg p-text-area"></textarea>
+                                                    <textarea onKeyUp="contarCaracteres(this.form.rdescripcionPost, this.form.remLen, 180);" placeholder="Que estás pensando hoy??? " maxlength="180"  name="rdescripcionPost" data-ls-module="charCounter" placeholder="Que estás pensando hoy??? " rows="5" maxlength="180" class="form-control input-lg p-text-area"></textarea>
                                                     <p>Contador: <font id="contador">180</font></p>
                                                     </div>
 
@@ -522,7 +596,7 @@ Modal::end();
                                     $('#ani_img').show();
                                     $.get('index.php?r=colaborador/reloadr&page='+mypage+'&rutColaborador=<?php echo $rutColaborador; ?>&rutAmigo=<?php echo $rutAmigo; ?>', function(data){
                                         if(data.trim().length == 0){
-                                             $('#loading').append('<button style="margin-right:35%;" class="btn btn-primary">No existen mas post disponibles</button>');
+                                             $('#loading').append('<button style="margin-right:35%;margin-bottom:10%;" class="btn btn-primary btn btn-primary ">No existen más post disponibles</button>');
                                             var e = document.getElementById("loading");
                                             e.id = "loadings";
                                             document.getElementById('ani_img').style.display = 'none';

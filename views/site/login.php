@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         background-color: rgba(255, 255, 255, 0)!important;
     }
     .btn-primary{
-        background-color:#012776;
+        background-color:#e8000a;
         border-color:#ffffff;
     }
 

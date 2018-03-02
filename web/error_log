@@ -1,0 +1,116 @@
+[21-Feb-2018 13:49:55 UTC] PHP Fatal error:  Class 'app\models\WTarea' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 266
+[21-Feb-2018 13:52:19 UTC] PHP Fatal error:  Class 'app\models\WTarea' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 260
+[21-Feb-2018 14:32:34 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:03:28 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:03:38 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:03:45 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:03:48 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:03:51 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:03:51 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:03:51 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:03:53 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:04:01 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:04:03 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:04:03 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:04:03 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:04:03 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:04:03 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:04:03 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[21-Feb-2018 18:04:03 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[22-Feb-2018 13:17:47 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[22-Feb-2018 13:17:58 UTC] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/BuscarController.php on line 204
+[22-Feb-2018 10:25:20 America/Santiago] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1125
+[22-Feb-2018 10:26:14 America/Santiago] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1125
+[22-Feb-2018 10:26:30 America/Santiago] PHP Fatal error:  Class 'app\models\RActividad' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1125
+[22-Feb-2018 13:26:57 UTC] PHP Fatal error:  Cannot use app\models\Ractividad as Ractividad because the name is already in use in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 18
+[22-Feb-2018 13:52:19 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 13:52:24 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 13:52:27 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 13:52:30 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 13:52:33 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 13:52:48 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 13:53:02 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 13:53:10 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 13:55:28 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 13:57:27 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 13:57:38 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 14:05:51 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 14:37:11 UTC] PHP Fatal error:  Class 'app\models\RComentarios' not found in /home/induccion/public_html/plataforma/controllers/RpostController.php on line 1153
+[22-Feb-2018 11:42:53 America/Santiago] PHP Fatal error:  Call to a member function isAttributeRequired() on null in /home/induccion/public_html/plataforma/vendor/yiisoft/yii2/widgets/ActiveField.php on line 859
+[22-Feb-2018 14:46:17 UTC] PHP Warning:  POST Content-Length of 52795844 bytes exceeds the limit of 41943040 bytes in Unknown on line 0
+[22-Feb-2018 14:48:36 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 52812313 bytes) in /home/induccion/public_html/plataforma/vendor/yiisoft/yii2-debug/LogTarget.php on line 64
+[22-Feb-2018 14:52:54 UTC] PHP Warning:  POST Content-Length of 52795866 bytes exceeds the limit of 41943040 bytes in Unknown on line 0
+[22-Feb-2018 14:55:23 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 52812332 bytes) in /home/induccion/public_html/plataforma/vendor/yiisoft/yii2-debug/LogTarget.php on line 64
+[26-Feb-2018 12:50:11 UTC] PHP Fatal error:  Cannot use app\models\Bbeneficios as Bbeneficios because the name is already in use in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 29
+[26-Feb-2018 12:50:42 UTC] PHP Fatal error:  Cannot use app\models\Bbeneficios as Bbeneficios because the name is already in use in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 29
+[26-Feb-2018 12:50:49 UTC] PHP Fatal error:  Cannot redeclare app\controllers\BuscarController::findBeneficios() in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 569
+[26-Feb-2018 12:51:12 UTC] PHP Fatal error:  Cannot redeclare app\controllers\ColaboradorController::actionBeneficios() in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1073
+[26-Feb-2018 12:51:35 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1117
+[26-Feb-2018 09:57:27 America/Santiago] PHP Fatal error:  Class 'app\controllers\Bcolaboradorbeneficio' not found in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1102
+[26-Feb-2018 09:58:31 America/Santiago] PHP Fatal error:  Class 'app\controllers\Bcolaboradorbeneficio' not found in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1102
+[26-Feb-2018 09:58:39 America/Santiago] PHP Fatal error:  Class 'app\controllers\Bcolaboradorbeneficio' not found in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1102
+[26-Feb-2018 12:59:14 UTC] PHP Fatal error:  Cannot use app\models\Bbeneficios as Bbeneficios because the name is already in use in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 25
+[26-Feb-2018 10:01:42 America/Santiago] PHP Fatal error:  Call to a member function save() on integer in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1113
+[26-Feb-2018 14:11:42 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1124
+[26-Feb-2018 14:11:48 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1124
+[26-Feb-2018 14:11:50 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1124
+[26-Feb-2018 14:11:56 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1124
+[26-Feb-2018 14:12:01 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1124
+[26-Feb-2018 14:12:02 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1124
+[26-Feb-2018 14:12:09 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1124
+[26-Feb-2018 16:01:04 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1142
+[26-Feb-2018 17:43:29 UTC] PHP Parse error:  syntax error, unexpected 'MONTH' (T_STRING) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 236
+[26-Feb-2018 17:43:45 UTC] PHP Parse error:  syntax error, unexpected 'MONTH' (T_STRING) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 236
+[26-Feb-2018 17:44:21 UTC] PHP Parse error:  syntax error, unexpected 'MONTH' (T_STRING) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 236
+[26-Feb-2018 17:44:46 UTC] PHP Fatal error:  Can't use function return value in write context in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 237
+[26-Feb-2018 17:45:10 UTC] PHP Fatal error:  Can't use function return value in write context in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 237
+[26-Feb-2018 17:45:34 UTC] PHP Fatal error:  Can't use function return value in write context in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 237
+[26-Feb-2018 17:45:34 UTC] PHP Fatal error:  Can't use function return value in write context in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 237
+[26-Feb-2018 17:47:38 UTC] PHP Fatal error:  Can't use function return value in write context in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 237
+[26-Feb-2018 14:51:40 America/Santiago] PHP Fatal error:  Class 'app\controllers\Yii' not found in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 233
+[26-Feb-2018 14:51:46 America/Santiago] PHP Fatal error:  Class 'app\controllers\Yii' not found in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 233
+[26-Feb-2018 14:51:59 America/Santiago] PHP Fatal error:  Class 'app\controllers\Yii' not found in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 233
+[26-Feb-2018 14:59:43 America/Santiago] PHP Parse error:  syntax error, unexpected '$rut' (T_VARIABLE) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 235
+[26-Feb-2018 19:04:13 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 639
+[26-Feb-2018 19:06:01 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 639
+[26-Feb-2018 19:06:12 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 639
+[26-Feb-2018 19:08:12 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 639
+[26-Feb-2018 19:08:28 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 639
+[26-Feb-2018 19:08:46 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 639
+[26-Feb-2018 19:08:46 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 639
+[26-Feb-2018 19:08:47 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 639
+[26-Feb-2018 19:08:48 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 639
+[26-Feb-2018 19:08:48 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 639
+[26-Feb-2018 19:09:08 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 639
+[26-Feb-2018 19:09:28 UTC] PHP Parse error:  syntax error, unexpected '$beneficio' (T_VARIABLE) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 640
+[26-Feb-2018 19:09:39 UTC] PHP Parse error:  syntax error, unexpected '$beneficio' (T_VARIABLE) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 640
+[26-Feb-2018 19:09:47 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 662
+[26-Feb-2018 19:10:09 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 662
+[26-Feb-2018 19:10:48 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 662
+[26-Feb-2018 19:10:49 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 662
+[26-Feb-2018 19:10:51 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 662
+[26-Feb-2018 19:11:00 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 662
+[26-Feb-2018 19:11:01 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 662
+[26-Feb-2018 19:11:05 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 662
+[26-Feb-2018 19:11:06 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 662
+[26-Feb-2018 19:11:07 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/induccion/public_html/plataformaB/controllers/BuscarController.php on line 662
+[26-Feb-2018 16:11:27 America/Santiago] PHP Fatal error:  Call to undefined method app\controllers\BuscarController::canjeA() in /home/induccion/public_html/plataformaB/views/colaborador/beneficios.php on line 557
+[26-Feb-2018 16:11:47 America/Santiago] PHP Fatal error:  Call to undefined method app\controllers\BuscarController::canjeA() in /home/induccion/public_html/plataformaB/views/colaborador/beneficios.php on line 557
+[26-Feb-2018 19:41:09 UTC] PHP Parse error:  syntax error, unexpected 'Open' (T_STRING) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1341
+[26-Feb-2018 19:41:21 UTC] PHP Parse error:  syntax error, unexpected 'Open' (T_STRING) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1341
+[26-Feb-2018 19:45:03 UTC] PHP Parse error:  syntax error, unexpected '*' in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 27
+[26-Feb-2018 19:45:19 UTC] PHP Parse error:  syntax error, unexpected '*' in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 27
+[26-Feb-2018 19:45:34 UTC] PHP Fatal error:  Cannot use try without catch or finally in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 185
+[26-Feb-2018 19:46:13 UTC] PHP Parse error:  syntax error, unexpected '*' in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 27
+[26-Feb-2018 19:46:14 UTC] PHP Parse error:  syntax error, unexpected '*' in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 27
+[27-Feb-2018 12:54:06 UTC] PHP Parse error:  syntax error, unexpected 'Open' (T_STRING) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 1322
+[01-Mar-2018 12:03:10 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/induccion/public_html/plataformaB/controllers/RpostController.php on line 1084
+[01-Mar-2018 12:46:56 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 423
+[01-Mar-2018 13:11:51 America/Santiago] PHP Fatal error:  Call to a member function isAttributeRequired() on null in /home/induccion/public_html/plataformaB/vendor/yiisoft/yii2/widgets/ActiveField.php on line 859
+[01-Mar-2018 19:26:41 UTC] PHP Parse error:  syntax error, unexpected '$secundario' (T_VARIABLE) in /home/induccion/public_html/plataformaB/controllers/ColaboradorController.php on line 39
+[01-Mar-2018 19:27:19 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 72 bytes) in /home/induccion/public_html/plataformaB/vendor/yiisoft/yii2-debug/LogTarget.php on line 123
+[01-Mar-2018 19:29:59 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 72 bytes) in /home/induccion/public_html/plataformaB/vendor/yiisoft/yii2-debug/LogTarget.php on line 123
+[01-Mar-2018 19:31:13 UTC] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/induccion/public_html/plataformaB/vendor/yiisoft/yii2/log/Logger.php on line 150
+[01-Mar-2018 19:43:43 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 72 bytes) in /home/induccion/public_html/plataformaB/vendor/yiisoft/yii2-debug/LogTarget.php on line 123
+[01-Mar-2018 19:56:23 UTC] PHP Fatal error:  Allowed memory size of 943718400 bytes exhausted (tried to allocate 72 bytes) in /home/induccion/public_html/plataformaB/vendor/yiisoft/yii2-debug/LogTarget.php on line 123
+[01-Mar-2018 20:10:02 UTC] PHP Fatal error:  Maximum execution time of 600 seconds exceeded in /home/induccion/public_html/plataformaB/vendor/yiisoft/yii2-debug/LogTarget.php on line 123

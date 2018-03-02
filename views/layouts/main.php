@@ -46,6 +46,8 @@ AppAsset::register($this);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
         <!-- If you'd like to support IE8 -->
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
@@ -55,7 +57,7 @@ AppAsset::register($this);
     <style>
 
         .navbar-principal .navbar-brand, .navbar-principal .navbar-brand li a:visited, .navbar-principal .navbar-nav li a {
-        color: #ffffff;
+        color: #ffffff!important;
         font-weight: 500;
         padding-top: 35px;
         }
@@ -75,9 +77,9 @@ AppAsset::register($this);
         }
 
          .navbar-principal .navbar-nav .open a, .navbar-principal .navbar-nav .open a:hover, .navbar-principal .navbar-nav li a:hover, .navbar-principal .navbar-nav li a:focus, .navbar-principal .navbar-nav .active a, .navbar-principal .navbar-nav .active a:hover {
-            color: #fff;
+            color: #fff!important;
                  background-color: #343434 !important;
-                padding-top: 35px;
+              
         }
        
         a.navbar-brand {
@@ -180,7 +182,13 @@ AppAsset::register($this);
             aside {
                 width: 290px !important; 
                 max-width: 290px;
-}           }
+            } 
+            img#logo {
+                width: 51%!important;
+                margin-left: 13%!important;
+                margin-top: -42%!important;
+            }
+        }
 
 
 
@@ -254,9 +262,9 @@ AppAsset::register($this);
 
             <div class="container-fluid">
 
-                <div class="navbar-header">
+                <div class="navbar-header bounceInLeft">
 
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style=" margin-top: 20px;">
+                    <button type="button" class="navbar-toggle collapsed bounceInLeft" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style=" margin-top: 20px;">
 
                         <span class="sr-only">Toggle navigation</span>
 
@@ -275,13 +283,12 @@ AppAsset::register($this);
                     </a>
                     <a class="navbar-brand hidden-lg hidden-md" >
 
-                        <b><img style="width: 35%!important; margin-left: 5px;  margin-top: -104px!important; margin-bottom: -12%!important;" id="logo" src="../web/flesan.png"></b>
-
+                        <b><img style="width: 35%!important; margin-left: 5px;margin-bottom: -20%!important; " id="logo" src="../web/flesan.png"></b>
                     </a>
 
                 </div>
 
-                <div id="navbar" class="collapse navbar-collapse">
+                <div id="navbar" class="collapse navbar-collapse bounceInLeft">
 
                         <form class="navbar-form">
 
@@ -296,7 +303,7 @@ AppAsset::register($this);
                         </form>
 
                   
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right bounceInLeft">
 
                         <li class="active">
                             <?= Html::a('<i  class="fa fa-user"></i>&nbsp;' . $session['nombreColaborador'], ['colaborador/compadre', 'rutAmigo' => $rutColaborador]) ?>
@@ -306,38 +313,52 @@ AppAsset::register($this);
                         <li>
 
                           <?= Html::a('<i class="fa fa-home"></i>&nbsp;Inicio', ['colaborador/perfil', 'rutColaborador' => $rutColaborador]) ?>
+                      </li>
 
-                        <!-- Procesos    
-                        <li>
+                      <li class="hidden-md hidden-lg">
 
-                            <?= Html::a('<i class="fas fa-caret-square-up"></i>&nbsp;Procesos', ['colaborador/perfil']) ?>
+                          <?= Html::a('<i class="fas fa-star"></i>&nbsp;Beneficios', ['colaborador/beneficios', 'rutAmigo' => $rutColaborador]) ?>
+                      </li>
 
-                        </li>
-                        -->
+                      <li class="hidden-md hidden-lg">
 
-                        <!-- Ranking
-                        <li>
+                          <a href="http://www.flesan.cl" ><i class="fas fa-sun" aria-hidden="true"></i> Clima</a>
+                      </li>
 
-                            <?= Html::a('<i class="fas fa-trophy"></i>&nbsp;Ranking', ['colaborador/perfil']) ?>
+                      <li class="hidden-md hidden-lg">
 
-                        </li>
-                        -->
+                          <a href="https://flesan.gointegro.com/gosocial/company/stream" ><i class="fas fa-thumbs-up" aria-hidden="true"></i> GO Integro</a>
+                      </li>
 
-                        <!-- Mis tareas
-                        <li>
+                       <li class="hidden-md hidden-lg">
 
-                            <?= Html::a('<i class="fas fa-envelope"></i>&nbsp;Mis tareas', ['colaborador/tareas']) ?>
+                          <a href="https://www.grupopayroll.com/webpay/loginap.aspx" ><i class="far fa-file-alt" aria-hidden="true" ></i> Payroll</a>
+                      </li>
 
-                        </li>
-                        -->
+                       <li class="hidden-md hidden-lg">
 
-                        <!-- Inbox
-                        <li>
+                          <a href="https://www.biwiser.com/que-es-biwiser/" ><i class="far fa-clipboard" aria-hidden="true"></i> Biwiser</a>
+                      </li>
 
-                            <?= Html::a('<i class="fas fa-envelope"></i>&nbsp;Inbox', ['colaborador/perfil']) ?>
+                       <li class="hidden-md hidden-lg">
 
-                        </li>
-                        -->
+                          <a href="https://www.dec.cl/login.php" ><i class="far fa-check-square" aria-hidden="true"></i> DEC</a>
+                      </li>
+
+                      <li class="hidden-md hidden-lg">
+
+                          <a href="https://www.iconstruye.com/includes/default.aspx" ><i class="fas fa-shopping-cart" aria-hidden="true"></i> IConstruye</a>
+                      </li>
+
+                      <li class="hidden-md hidden-lg">
+
+                          <a href="https://www.flesanteescucha.com/" ><i class="fas fa-ban" aria-hidden="true"></i> Canal de Denuncias</a>
+                      </li>
+
+                      <li class="hidden-md hidden-lg">
+
+                          <a href="https://www.flesan.cl/" ><i class="fas fa-shield-alt" aria-hidden="true"></i> Control IT</a>
+                      </li>
 
                         <li><?php
                             echo Html::a('<i class="fas fa-sign-out-alt"></i>&nbsp;Salir', ['/site/logout'], ['data-method' => 'post']);

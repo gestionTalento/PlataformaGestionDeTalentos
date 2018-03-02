@@ -99,7 +99,7 @@ class Colaborador extends \yii\db\ActiveRecord
         return [
             'rutColaborador' => 'Rut Colaborador',
             'dvColaborador' => 'Dv Colaborador',
-            'pass' => 'Pass',
+            'pass' => 'Contraseña:',
             'nombreColaborador' => 'Nombre Colaborador',
             'apellidosColaborador' => 'Apellidos Colaborador',
             'idSucursal' => 'Id Sucursal',
@@ -113,7 +113,7 @@ class Colaborador extends \yii\db\ActiveRecord
             'idestadisticas' => 'Idestadisticas',
             'idestado' => 'Idestado',
             'idCC' => 'Id Cc',
-            'correo' => 'Correo',
+            'correo' => 'Correo corporativo:',
             'telefono' => 'Telefono',
             'direccion' => 'Direccion',
         ];

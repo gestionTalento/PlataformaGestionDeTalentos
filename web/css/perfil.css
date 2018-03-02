@@ -7,6 +7,59 @@
 ::-webkit-scrollbar { 
 display:none;
 }
+.widget.panel-friends {
+    overflow-y: scroll;
+    -webkit-logical-height: -webkit-fill-available;
+    height: 290px;
+}
+.truncatetext {
+      white-space: pre-line;
+  text-overflow: ellipsis;
+}
+.well {
+    color:  white!important;
+    background-color: #313131!important;
+    border: 1px solid #313131!important;
+}
+.panel-body.beneficioh {
+    padding: 0px!important;
+}
+table.table.table-responsive.table-striped.carla.c {
+    margin-bottom: 0px!important;
+}
+.panelb{
+        background-color: #e8010b!important;
+}
+
+.titulob{
+    color: white!important;
+    font-weight: bolder;
+    font-size: 25px!important;
+}
+a.btn.btn-lg.btn-raised.btn-success.procesos:hover {
+    background-color: #e8000a!important;
+    }
+    a.btn.btn-lg.btn-raised.btn-success.procesos {
+    text-transform: uppercase!important;
+    font-family: 'Roboto', sans-serif!important;
+    background-color: #343434!important;
+    padding-top: 4px!important;
+    border-color: white!important;
+    width: 184px!important;
+    height: 35px!important;
+    font-size: 11px!important;
+}
+
+.btn.btn-primary.archivo{
+	background-color: #e8000a!important;
+    border-color: #e8000a!important;
+}
+
+.btn.btn-primary.btn-file {
+    background-color: #e8000a!important;
+    border-color: #e8000a!important;
+}
+
 .btn-loved {
     background-color:  #353535!important;
     border-color:  #353535!important;
@@ -52,7 +105,7 @@ button.button-mision.btn-lg.btn-raised.misiones {
 
 
 .col-md-12.tare {
-    padding-bottom: 16px;
+    /* padding-bottom: 16px; */
 }
 
 p.misiones {
@@ -91,6 +144,9 @@ button.btn.btn-lg.btn-raised.btn-success.rota {
 }
 
 
+button.btn.btn-lg.btn-raised.btn-success.procesos:hover {
+    background-color: #e8000a!important;
+}
 
 button.btn.btn-lg.btn-raised.btn-success.procesos {
     text-transform: uppercase;
@@ -142,9 +198,7 @@ p.misiontext {
 h4.panel-title {
     color:  white;
 }
-.panel-heading {
-    background-color: #7036e3!important;
-}
+
 .panel-collapse {
    -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
@@ -156,17 +210,17 @@ h4.panel-title {
 }
 table.table.table-striped.carla {
     -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
-            -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
-            box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+    -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
+    box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
     padding: 0px;
-    padding-bottom: 10px;
+    padding-bottom: 39px;
 }
 thead {
     background-color: #006463!important;
 }
 
 th {
-    background-color: #006463!important;
+    background-color: #e8020c!important;
     color: white;
     font-weight: 500;
     text-transform: uppercase;
@@ -215,7 +269,8 @@ tbody {
     }
     .profile-header-background img {
     width: 100%;
-    margin-top: -5%;
+        margin-top: -5%;
+        
  
 }
 
@@ -233,18 +288,15 @@ tbody {
     background-color: #206c7d;
 }
 .profile-info-derecho{
-
-    position: fixed;
-    overflow: scroll;
-    min-height: 100%;
-    top: 3%;
-    max-width: 14%;
-    width: 200px;
-    z-index: 0;
-    height: 100%;
-   margin-left: 52%;
- 
-   
+position: fixed;
+overflow: scroll;
+min-height: 100%;
+top: 3%;
+/* max-width: 16%; */
+width: 14%;
+z-index: 0;
+height: 100%;
+margin-left: 49%;
 }
 img.imgpublicidad {
     padding-bottom: 27px;
@@ -268,6 +320,8 @@ img.imgpublicidad {
     background-color: white;
     }
     .profile-info-left img.avatar  {
+    	width : 200px!important;
+    	height : 200px!important;
         border: 2px solid #fff;
     }
     .profile-info-left h2 {
@@ -317,15 +371,15 @@ img.imgpublicidad {
 
     @media screen and (max-width: 768px) {
         .profile-info-right {
-        position: relative;
-        top: -89px;
-        padding: 0px 0;
-    }
+            position: relative;
+            top: -89px;
+            padding: 0px 0;
+        }
 
         .panel.panel-default.publicador {
-    width: 365px;
-    margin-left: -30px;
-}
+            width: 368px!important;
+            margin-left: -17px!important;
+        }
 
          
     }
@@ -913,6 +967,8 @@ img.imgpublicidad {
 }
 
  @media (max-width:768px){
+
+
             .user-ditels {
                 left: 5px;
             }
@@ -941,6 +997,10 @@ img.imgpublicidad {
         .panel.panel-default.publicador {
     max-width: 116%;
     margin-left: -6%;
+}
+    .panel.panel-default.publicador.amigo.ben{
+    max-width: 124%!important;
+    margin-left: -9%!important;
 }
     }
 
@@ -996,10 +1056,15 @@ img.fotocomentario {
         float: left;
         margin-left: 40px;
     }
+img.img-responsive {
+    max-height: 100%!important;
+    max-width: 100%!important;
 
+}
 
 img.img-responsive.archivo {
     max-width: 102.5%;
+    width: 100%!important;
 }
 a {
     color: #777777;
@@ -1073,9 +1138,11 @@ a {
             position: relative;
             background-color:  white;
             width: 147%;
+                max-height: 100%!important;
+                    overflow: hidden!important;
                 max-width: 125%;
-    margin-top: 10%;
-    margin-left: -1%;
+    		margin-top: 10%;
+    		margin-left: -1%;
             -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);
             box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);}
@@ -1109,6 +1176,10 @@ a {
                 left: 5px;
             }
 
+            .profile-header-background img {
+             margin-top: -14%!important;
+            }
+
             .profile-info-left.amigo {
             width: 97%;
             padding-top: 18%!important;
@@ -1131,8 +1202,9 @@ a {
 
             }
             .container-fluid.coment {
-    margin-left: -1%;
+    margin-left: 8%!important;
     margin-right: -26%!important;
+    max-width: 105%!important;
 }
             .content-footer span a {
                 color: #fff;
@@ -1277,7 +1349,7 @@ img.fotocomentario {
         }
 
         #blog-section{margin-top: -30px; margin-bottom: 30px;}
-        .content-title{padding:5px;background-color:#fff;}
+        .content-title{padding:5px;background-color:#fff;position: relative;}
         .content-title h3 a{color:#34495E;text-decoration:none; transition: 0.5s;}
         .content-title h3 a:hover{color:#F39C12; }
         .content-footer{background-color:#343434;padding:10px;position: relative;}
@@ -1387,6 +1459,7 @@ i.fa.fa-caret-right {
 /* PERFIL AMIGO */
 
  .panel.panel-default.publicador.amigo {
+
     max-width: 94%;
     margin-left: 4.5%;
     margin-right: 3.75%;
@@ -1437,9 +1510,7 @@ a.navbar-brand {
     margin-top: 28px;
 }
 
-    .profile-header-background {
-        margin: -208px -30px 0 -30px
-    }
+   
     .profile-header-background img {
         width: 100%;
 
@@ -1451,7 +1522,8 @@ a.navbar-brand {
     button.btn.btn-lg.btn-raised.btn-success.procesos {
     text-transform: uppercase;
      font-family: 'Roboto', sans-serif;
-   background-color: #343434;
+   background-color: #343434!important;
+   border-color: #fff!important;
     padding-top: 4px;
     border-color: white;
     width: 184px;
@@ -1514,16 +1586,18 @@ a.navbar-brand {
         background-color: transparent;
     }
     @media screen and (max-width: 768px) {
+                .content-footer{background-color:#343434;padding:28px;position: relative;}
+
         .perfilll{
             margin-top: -60px;
         }
          .profile-header-background {
-        margin: -34px -30px 0 -30px
+        margin: 18px -30px 0 -30px;
     }
 
         .profile-info-right.amigo {
             position: relative;
-            top: 10px!important;
+           	top: -86px!important;
         }
     }
 
@@ -1769,6 +1843,7 @@ a.navbar-brand {
         margin-left: 30px;
     }
     @media screen and (max-width: 480px) {
+        .content-footer{background-color:#343434;padding:28px;position: relative;}
         .nav-pills-custom-minimal > li + li {
             margin-left: 0;
         }
@@ -2040,6 +2115,7 @@ a.navbar-brand {
     text-align: center;
 }
 
+
  p.card-text {text-align: justify;}
     .rota {
         color: #fff;
@@ -2051,9 +2127,9 @@ a.navbar-brand {
     }
 
      .perfilll{
-        -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
-        -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);
-        transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+        -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg)!important;
+        -webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg)!important;
+        transform: rotate(<?php echo $perfil->rrotador; ?>deg)!important;
 
 
     }
@@ -2100,3 +2176,10 @@ h4.media-heading {
 
 
 /* CINE */
+
+/* Movile*/
+
+@media only screen and (max-width : 320px) {
+    .content-footer{background-color:#343434;padding:28px;position: relative;}
+    
+}

@@ -13,6 +13,7 @@ use Yii;
  * @property int $rutColaborador
  * @property string $bcomentarioBeneficio
  * @property int $bestadoBeneficio
+ * @property int $bvalorCanje
  *
  * @property Bbeneficios $bIdBeneficio
  */
@@ -34,7 +35,7 @@ class Bcolaboradorbeneficio extends \yii\db\ActiveRecord
         return [
             [['bfechaCanje'], 'safe'],
             [['bId_Beneficio', 'rutColaborador'], 'required'],
-            [['bId_Beneficio', 'rutColaborador', 'bestadoBeneficio'], 'integer'],
+            [['bId_Beneficio', 'rutColaborador', 'bestadoBeneficio', 'bvalorCanje'], 'integer'],
             [['bcomentarioBeneficio'], 'string', 'max' => 150],
             [['bId_Beneficio', 'rutColaborador'], 'exist', 'skipOnError' => true, 'targetClass' => Bbeneficios::className(), 'targetAttribute' => ['bId_Beneficio' => 'bId_Beneficio', 'rutColaborador' => 'rutColaborador']],
         ];
@@ -52,6 +53,7 @@ class Bcolaboradorbeneficio extends \yii\db\ActiveRecord
             'rutColaborador' => 'Rut Colaborador',
             'bcomentarioBeneficio' => 'Bcomentario Beneficio',
             'bestadoBeneficio' => 'Bestado Beneficio',
+            'bvalorCanje' => 'Valor Canje',
         ];
     }
 

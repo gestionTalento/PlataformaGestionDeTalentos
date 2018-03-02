@@ -7,9 +7,9 @@ use Yii;
 /**
  * This is the model class for table "bpuntajecolaborador".
  *
- * @property int $idDependencias
- * @property string $puntajeBeneficiario
- * @property string $puntajeOtorgado
+ * @property int $rutColaborador
+ * @property string $puntaje
+
  *
  * @property Dependencia $dependencias
  */
@@ -29,31 +29,31 @@ class Bpuntajecolaborador extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idDependencias'], 'required'],
-            [['idDependencias'], 'integer'],
-            [['puntajeBeneficiario', 'puntajeOtorgado'], 'number'],
-            [['idDependencias'], 'unique'],
-            [['idDependencias'], 'exist', 'skipOnError' => true, 'targetClass' => Dependencia::className(), 'targetAttribute' => ['idDependencias' => 'idDependencias']],
+            [['rutColaborador'], 'required'],
+            [['rutColaborador'], 'integer'],
+            [['puntaje'], 'number'],
+            [['rutColaborador'], 'unique'],
+            [['rutColaborador'], 'exist', 'skipOnError' => true, 'targetClass' => Colaborador::className(), 'targetAttribute' => ['rutColaborador' => 'rutColaborador']],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+     public function attributeLabels()
     {
         return [
-            'idDependencias' => 'Id Dependencias',
-            'puntajeBeneficiario' => 'Puntaje Beneficiario',
-            'puntajeOtorgado' => 'Puntaje Otorgado',
+            'rutColaborador' => 'Rut',
+            'puntaje' => 'Puntaje',
+            
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDependencias()
+    public function getColaborador()
     {
-        return $this->hasOne(Dependencia::className(), ['idDependencias' => 'idDependencias']);
+        return $this->hasOne(Colaborador::className(), ['rutColaborador' => 'rutColaborador']);
     }
 }

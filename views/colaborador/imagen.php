@@ -46,19 +46,19 @@
         </div>
     </div>
 </div>
-
+  <div id="fotol" class="activity-attachment">
     <a  id="pop<?php echo $post["ridPost"]; ?>" align="center" style="cursor: pointer">
 
-        <center><img class="img-responsive fondo rotate-<?php echo $post["ridPost"]; ?>" align="center" style="
-        height: : 800px!important;
+       <img class="img-responsive rotate-<?php echo $post["ridPost"]; ?>" align="center" style="
+        height: : 600px!important;
         -ms-transform: rotate(<?php echo $post['rrotador']; ?>deg);
         -webkit-transform: rotate(<?php echo $post['rrotador']; ?>deg);
         transform: rotate(<?php echo $post['rrotador']; ?>deg);
 
         " src="../web/img/post/<?php echo $post['rfoto']; ?>" alt="...">
-        </center>
+        
     </a>
-                                
+                 </div>       
                                 <div class="content-title" id="m<?php echo $post["ridPost"]; ?>">
                         
                                     <div class="post-description text-left">
@@ -79,7 +79,8 @@
                                     </div>
                                 </div>
                                 <div class="content-footer">
-                                    <img class="user-small-img"  src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>">
+                                    <img class="user-small-img"  src="../web/img/perfil/t/<?php echo $perfil->rfoto; ?>" style="                                               -ms-transform: rotate(<?php echo $perfil->rrotador; ?>deg);-webkit-transform: rotate(<?php echo $perfil->rrotador; ?>deg);transform: rotate(<?php echo $perfil->rrotador; ?>deg);
+                                    ">
                                     <a id="letra" href="<?php echo "index.php?r=colaborador/compadre&rutAmigo=".$posteador[0]["rutColaborador"]; ?>"><?php echo $posteador[0]['nombreColaborador'] . " " . $posteador[0]['apellidosColaborador']; ?></a>
                                     <span class="pull-right">
 
